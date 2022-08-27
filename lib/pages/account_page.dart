@@ -99,7 +99,7 @@ class _AccountPageState extends State<AccountPage> {
               buildTextField("email", "info@gabo.io", false),
               buildTextField("Country of residence", "Rwanda", false),
               ToggleButtons(
-                children: [
+                children: const [
                   Text("Male"),
                   Text("Female"),
                   Text("No answer"),
@@ -115,7 +115,7 @@ class _AccountPageState extends State<AccountPage> {
                 children: [
                   OutlinedButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "Cancel",
                       style: TextStyle(
                         fontSize: 14,
@@ -126,7 +126,7 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                   OutlinedButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "Cancel",
                       style: TextStyle(
                         fontSize: 14,
