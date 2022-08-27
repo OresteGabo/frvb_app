@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../widgets/live_match_card.dart';
-import '../widgets/competitionWidget.dart';
-import '../widgets/match_card.dart';
-import '../model/competition.dart';
-import 'matches_page.dart';
-import '../model/team.dart';
+import 'package:frvb/widgets/live_match_card.dart';
+import 'package:frvb/widgets/competitionWidget.dart';
+import 'package:frvb/widgets/match_card.dart';
+import 'package:frvb/model/competition.dart';
+import 'package:frvb/pages/matches_page.dart';
+import 'package:frvb/model/team.dart';
+import 'package:frvb/model/match.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -145,13 +146,20 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 12,
                       ),
-                      MatchCard(awayTeam: gisagara, homeTeam: kvc),
-                      MatchCard(awayTeam: gsob, homeTeam: aprvc),
-                      MatchCard(awayTeam: aprvc, homeTeam: reg),
-                      MatchCard(
-                        awayTeam: reg,
-                        homeTeam: kvc,
-                      )
+                      MatchCard(match: match1),
+                      MatchCard(match: match2),
+                      MatchCard(match: match3),
+                      MatchCard(match: match4),
+                      MatchCard(match: match5),
+                      /*MatchCard(
+                        match: Match(_homeTeam, _awayTeam, _time),
+                      ),
+                      MatchCard(match: Match(kvc, gisagara, DateTime.now())),
+                      MatchCard(match: c),*/
+
+                      /*MatchCard(match:Match(awayTeam: gsob, homeTeam: aprvc,time:DateTime.now())),
+                      MatchCard(match:Match(awayTeam: aprvc, homeTeam: reg,time:DateTime.now())),
+                      MatchCard(match:Match(awayTeam: reg,homeTeam: kvc,,time:DateTime.now()))*/
                     ],
                   ),
                 ),

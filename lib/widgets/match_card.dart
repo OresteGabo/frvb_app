@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import '../model/team.dart';
+import 'package:frvb/model/match.dart';
+import 'package:frvb/model/team.dart';
 
 class MatchCard extends StatelessWidget {
   const MatchCard({
     Key? key,
-    required this.homeTeam,
-    required this.awayTeam,
+    required this.match,
   }) : super(key: key);
 
-  final Team homeTeam;
-  final Team awayTeam;
+  final Match match;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.all(12),
-      margin: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -30,14 +29,14 @@ class MatchCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  homeTeam.name,
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  match.homeTeam.name,
+                  style: const TextStyle(fontSize: 20, color: Colors.black87),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Image.asset(
-                  homeTeam.logo,
+                  match.homeTeam.logo,
                   width: 40,
                 ),
               ],
@@ -46,7 +45,7 @@ class MatchCard extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Column(
-              children: [
+              children: const [
                 Text(
                   "06:30",
                   style: TextStyle(color: Colors.orange, fontSize: 20),
@@ -64,15 +63,15 @@ class MatchCard extends StatelessWidget {
               // mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  awayTeam.logo,
+                  match.awayTeam.logo,
                   width: 40,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Text(
-                  awayTeam.name,
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  match.awayTeam.name,
+                  style: const TextStyle(fontSize: 20, color: Colors.black87),
                 ),
               ],
             ),

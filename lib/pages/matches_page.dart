@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/model/competition.dart';
-import 'package:frvb/model/team.dart';
+import 'package:frvb/model/match.dart';
 import 'package:frvb/pages/home_page.dart';
 
 import '../widgets/competitionWidget.dart';
@@ -22,7 +22,7 @@ class _MatchesPageState extends State<MatchesPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 14, top: 32, right: 14),
+          padding: const EdgeInsets.only(left: 14, top: 32, right: 14),
           child: Column(
             children: [
               Row(
@@ -31,8 +31,8 @@ class _MatchesPageState extends State<MatchesPage> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const HomePage()));
                     },
                     child: Container(
                       height: 40,
@@ -62,11 +62,11 @@ class _MatchesPageState extends State<MatchesPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -92,15 +92,16 @@ class _MatchesPageState extends State<MatchesPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      MatchCard(awayTeam: kvc, homeTeam: gisagara),
-                      MatchCard(awayTeam: reg, homeTeam: aprvc),
-                      MatchCard(awayTeam: gsob, homeTeam: reg),
-                      MatchCard(awayTeam: gisagara, homeTeam: aprvc),
-                      MatchCard(awayTeam: gsob, homeTeam: iprcsouth),
-                      MatchCard(awayTeam: reg, homeTeam: iprcsouth),
-                      MatchCard(awayTeam: gsob, homeTeam: gisagara),
-                      MatchCard(awayTeam: reg, homeTeam: aprvc),
-                      MatchCard(awayTeam: reg, homeTeam: gisagara),
+                      MatchCard(match: match1),
+                      MatchCard(match: match2),
+                      MatchCard(match: match3),
+                      MatchCard(match: match4),
+                      MatchCard(match: match5),
+                      MatchCard(match: match6),
+                      MatchCard(match: match7),
+                      MatchCard(match: match8),
+                      MatchCard(match: match9),
+                      MatchCard(match: match10),
                     ],
                   ),
                 ),
