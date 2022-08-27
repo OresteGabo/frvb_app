@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import '../model/team.dart';
 
 class LiveMatchColumn extends StatelessWidget {
   const LiveMatchColumn({
     Key? key,
-    required this.image,
-    required this.name,
+    required this.team,
     required this.isHome,
   }) : super(key: key);
 
-  final String image;
-  final String name;
+  final Team team;
   final bool isHome;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Image.asset(
-          image,
+          team.logo,
           height: 85,
         ),
         SizedBox(
           height: 8,
         ),
         Text(
-          name,
+          team.name,
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         SizedBox(

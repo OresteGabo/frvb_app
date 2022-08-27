@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frvb/model/teams.dart';
+import 'package:frvb/model/competition.dart';
 import 'package:frvb/pages/home_page.dart';
 
-import '../widgets/competition.dart';
+import '../widgets/competitionWidget.dart';
 import '../widgets/match_card.dart';
 
 class MatchesPage extends StatefulWidget {

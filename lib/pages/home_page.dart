@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../widgets/live_match_card.dart';
-import '../widgets/competition.dart';
+import '../widgets/competitionWidget.dart';
 import '../widgets/match_card.dart';
-import '../model/teams.dart';
+import '../model/competition.dart';
 import 'matches_page.dart';
+import '../model/team.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -107,18 +108,22 @@ class _HomePageState extends State<HomePage> {
                               LiveMatchCard(
                                 width: width,
                                 heigth: heigth,
-                                imageHome: "assets/clubs/kirehe.png",
-                                imageAway: "assets/clubs/aprvc.png",
-                                nameAway: "CXR VC",
-                                nameHome: "KIREHE",
+                                homeTeam: Team(
+                                    logo: "assets/clubs/kirehe.png",
+                                    name: "KIREHE"),
+                                awayTeam: Team(
+                                    logo: "assets/clubs/aprvc.png",
+                                    name: "CXR VC"),
                               ),
                               LiveMatchCard(
                                 width: width,
                                 heigth: heigth,
-                                imageHome: "assets/clubs/gsob.png",
-                                imageAway: "assets/clubs/kirehe.png",
-                                nameAway: "Kirehe vc",
-                                nameHome: "REG VB",
+                                homeTeam: Team(
+                                    logo: "assets/clubs/gsob.png",
+                                    name: "GSOB"),
+                                awayTeam: Team(
+                                    logo: "assets/clubs/kirehe.png",
+                                    name: "KIREHE"),
                               ),
                             ]),
                       ),

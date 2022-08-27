@@ -12,6 +12,7 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -53,7 +54,7 @@ class _CalendarPageState extends State<CalendarPage> {
                 ],
               ),
               const SizedBox(
-                height: 24,
+                height: 20,
               ),
               Container(
                 decoration: const BoxDecoration(color: Colors.white),
@@ -65,7 +66,9 @@ class _CalendarPageState extends State<CalendarPage> {
                   selectionColor: pinkColor,
                   selectedTextColor: Colors.white,
                   onDateChange: (date) {
-                    setState(() {});
+                    setState(() {
+                      selectedDate = date;
+                    });
                   },
                 ),
               ),
@@ -85,7 +88,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: europeLeagueGames
+                    children: div1games
                         .map(
                           (e) => CalendarMatchCard(
                             width: width,

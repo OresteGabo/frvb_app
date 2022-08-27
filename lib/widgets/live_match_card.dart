@@ -2,24 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:frvb/widgets/live_match_column.dart';
 
 import '../constants.dart';
+import '../model/team.dart';
 
 class LiveMatchCard extends StatelessWidget {
   const LiveMatchCard({
     Key? key,
     required this.width,
     required this.heigth,
-    required this.imageHome,
+    /*required this.imageHome,
     required this.imageAway,
     required this.nameHome,
-    required this.nameAway,
+    required this.nameAway,*/
+    required this.homeTeam,
+    required this.awayTeam,
   }) : super(key: key);
 
   final double width;
   final double heigth;
-  final String imageHome;
+  /*final String imageHome;
   final String imageAway;
   final String nameHome;
-  final String nameAway;
+  final String nameAway;*/
+  final Team homeTeam;
+  final Team awayTeam;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +59,7 @@ class LiveMatchCard extends StatelessWidget {
             // mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              LiveMatchColumn(image: imageHome, name: nameHome, isHome: true),
+              LiveMatchColumn(team: homeTeam, isHome: true),
               Column(
                 children: [
                   Row(
@@ -101,7 +106,7 @@ class LiveMatchCard extends StatelessWidget {
                   )
                 ],
               ),
-              LiveMatchColumn(image: imageAway, name: nameAway, isHome: false),
+              LiveMatchColumn(team: awayTeam, isHome: false),
             ],
           ),
         ],

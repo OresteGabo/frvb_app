@@ -18,7 +18,7 @@ class Div1Matches {
   });
 }
 
-List<Div1Matches> europeLeagueGames = [
+List<Div1Matches> div1games = [
   Div1Matches(
       imageHome: "assets/clubs/rayon.webp",
       nameHome: "Rayon",
