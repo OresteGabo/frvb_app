@@ -115,24 +115,12 @@ class CalendarMatchCard extends StatelessWidget {
     Key? key,
     required this.match,
     required this.width,
-    /*required this.homeName,
-    required this.awayName,
-    required this.awayGoals,
-    required this.homeGoals,
-    required this.homeImage,
-    required this.awayImage,*/
     required this.onPressed,
     required this.isSelected,
   }) : super(key: key);
 
   final Match match;
   final double width;
-  /*final String homeName;
-  final String awayName;
-  final String awayGoals;
-  final String homeGoals;
-  final String homeImage;
-  final String awayImage;*/
   final bool isSelected;
   final VoidCallback onPressed;
   @override
@@ -166,9 +154,9 @@ class CalendarMatchCard extends StatelessWidget {
               ),
             ),
           ),
-          const Text(
-            "Yesterday, 9:27 PM",
-            style: TextStyle(color: Colors.grey, fontSize: 16),
+          Text(
+            match.timeString,
+            style: const TextStyle(color: Colors.grey, fontSize: 16),
           ),
           const SizedBox(
             height: 12,
