@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/model/match.dart';
 import 'package:frvb/model/team.dart';
+import 'package:intl/intl.dart';
 
 class MatchCard extends StatelessWidget {
   const MatchCard({
@@ -45,13 +46,16 @@ class MatchCard extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Column(
-              children: const [
+              children: [
                 Text(
-                  "06:30",
+                  match.time.hour.toString() +
+                      ":" +
+                      match.time.minute.toString(),
                   style: TextStyle(color: Colors.orange, fontSize: 20),
                 ),
                 Text(
-                  "30 Oct",
+                  //"30 Oct",
+                  DateFormat('dd MMM').format(match.time),
                   style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
               ],
