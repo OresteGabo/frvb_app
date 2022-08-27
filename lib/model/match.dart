@@ -27,6 +27,17 @@ class Match {
   Team get homeTeam => _homeTeam;
 
   Team get awayTeam => _awayTeam;
+  String get timeString {
+    return _time.day.toString() +
+        "/" +
+        _time.month.toString() +
+        "/" +
+        _time.year.toString() +
+        "  " +
+        _time.hour.toString() +
+        ":" +
+        _time.minute.toString();
+  }
 }
 
 Match match1 = Match(
