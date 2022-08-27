@@ -5,7 +5,6 @@ import 'package:frvb/widgets/competitionWidget.dart';
 import 'package:frvb/widgets/match_card.dart';
 import 'package:frvb/model/competition.dart';
 import 'package:frvb/pages/matches_page.dart';
-import 'package:frvb/model/team.dart';
 import 'package:frvb/model/match.dart';
 
 class HomePage extends StatefulWidget {
@@ -108,15 +107,13 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               LiveMatchCard(
                                 width: width,
-                                heigth: heigth,
-                                homeTeam: kirehe,
-                                awayTeam: aprvc,
+                                height: heigth,
+                                match: match9,
                               ),
                               LiveMatchCard(
                                 width: width,
-                                heigth: heigth,
-                                homeTeam: gsob,
-                                awayTeam: kirehe,
+                                height: heigth,
+                                match: match10,
                               ),
                             ]),
                       ),

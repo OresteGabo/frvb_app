@@ -1,40 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/widgets/live_match_column.dart';
 
-import '../constants.dart';
-import '../model/team.dart';
+import 'package:frvb/constants.dart';
+import 'package:frvb/model/team.dart';
+import 'package:frvb/model/match.dart';
 
 class LiveMatchCard extends StatelessWidget {
   const LiveMatchCard({
     Key? key,
     required this.width,
-    required this.heigth,
-    required this.homeTeam,
-    required this.awayTeam,
+    required this.height,
+    required this.match,
   }) : super(key: key);
 
   final double width;
-  final double heigth;
-  final Team homeTeam;
-  final Team awayTeam;
+  final double height;
+  final Match match;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(14),
-      margin: EdgeInsets.only(right: 16),
+      padding: const EdgeInsets.all(14),
+      margin: const EdgeInsets.only(right: 16),
       width: width * 0.8,
       decoration: BoxDecoration(
-        color: Color(0xff3d195b),
+        color: const Color(0xff3d195b),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         children: [
-          Text(
+          const Text(
             "DIV 1 Champ",
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           Text(
@@ -44,26 +43,26 @@ class LiveMatchCard extends StatelessWidget {
                 .headline6!
                 .copyWith(color: Colors.grey),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           Row(
             // mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              LiveMatchColumn(team: homeTeam, isHome: true),
+              LiveMatchColumn(team: match.homeTeam, isHome: true),
               Column(
                 children: [
                   Row(
                     children: [
                       Text(
-                        "2",
+                        match.homeGoals.toString(),
                         style: Theme.of(context)
                             .textTheme
                             .headline3!
                             .copyWith(color: Colors.white),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(
@@ -73,11 +72,11 @@ class LiveMatchCard extends StatelessWidget {
                             .headline3!
                             .copyWith(color: Colors.white),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(
-                        "3",
+                        match.awayGoals.toString(),
                         style: Theme.of(context)
                             .textTheme
                             .headline3!
@@ -86,19 +85,20 @@ class LiveMatchCard extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Color(0xff633565),
+                        color: const Color(0xff633565),
                         border: Border.all(color: pinkColor, width: 2)),
-                    child: Text(
+                    child: const Text(
                       "83'",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ],
               ),
-              LiveMatchColumn(team: awayTeam, isHome: false),
+              LiveMatchColumn(team: match.awayTeam, isHome: false),
             ],
           ),
         ],
