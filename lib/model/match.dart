@@ -4,9 +4,15 @@ import 'package:frvb/model/team.dart';
 class Match {
   Team _homeTeam;
   Team _awayTeam;
-  DateTime _time;
+  late DateTime _time;
+  late int _awayGoals;
+  late int _homeGoals;
 
-  Match(this._homeTeam, this._awayTeam, this._time);
+  Match(this._homeTeam, this._awayTeam) {
+    _awayGoals = 0;
+    _homeGoals = 0;
+    _time = DateTime.now();
+  }
 
   DateTime get time => _time;
 
@@ -14,26 +20,28 @@ class Match {
     _time = value;
   }
 
-  Team get awayTeam => _awayTeam;
+  int get awayGoals => _awayGoals;
 
-  set awayTeam(Team value) {
-    _awayTeam = value;
-  }
+  int get homeGoals => _homeGoals;
 
   Team get homeTeam => _homeTeam;
 
-  set homeTeam(Team value) {
-    _homeTeam = value;
-  }
+  Team get awayTeam => _awayTeam;
 }
 
-Match match1 = Match(gisagara, kvc, DateTime.now());
-Match match2 = Match(gisagara, aprvc, DateTime.now());
-Match match3 = Match(gsob, aprvc, DateTime.now());
-Match match4 = Match(aprvc, reg, DateTime.now());
-Match match5 = Match(reg, kvc, DateTime.now());
-Match match7 = Match(kirehe, muzinga, DateTime.now());
-Match match6 = Match(ndejje, aprvc, DateTime.now());
-Match match8 = Match(gsob, rayon, DateTime.now());
-Match match9 = Match(rukinzo, reg, DateTime.now());
-Match match10 = Match(utb, unik, DateTime.now());
+Match match1 = Match(
+  gisagara,
+  kvc,
+);
+Match match2 = Match(
+  gisagara,
+  aprvc,
+);
+Match match3 = Match(gsob, aprvc);
+Match match4 = Match(aprvc, reg);
+Match match5 = Match(reg, kvc);
+Match match7 = Match(kirehe, muzinga);
+Match match6 = Match(ndejje, aprvc);
+Match match8 = Match(gsob, rayon);
+Match match9 = Match(rukinzo, reg);
+Match match10 = Match(utb, unik);

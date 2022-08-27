@@ -151,15 +151,6 @@ class _HomePageState extends State<HomePage> {
                       MatchCard(match: match3),
                       MatchCard(match: match4),
                       MatchCard(match: match5),
-                      /*MatchCard(
-                        match: Match(_homeTeam, _awayTeam, _time),
-                      ),
-                      MatchCard(match: Match(kvc, gisagara, DateTime.now())),
-                      MatchCard(match: c),*/
-
-                      /*MatchCard(match:Match(awayTeam: gsob, homeTeam: aprvc,time:DateTime.now())),
-                      MatchCard(match:Match(awayTeam: aprvc, homeTeam: reg,time:DateTime.now())),
-                      MatchCard(match:Match(awayTeam: reg,homeTeam: kvc,,time:DateTime.now()))*/
                     ],
                   ),
                 ),

@@ -15,7 +15,12 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   var _currentIndex = 0;
-  final _children = [HomePage(), CalendarPage(), StatsPage(), AccountPage()];
+  final _children = [
+    const HomePage(),
+    const CalendarPage(),
+    const StatsPage(),
+    const AccountPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
