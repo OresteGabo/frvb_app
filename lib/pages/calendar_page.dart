@@ -4,6 +4,7 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:frvb/constants.dart';
 import 'package:frvb/model/mensdiv1comp.dart';
 import 'package:frvb/model/team.dart';
+import 'package:frvb/model/match.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -13,7 +14,6 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -67,9 +67,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   selectionColor: pinkColor,
                   selectedTextColor: Colors.white,
                   onDateChange: (date) {
-                    setState(() {
-                      selectedDate = date;
-                    });
+                    setState(() {});
                   },
                 ),
               ),
@@ -93,18 +91,13 @@ class _CalendarPageState extends State<CalendarPage> {
                         .map(
                           (e) => CalendarMatchCard(
                             width: width,
-                            awayGoals: e.goalsAway,
-                            awayName: e.nameAway,
-                            homeGoals: e.goalsHome,
-                            awayImage: e.imageAway,
-                            homeImage: e.imageHome,
-                            homeName: e.nameHome,
                             isSelected: e.isSelected,
                             onPressed: () {
                               setState(() {
                                 e.isSelected = !e.isSelected;
                               });
                             },
+                            match: e,
                           ),
                         )
                         .toList(),
@@ -122,18 +115,29 @@ class CalendarMatchCard extends StatelessWidget {
     Key? key,
     required this.match,
     required this.width,
+    /*required this.homeName,
+    required this.awayName,
+    required this.awayGoals,
+    required this.homeGoals,
+    required this.homeImage,
+    required this.awayImage,*/
     required this.onPressed,
     required this.isSelected,
   }) : super(key: key);
 
   final Match match;
   final double width;
-
+  /*final String homeName;
+  final String awayName;
+  final String awayGoals;
+  final String homeGoals;
+  final String homeImage;
+  final String awayImage;*/
   final bool isSelected;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-
+    Match match6 = Match(gsob, aprvc);
     return Container(
       padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
       margin: const EdgeInsets.symmetric(vertical: 12),
@@ -169,9 +173,11 @@ class CalendarMatchCard extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          //TeamRow(score: homeGoals, team: match.homeTeam),
-
-          TeamRow(score:match.),
+          //TeamRow(score: homeGoals, teamName: homeName, image: homeImage),
+          TeamRow(
+              score: match.homeGoals,
+              teamName: match.homeTeam.name,
+              image: match.homeTeam.logo),
           Row(
             children: const [
               SizedBox(
@@ -184,8 +190,10 @@ class CalendarMatchCard extends StatelessWidget {
               Expanded(child: Divider()),
             ],
           ),
-          //TeamRow(score: awayGoals, teamName: matc image: awayImage),
-          TeamRow(team:match.awayTeam,score:awayGoals),
+          TeamRow(
+              score: match.awayGoals,
+              teamName: match.awayTeam.name,
+              image: match.awayTeam.logo),
         ],
       ),
     );
@@ -195,18 +203,20 @@ class CalendarMatchCard extends StatelessWidget {
 class TeamRow extends StatelessWidget {
   const TeamRow({
     Key? key,
-    required this.team,
+    required this.teamName,
     required this.score,
+    required this.image,
   }) : super(key: key);
 
-  final Team team;
-  final String score;
+  final String teamName;
+  final int score;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Image.asset(
-          team.logo,
+          image,
           width: 50,
           height: 50,
         ),
@@ -214,14 +224,14 @@ class TeamRow extends StatelessWidget {
           width: 10,
         ),
         Text(
-          team.name,
+          teamName,
           style: const TextStyle(color: Colors.black, fontSize: 22),
         ),
         const Spacer(
           flex: 4,
         ),
         Text(
-          score,
+          score.toString(),
           style: const TextStyle(color: Colors.black, fontSize: 24),
         ),
       ],
