@@ -4,6 +4,7 @@ import '../widgets/live_match_card.dart';
 import '../widgets/competition.dart';
 import '../widgets/match_card.dart';
 import '../model/teams.dart';
+import 'matches_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -133,8 +134,8 @@ class _HomePageState extends State<HomePage> {
                           const Spacer(),
                           TextButton(
                             onPressed: () {
-                              //Navigator.of(context).push(MaterialPageRoute(
-                              // builder: (context) => const MatchesPage()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const MatchesPage()));
                             },
                             child: const Text(
                               "See All",

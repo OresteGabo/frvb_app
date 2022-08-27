@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:frvb/pages/calendar_page.dart';
 import 'package:frvb/pages/home_page.dart';
 import 'package:frvb/constants.dart';
+import 'package:frvb/pages/account_page.dart';
+import 'package:frvb/pages/stats_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   var _currentIndex = 0;
-  final _children = [HomePage(), CalendarPage(), HomePage(), HomePage()];
+  final _children = [HomePage(), CalendarPage(), StatsPage(), AccountPage()];
 
   @override
   Widget build(BuildContext context) {

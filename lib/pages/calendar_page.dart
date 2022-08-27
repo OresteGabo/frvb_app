@@ -167,7 +167,7 @@ class CalendarMatchCard extends StatelessWidget {
             ),
           ),
           const Text(
-            "Yesterday, 9:24 PM",
+            "Yesterday, 9:27 PM",
             style: TextStyle(color: Colors.grey, fontSize: 16),
           ),
           const SizedBox(
