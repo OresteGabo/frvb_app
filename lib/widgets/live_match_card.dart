@@ -9,20 +9,12 @@ class LiveMatchCard extends StatelessWidget {
     Key? key,
     required this.width,
     required this.heigth,
-    /*required this.imageHome,
-    required this.imageAway,
-    required this.nameHome,
-    required this.nameAway,*/
     required this.homeTeam,
     required this.awayTeam,
   }) : super(key: key);
 
   final double width;
   final double heigth;
-  /*final String imageHome;
-  final String imageAway;
-  final String nameHome;
-  final String nameAway;*/
   final Team homeTeam;
   final Team awayTeam;
 

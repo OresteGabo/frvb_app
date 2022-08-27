@@ -108,22 +108,14 @@ class _HomePageState extends State<HomePage> {
                               LiveMatchCard(
                                 width: width,
                                 heigth: heigth,
-                                homeTeam: Team(
-                                    logo: "assets/clubs/kirehe.png",
-                                    name: "KIREHE"),
-                                awayTeam: Team(
-                                    logo: "assets/clubs/aprvc.png",
-                                    name: "CXR VC"),
+                                homeTeam: kirehe,
+                                awayTeam: aprvc,
                               ),
                               LiveMatchCard(
                                 width: width,
                                 heigth: heigth,
-                                homeTeam: Team(
-                                    logo: "assets/clubs/gsob.png",
-                                    name: "GSOB"),
-                                awayTeam: Team(
-                                    logo: "assets/clubs/kirehe.png",
-                                    name: "KIREHE"),
+                                homeTeam: gsob,
+                                awayTeam: kirehe,
                               ),
                             ]),
                       ),
@@ -153,26 +145,13 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 12,
                       ),
-                      const MatchCard(
-                          awayTeamName: "Gisagara",
-                          awayTeamImage: "assets/clubs/gisagara.webp",
-                          homeTeamImage: "assets/clubs/kvc.png",
-                          homeTeamName: "CXR VC"),
-                      const MatchCard(
-                          awayTeamName: "GSOB",
-                          awayTeamImage: "assets/clubs/gsob.png",
-                          homeTeamImage: "assets/clubs/aprvc.png",
-                          homeTeamName: "PSVF VC"),
-                      const MatchCard(
-                          awayTeamName: "APR",
-                          awayTeamImage: "assets/clubs/aprvc.png",
-                          homeTeamImage: "assets/clubs/reg.webp",
-                          homeTeamName: "REG"),
-                      const MatchCard(
-                          awayTeamName: "REG",
-                          awayTeamImage: "assets/clubs/reg.webp",
-                          homeTeamImage: "assets/clubs/kvc.png",
-                          homeTeamName: "KVC"),
+                      MatchCard(awayTeam: gisagara, homeTeam: kvc),
+                      MatchCard(awayTeam: gsob, homeTeam: aprvc),
+                      MatchCard(awayTeam: aprvc, homeTeam: reg),
+                      MatchCard(
+                        awayTeam: reg,
+                        homeTeam: kvc,
+                      )
                     ],
                   ),
                 ),

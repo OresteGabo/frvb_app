@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import '../model/team.dart';
 
 class MatchCard extends StatelessWidget {
   const MatchCard({
     Key? key,
-    required this.homeTeamImage,
-    required this.awayTeamImage,
-    required this.awayTeamName,
-    required this.homeTeamName,
+    required this.homeTeam,
+    required this.awayTeam,
   }) : super(key: key);
 
-  final String homeTeamImage;
-  final String awayTeamImage;
-  final String awayTeamName;
-  final String homeTeamName;
+  final Team homeTeam;
+  final Team awayTeam;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -33,14 +30,14 @@ class MatchCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  homeTeamName,
+                  homeTeam.name,
                   style: TextStyle(fontSize: 20, color: Colors.black87),
                 ),
                 SizedBox(
                   width: 8,
                 ),
                 Image.asset(
-                  homeTeamImage,
+                  homeTeam.logo,
                   width: 40,
                 ),
               ],
@@ -67,14 +64,14 @@ class MatchCard extends StatelessWidget {
               // mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  awayTeamImage,
+                  awayTeam.logo,
                   width: 40,
                 ),
                 SizedBox(
                   width: 8,
                 ),
                 Text(
-                  awayTeamName,
+                  awayTeam.name,
                   style: TextStyle(fontSize: 20, color: Colors.black87),
                 ),
               ],

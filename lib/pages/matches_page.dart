@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/model/competition.dart';
+import 'package:frvb/model/team.dart';
 import 'package:frvb/pages/home_page.dart';
 
 import '../widgets/competitionWidget.dart';
@@ -90,52 +91,16 @@ class _MatchesPageState extends State<MatchesPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      MatchCard(
-                          awayTeamName: "KVC",
-                          awayTeamImage: "assets/clubs/kvc.png",
-                          homeTeamImage: "assets/clubs/gisagara.webp",
-                          homeTeamName: "Gisagara"),
-                      MatchCard(
-                          awayTeamName: "REG",
-                          awayTeamImage: "assets/clubs/reg.webp",
-                          homeTeamImage: "assets/clubs/aprvc.png",
-                          homeTeamName: "APR"),
-                      MatchCard(
-                          awayTeamName: "GSOB",
-                          awayTeamImage: "assets/clubs/gsob.png",
-                          homeTeamImage: "assets/clubs/reg.webp",
-                          homeTeamName: "REG VC"),
-                      MatchCard(
-                          awayTeamName: "Gisagara",
-                          awayTeamImage: "assets/clubs/gisagara.webp",
-                          homeTeamImage: "assets/clubs/aprvc.png",
-                          homeTeamName: "APR VC"),
-                      MatchCard(
-                          awayTeamName: "GSOB",
-                          awayTeamImage: "assets/clubs/gsob.png",
-                          homeTeamImage: "assets/clubs/iprcsouth.png",
-                          homeTeamName: "IPRC S"),
-                      MatchCard(
-                          awayTeamName: "REG",
-                          awayTeamImage: "assets/clubs/reg.webp",
-                          homeTeamImage: "assets/clubs/iprcsouth.png",
-                          homeTeamName: "IPRC"),
-                      MatchCard(
-                          awayTeamName: "GSOB",
-                          awayTeamImage: "assets/clubs/gsob.png",
-                          homeTeamImage: "assets/clubs/gisagara.webp",
-                          homeTeamName: "Gisagara"),
-                      MatchCard(
-                          awayTeamName: "REG",
-                          awayTeamImage: "assets/clubs/reg.webp",
-                          homeTeamImage: "assets/clubs/aprvc.png",
-                          homeTeamName: "APR"),
-                      MatchCard(
-                          awayTeamName: "REG",
-                          awayTeamImage: "assets/clubs/reg.webp",
-                          homeTeamImage: "assets/clubs/gisagara.webp",
-                          homeTeamName: "Gisagara"),
+                    children: [
+                      MatchCard(awayTeam: kvc, homeTeam: gisagara),
+                      MatchCard(awayTeam: reg, homeTeam: aprvc),
+                      MatchCard(awayTeam: gsob, homeTeam: reg),
+                      MatchCard(awayTeam: gisagara, homeTeam: aprvc),
+                      MatchCard(awayTeam: gsob, homeTeam: iprcsouth),
+                      MatchCard(awayTeam: reg, homeTeam: iprcsouth),
+                      MatchCard(awayTeam: gsob, homeTeam: gisagara),
+                      MatchCard(awayTeam: reg, homeTeam: aprvc),
+                      MatchCard(awayTeam: reg, homeTeam: gisagara),
                     ],
                   ),
                 ),
