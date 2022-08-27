@@ -9,6 +9,8 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  bool showPassword = false;
+  List<bool> _selections = List.generate(3, (_) => false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +82,7 @@ class _AccountPageState extends State<AccountPage> {
                           ),
                           color: Colors.green,
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.edit,
                           color: Colors.white,
                         ),
@@ -89,33 +91,83 @@ class _AccountPageState extends State<AccountPage> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              TextField(
-                decoration: InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  labelText: "Your name",
-                  hintText: "Oreste Gabo",
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
+              buildTextField("Your name", "MUHIRWA GABO Oreste", false),
+              buildTextField("Password", "", true),
+              buildTextField("email", "info@gabo.io", false),
+              buildTextField("Country of residence", "Rwanda", false),
+              ToggleButtons(
+                children: [
+                  Text("Male"),
+                  Text("Female"),
+                  Text("No answer"),
+                ],
+                isSelected: _selections,
+                onPressed: (int index) {
+                  setState(() {
+                    _selections[index] = !_selections[index];
+                  });
+                },
               ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+              Row(
+                children: [
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                        fontSize: 14,
+                        letterSpacing: 2.2,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                ),
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                        fontSize: 14,
+                        letterSpacing: 2.2,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildTextField(
+      String labelText, String hintText, bool isPasswordField) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 0.0),
+      child: TextField(
+        obscureText: !showPassword,
+        decoration: InputDecoration(
+          suffixIcon: isPasswordField
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      showPassword = !showPassword;
+                    });
+                  },
+                  icon: const Icon(Icons.remove_red_eye),
+                )
+              : null,
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          labelText: labelText,
+          hintText: hintText,
+          hintStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
       ),
