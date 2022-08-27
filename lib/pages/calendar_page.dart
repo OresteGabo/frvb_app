@@ -18,13 +18,6 @@ class _CalendarPageState extends State<CalendarPage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Add your onPressed code here!
-          },
-          backgroundColor: Colors.green,
-          child: const Icon(Icons.navigation),
-        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         body: SafeArea(
             child: Padding(
