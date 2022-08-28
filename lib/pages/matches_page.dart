@@ -4,6 +4,7 @@ import 'package:frvb/model/competition.dart';
 import 'package:frvb/model/match.dart';
 import 'package:frvb/pages/home_page.dart';
 import 'package:frvb/constants.dart';
+import 'package:badges/badges.dart';
 
 import '../widgets/competitionWidget.dart';
 import '../widgets/match_card.dart';
@@ -32,7 +33,7 @@ class _MatchesPageState extends State<MatchesPage> {
           },
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.grey,
           ),
         ),
         title: Text("Matches", style: Theme.of(context).textTheme.headline4),
@@ -49,7 +50,13 @@ class _MatchesPageState extends State<MatchesPage> {
           ),
           //Icons.circle_notifications_rounded,
           IconButton(
-            icon: const Icon(Icons.circle_notifications_rounded),
+            icon: Badge(
+              badgeContent: const Text(
+                "9",
+                style: TextStyle(color: Colors.white),
+              ),
+              child: const Icon(Icons.circle_notifications_rounded),
+            ),
             tooltip: 'Show Snackbar',
             color: Colors.grey,
             onPressed: () {
