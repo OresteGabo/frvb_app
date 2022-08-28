@@ -5,6 +5,7 @@ import 'package:frvb/model/match.dart';
 import 'package:frvb/pages/home_page.dart';
 import 'package:frvb/constants.dart';
 import 'package:badges/badges.dart';
+import 'package:frvb/pages/main_page.dart';
 
 import '../widgets/competitionWidget.dart';
 import '../widgets/match_card.dart';
@@ -29,14 +30,14 @@ class _MatchesPageState extends State<MatchesPage> {
           color: Colors.green,
           onPressed: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const HomePage()));
+                MaterialPageRoute(builder: (context) => const MainPage()));
           },
           icon: const Icon(
-            Icons.arrow_back,
+            Icons.home_rounded,
             color: Colors.grey,
           ),
         ),
-        title: Text("Matches", style: Theme.of(context).textTheme.headline4),
+        title: Text("Matches", style: Theme.of(context).textTheme.headline6),
         actions: [
           IconButton(
             icon: const Icon(Icons.bookmark),
