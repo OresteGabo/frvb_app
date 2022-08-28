@@ -6,7 +6,6 @@ import 'package:frvb/pages/home_page.dart';
 import 'package:frvb/constants.dart';
 import 'package:badges/badges.dart';
 import 'package:frvb/pages/main_page.dart';
-
 import '../widgets/competitionWidget.dart';
 import '../widgets/match_card.dart';
 
@@ -19,6 +18,8 @@ class MatchesPage extends StatefulWidget {
 
 class _MatchesPageState extends State<MatchesPage> {
   String _selectedCompetition = competitions[0].name;
+  Match _selectedMatch = matchCards[0].match;
+  bool _slideupPanelUp = false;
 
   @override
   Widget build(BuildContext context) {
@@ -98,18 +99,18 @@ class _MatchesPageState extends State<MatchesPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MatchCard(match: match1),
-                      MatchCard(match: match2),
-                      MatchCard(match: match3),
-                      MatchCard(match: match4),
-                      MatchCard(match: match5),
-                      MatchCard(match: match6),
-                      MatchCard(match: match7),
-                      MatchCard(match: match8),
-                      MatchCard(match: match9),
-                      MatchCard(match: match10),
-                    ],
+                    children: matchCards.map(
+                      (e) {
+                        return InkWell(
+                            onTap: () => setState(() {
+                                  _selectedMatch = e.match;
+                                  _slideupPanelUp = !_slideupPanelUp;
+                                }),
+                            child: MatchCard(
+                                match: e.match,
+                                isSelected: e.match == _selectedMatch));
+                      },
+                    ).toList(),
                   ),
                 ),
               ),
