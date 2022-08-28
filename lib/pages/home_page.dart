@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 24,
               ),
-              /*SingleChildScrollView(
+              SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                       )
                       .toList(),
                 ),
-              ),*/
+              ),
               const SizedBox(
                 height: 24,
               ),
@@ -143,11 +143,26 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 12,
                       ),
-                      MatchCard(match: match1),
-                      MatchCard(match: match2),
-                      MatchCard(match: match3),
-                      MatchCard(match: match4),
-                      MatchCard(match: match5),
+                      MatchCard(
+                        match: match1,
+                        isSelected: false,
+                      ),
+                      MatchCard(
+                        match: match2,
+                        isSelected: false,
+                      ),
+                      MatchCard(
+                        match: match3,
+                        isSelected: false,
+                      ),
+                      MatchCard(
+                        match: match4,
+                        isSelected: false,
+                      ),
+                      MatchCard(
+                        match: match5,
+                        isSelected: false,
+                      ),
                     ],
                   ),
                 ),

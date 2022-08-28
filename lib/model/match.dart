@@ -41,14 +41,8 @@ class Match {
   }
 }
 
-Match match1 = Match(
-  gisagara,
-  kvc,
-);
-Match match2 = Match(
-  gisagara,
-  aprvc,
-);
+Match match1 = Match(gisagara, kvc);
+Match match2 = Match(gisagara, aprvc);
 Match match3 = Match(gsob, aprvc);
 Match match4 = Match(aprvc, reg);
 Match match5 = Match(reg, kvc);
@@ -57,3 +51,16 @@ Match match6 = Match(ndejje, aprvc);
 Match match8 = Match(gsob, rayon);
 Match match9 = Match(rukinzo, reg);
 Match match10 = Match(utb, unik);
+
+List<Match> matches = [
+  match1,
+  match2,
+  match3,
+  match4,
+  match5,
+  match6,
+  match7,
+  match8,
+  match9,
+  match10,
+];
