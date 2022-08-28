@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:frvb/model/competition.dart';
 import 'package:frvb/model/match.dart';
 import 'package:frvb/pages/home_page.dart';
+import 'package:frvb/constants.dart';
 
 import '../widgets/competitionWidget.dart';
 import '../widgets/match_card.dart';
@@ -20,51 +21,49 @@ class _MatchesPageState extends State<MatchesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: IconButton(
+          color: Colors.green,
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const HomePage()));
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
+        title: Text("Matches", style: Theme.of(context).textTheme.headline4),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.bookmark),
+            tooltip: 'Sort matches according to your favorite teams',
+            color: Colors.grey,
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(
+                      'This button will help us to sort out from bookmarked teams only')));
+            },
+          ),
+          //Icons.circle_notifications_rounded,
+          IconButton(
+            icon: const Icon(Icons.circle_notifications_rounded),
+            tooltip: 'Show Snackbar',
+            color: Colors.grey,
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 14, top: 32, right: 14),
           child: Column(
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const HomePage()));
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Text("Matches", style: Theme.of(context).textTheme.headline4),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Icon(
-                      CupertinoIcons.search,
-                      size: 30,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 24,
-              ),
               SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
