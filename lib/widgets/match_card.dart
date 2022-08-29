@@ -21,9 +21,7 @@ class MatchCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: match.homeTeam.isMyFavorite() || match.awayTeam.isMyFavorite()
-            ? Border.all(color: Colors.orange)
-            : null,
+        border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
         boxShadow:
             isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
       ),

@@ -39,6 +39,10 @@ class Match {
         ":" +
         _time.minute.toString();
   }
+
+  bool isMyFavorite() {
+    return _homeTeam.isMyFavorite() || _awayTeam.isMyFavorite();
+  }
 }
 
 Match match1 = Match(gisagara, kvc);
