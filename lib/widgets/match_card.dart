@@ -16,12 +16,13 @@ class MatchCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Container(
-      padding: const EdgeInsets.all(12),
+      //padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
       margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
+        //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
         boxShadow:
             isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
       ),
@@ -50,20 +51,35 @@ class MatchCard extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.center,
-            child: Column(
-              children: [
-                Text(
-                  match.time.hour.toString() +
-                      ":" +
-                      match.time.minute.toString(),
-                  style: const TextStyle(color: Colors.orange, fontSize: 20),
-                ),
-                Text(
-                  //"30 Oct",
-                  DateFormat('dd MMM').format(match.time),
-                  style: const TextStyle(fontSize: 18, color: Colors.grey),
-                ),
-              ],
+            child: Container(
+              child: Column(
+                children: [
+                  IconButton(
+                      padding: EdgeInsets.zero,
+                      color: Colors.green,
+                      iconSize: 40,
+                      onPressed: () {},
+                      icon: Icon(
+                        match.isMyFavorite()
+                            ? Icons.bookmark_added_outlined
+                            : Icons.bookmark_add_outlined,
+                        color: match.isMyFavorite()
+                            ? Colors.green[200]
+                            : Colors.grey,
+                      )),
+                  Text(
+                    match.time.hour.toString() +
+                        ":" +
+                        match.time.minute.toString(),
+                    style: const TextStyle(color: Colors.orange, fontSize: 20),
+                  ),
+                  Text(
+                    //"30 Oct",
+                    DateFormat('dd MMM').format(match.time),
+                    style: const TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
           ),
           Positioned(
