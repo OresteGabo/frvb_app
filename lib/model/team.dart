@@ -15,6 +15,15 @@ class Team {
   set logo(String value) {
     _logo = value;
   }
+
+  bool isMyFavorite() {
+    for (int x = 0; x < favoriteTeams.length; x++) {
+      if (this == favoriteTeams[x]) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 final Team gisagara = Team("assets/clubs/gisagara.webp", "Gisagara");
@@ -40,3 +49,8 @@ final Team rwandaarmy = Team("assets/clubs/rwandaarmy.png", "RW ARMY VC");
 final Team unik = Team("assets/clubs/unik.webp", "UNIK VC");
 final Team ur = Team("assets/clubs/ur.png", "UR VC");
 final Team utb = Team("assets/clubs/utb_cropped_logo.png", "UTB VC");
+
+List<Team> favoriteTeams = [
+  gisagara,
+  aprvc,
+];
