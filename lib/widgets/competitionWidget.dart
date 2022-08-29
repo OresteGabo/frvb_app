@@ -26,12 +26,12 @@ class CompetitionWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset(
+          /*SvgPicture.asset(
             image,
             color: isSelected ? Colors.white : Colors.grey,
             height: 40,
             width: 40,
-          ),
+          ),*/
           const SizedBox(
             width: 8,
           ),
