@@ -21,10 +21,12 @@ class MatchCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        border:
+            Border.all(color: isSelected ? Colors.grey : Colors.transparent),
+        borderRadius: BorderRadius.circular(15),
         //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
-        boxShadow:
-            isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
+        //boxShadow:
+        //isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
       ),
       child: Stack(
         // mainAxisAlignment: MainAxisAlignment.center,
