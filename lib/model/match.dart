@@ -51,11 +51,22 @@ class Match {
   }
 
   void addToMyFavorite() {
-    favoriteMatches.add(this);
+    String x = toString();
+    if (this.isMyFavorite()) {
+      print(
+          '###################################  $x already exist in my favorite\n');
+    } else {
+      favoriteMatches.add(this);
+    }
   }
 
   void removeToMyFavorite() {
-    favoriteMatches.remove(this);
+    String x = toString();
+    if (this.isMyFavorite()) {
+      favoriteMatches.remove(this);
+    } else {
+      print('################################   $x is not among my favorites');
+    }
   }
 
   bool isOneOfTheTeamMyFavorite() {
@@ -70,7 +81,7 @@ class Match {
   String toString() {
     String awayTeamName = _awayTeam.name;
     String homeTeamName = _homeTeam.name;
-    return '(Away) $awayTeamName $_awayGoals : $_homeGoals $homeTeamName (Home)\n ';
+    return '(Away) $awayTeamName $_awayGoals : $_homeGoals $homeTeamName (Home) ';
   }
 }
 

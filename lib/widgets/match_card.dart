@@ -60,7 +60,22 @@ class MatchCard extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       color: Colors.green,
                       iconSize: 40,
-                      onPressed: () {},
+                      onPressed: () {
+                        int size = favoriteMatches.length;
+
+                        if (match.isMyFavorite()) {
+                          displayAllFavorites();
+                          print('Favorite matches size before removal:$size\n');
+
+                          match.removeToMyFavorite();
+                          print('Favorite matches size after removal:$size\n');
+                        } else {
+                          displayAllFavorites();
+                          print('Favorite matches size before add:$size\n');
+                          match.addToMyFavorite();
+                          print('Favorite matches size after add:$size\n');
+                        }
+                      },
                       icon: Icon(
                         match.isMyFavorite()
                             ? Icons.bookmark_added_outlined
@@ -435,3 +450,15 @@ List<MatchCard> matchCards = [
   MatchCard(match: match9, isSelected: false),
   MatchCard(match: match10, isSelected: false),
 ];
+
+void displayAllFavorites() {
+  print(
+      '----------------------------------------------- BEGIN--------------------------------------\n');
+  for (int x = 0; x < favoriteMatches.length; x++) {
+    Match m = favoriteMatches.elementAt(x);
+    String y = m.toString();
+    print('$y\n');
+  }
+  print(
+      '----------------------------------------------- END---------------------------------------\n');
+}

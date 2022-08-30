@@ -21,6 +21,7 @@ class _MatchesPageState extends State<MatchesPage> {
   Match _selectedMatch = matchCards[0].match;
   bool _slideupPanelUp = false;
   final panelController = PanelController();
+  int nberOfFavorites = favoriteMatches.length;
 
   @override
   Widget build(BuildContext context) {
