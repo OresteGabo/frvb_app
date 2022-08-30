@@ -1,17 +1,27 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:frvb/model/team.dart';
 
 class Match {
-  Team _homeTeam;
-  Team _awayTeam;
+  final Team _homeTeam;
+  final Team _awayTeam;
   late DateTime _time;
   late int _awayGoals;
   late int _homeGoals;
 
   Match(this._homeTeam, this._awayTeam) {
-    _awayGoals = 0;
-    _homeGoals = 0;
-    _time = DateTime.now();
+    _awayGoals = random(0, 3);
+    _homeGoals = random(0, 3);
+    _time = DateTime(
+      random(2020, 2024),
+      random(1, 12),
+      random(1, 28),
+      random(1, 12),
+      random(0, 59),
+    );
+    addToMyFavorite();
+  }
+  int random(min, max) {
+    return min + Random().nextInt(max - min);
   }
 
   DateTime get time => _time;
@@ -40,10 +50,31 @@ class Match {
         _time.minute.toString();
   }
 
+  void addToMyFavorite() {
+    favoriteMatches.add(this);
+  }
+
+  void removeToMyFavorite() {
+    favoriteMatches.remove(this);
+  }
+
+  bool isOneOfTheTeamMyFavorite() {
+    return _homeTeam.isMyFavorite() || _awayTeam.isMyFavorite();
+  }
+
   bool isMyFavorite() {
     return _homeTeam.isMyFavorite() || _awayTeam.isMyFavorite();
   }
+
+  @override
+  String toString() {
+    String awayTeamName = _awayTeam.name;
+    String homeTeamName = _homeTeam.name;
+    return '(Away) $awayTeamName $_awayGoals : $_homeGoals $homeTeamName (Home)\n ';
+  }
 }
+
+List<Match> favoriteMatches = [];
 
 Match match1 = Match(gisagara, kvc);
 Match match2 = Match(gisagara, aprvc);
