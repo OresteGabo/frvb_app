@@ -28,6 +28,7 @@ class MatchCard extends StatelessWidget {
         //boxShadow:
         //isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
       ),
+
       child: Stack(
         // mainAxisAlignment: MainAxisAlignment.center,
         alignment: Alignment.center,
@@ -59,7 +60,7 @@ class MatchCard extends StatelessWidget {
                   IconButton(
                       padding: EdgeInsets.zero,
                       color: Colors.green,
-                      iconSize: 40,
+                      iconSize: 30,
                       onPressed: () {
                         int size = favoriteMatches.length;
 
@@ -77,11 +78,12 @@ class MatchCard extends StatelessWidget {
                         }
                       },
                       icon: Icon(
-                        match.isMyFavorite()
+                        Icons.bookmark,
+                        /*match.isMyFavorite()
                             ? Icons.bookmark_added_outlined
-                            : Icons.bookmark_add_outlined,
+                            : Icons.bookmark_add_outlined,*/
                         color: match.isMyFavorite()
-                            ? Colors.green[200]
+                            ? Colors.orangeAccent
                             : Colors.grey,
                       )),
                   Text(
@@ -119,6 +121,95 @@ class MatchCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SlideUpMatchCard extends StatelessWidget {
+  const SlideUpMatchCard({
+    Key? key,
+    required this.match,
+  }) : super(key: key);
+
+  final Match match;
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    return Container(
+      child: Expanded(
+        child: Row(
+          children: [
+            Column(
+              children: [
+                Text(
+                  match.homeTeam.name,
+                  style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.green,
+                    ),
+                  ),
+                  child: Image.asset(
+                    match.homeTeam.logo,
+                    width: width / 3,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 24,
+            ),
+            Column(
+              children: [
+                Icon(Icons.bookmark),
+                SizedBox(
+                  height: 12,
+                ),
+                Text("2/10"),
+                Text("06 Sept"),
+              ],
+            ),
+            SizedBox(
+              width: 24,
+            ),
+            Column(
+              children: [
+                Text(
+                  match.awayTeam.name,
+                  style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.green,
+                    ),
+                  ),
+                  child: Image.asset(
+                    match.awayTeam.logo,
+                    width: width / 3,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
