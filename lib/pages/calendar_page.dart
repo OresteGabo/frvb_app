@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:frvb/clones_packages/datePicker/date_picker_widget.dart';
 import 'package:frvb/constants.dart';
 import 'package:frvb/model/mensdiv1comp.dart';
 import 'package:frvb/model/team.dart';
@@ -51,14 +51,17 @@ class _CalendarPageState extends State<CalendarPage> {
                 height: 20,
               ),
               Container(
-                decoration: const BoxDecoration(color: Colors.white),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
                 child: DatePicker(
                   DateTime.now(),
                   width: 60,
                   height: 80,
                   initialSelectedDate: DateTime.now(),
-                  selectionColor: pinkColor,
-                  selectedTextColor: Colors.white,
+                  selectionColor: const Color(0xffFFF8EE),
+                  selectedTextColor: Colors.black,
+                  selectedBorderColor: selectedBorderColor,
                   onDateChange: (date) {
                     setState(() {});
                   },
@@ -124,11 +127,13 @@ class CalendarMatchCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 12),
       width: width,
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-              width: 2,
-              color: isSelected ? selectedColor : Colors.transparent)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          width: 2,
+          color: isSelected ? selectedColor : Colors.transparent,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
