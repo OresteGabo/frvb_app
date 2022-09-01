@@ -153,7 +153,13 @@ class _HomePageState extends State<HomePage> {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const MatchesPage()));
+                                  // builder: (context) => const MatchesPage()));
+                                  builder: (context) => MaterialApp(
+                                        home: DefaultTabController(
+                                          length: competitions.length,
+                                          child: MatchesPage(),
+                                        ),
+                                      )));
                             },
                             child: const Text(
                               "See All",

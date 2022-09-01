@@ -24,7 +24,7 @@ class _MatchesPageState extends State<MatchesPage> {
   int nberOfFavorites = favoriteMatches.length;
 
   @override
-  Widget build(BuildContext context) {
+  /*Widget build(BuildContext context) {
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.1;
     final panelHeightOpened = MediaQuery.of(context).size.height * 0.6;
     return Scaffold(
@@ -123,6 +123,145 @@ class _MatchesPageState extends State<MatchesPage> {
                 const SizedBox(
                   height: 24,
                 ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: matchCards.map(
+                        (e) {
+                          return InkWell(
+                              onTap: () => setState(() {
+                                    _selectedMatch = e.match;
+                                    _slideupPanelUp = !_slideupPanelUp;
+                                  }),
+                              child: MatchCard(
+                                  match: e.match,
+                                  isSelected: e.match == _selectedMatch));
+                        },
+                      ).toList(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }*/
+  Widget build(BuildContext context) {
+    final panelHeightClosed = MediaQuery.of(context).size.height * 0.1;
+    final panelHeightOpened = MediaQuery.of(context).size.height * 0.6;
+    return Scaffold(
+      appBar: AppBar(
+        bottom: TabBar(
+          unselectedLabelColor: Colors.grey,
+          labelColor: Colors.grey,
+          indicatorColor: Colors.orange,
+          tabs: competitions.map(
+            (e) {
+              return InkWell(
+                  child: Tab(
+                text: e.name,
+              ));
+            },
+          ).toList(),
+        ),
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: IconButton(
+          color: Colors.green,
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const MainPage()));
+          },
+          icon: const Icon(
+            Icons.home_rounded,
+            color: Colors.grey,
+          ),
+        ),
+        title: Text("Matches", style: Theme.of(context).textTheme.headline6),
+        actions: [
+          IconButton(
+            icon: Badge(
+              badgeContent: Text(
+                nberOfFavorites.toString(),
+                style: TextStyle(color: Colors.white),
+              ),
+              child: const Icon(
+                Icons.bookmark,
+              ),
+            ),
+            tooltip: 'Sort matches according to your favorite teams',
+            color: Colors.grey,
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(
+                      'This button will help us to sort out from bookmarked teams only')));
+            },
+          ),
+          //Icons.circle_notifications_rounded,
+          IconButton(
+            icon: Badge(
+              badgeContent: const Text(
+                "9",
+                style: TextStyle(color: Colors.white),
+              ),
+              child: const Icon(Icons.circle_notifications_rounded),
+            ),
+            tooltip: 'Show Snackbar',
+            color: Colors.grey,
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: SlidingUpPanel(
+          controller: panelController,
+          minHeight: panelHeightClosed,
+          maxHeight: panelHeightOpened,
+          parallaxEnabled: true,
+          parallaxOffset: 0.2,
+          backdropEnabled: true,
+          backdropColor: Colors.black,
+          backdropOpacity: 0.5,
+          //color: Colors.green,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
+          panelBuilder: (controller) => PanelWidget(
+            controller: controller,
+            panelController: panelController,
+            match: _selectedMatch,
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(left: 14, top: 32, right: 14),
+            child: Column(
+              children: [
+                /*SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: competitions
+                        .map(
+                          (e) => InkWell(
+                            onTap: () => setState(() {
+                              _selectedCompetition = e.name;
+                            }),
+                            child: CompetitionWidget(
+                                image: e.images,
+                                name: e.name,
+                                isSelected: e.name == _selectedCompetition),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),*/
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
