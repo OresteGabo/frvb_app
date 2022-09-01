@@ -6,6 +6,7 @@ import 'package:frvb/widgets/match_card.dart';
 import 'package:frvb/model/competition.dart';
 import 'package:frvb/pages/matches_page.dart';
 import 'package:frvb/model/match.dart';
+import 'package:frvb/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,12 +23,34 @@ class _HomePageState extends State<HomePage> {
     var width = MediaQuery.of(context).size.width;
     var heigth = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: backgroundColor,
+        leading: const CircleAvatar(
+          backgroundImage: AssetImage("assets/frvblogo.jpg"),
+        ),
+        title: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: Theme.of(context).textTheme.headline4,
+                children: [
+                  const TextSpan(text: "FR"),
+                  TextSpan(
+                    text: "VB",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline4!
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
+                ])),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 14, top: 32, right: 14),
           child: Column(
             children: [
-              Row(
+              /*Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -86,7 +109,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(
                 height: 24,
-              ),
+              ),*/
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
