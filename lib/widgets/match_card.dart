@@ -22,7 +22,7 @@ class MatchCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         border:
-            Border.all(color: isSelected ? Colors.grey : Colors.transparent),
+            Border.all(color: isSelected ? Colors.orange : Colors.transparent),
         borderRadius: BorderRadius.circular(15),
         //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
         //boxShadow:

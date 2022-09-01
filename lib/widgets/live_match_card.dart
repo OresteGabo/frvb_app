@@ -24,17 +24,17 @@ class LiveMatchCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16),
       width: width * 0.8,
       decoration: BoxDecoration(
-        color: const Color(0xff3d195b),
+        color: const Color(0xff493f5d),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         children: [
-          const Text(
+          /*const Text(
             "DIV 1 Champ",
             style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          ),*/
           const SizedBox(
-            height: 12,
+            height: 5,
           ),
           Text(
             "Week 10",
@@ -89,8 +89,8 @@ class LiveMatchCard extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xff633565),
-                        border: Border.all(color: pinkColor, width: 2)),
+                        color: const Color(0xff493f5d),
+                        border: Border.all(color: Colors.orange, width: 2)),
                     child: const Text(
                       "83'",
                       style: TextStyle(fontSize: 20, color: Colors.white),

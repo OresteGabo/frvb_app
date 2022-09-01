@@ -22,7 +22,10 @@ class CompetitionWidget extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
-          color: isSelected ? pinkColor : Colors.white),
+          color: isSelected ? const Color(0xffFFF8EE) : Colors.white,
+          border: Border.all(
+            color: isSelected ? Colors.orange : Colors.white,
+          )),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -38,7 +41,7 @@ class CompetitionWidget extends StatelessWidget {
           Text(
             name,
             style: TextStyle(
-                color: isSelected ? Colors.white : Colors.grey, fontSize: 20),
+                color: isSelected ? Colors.grey : Colors.grey, fontSize: 20),
           ),
         ],
       ),
