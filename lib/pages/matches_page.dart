@@ -45,7 +45,15 @@ class _MatchesPageState extends State<MatchesPage> {
         title: Text("Matches", style: Theme.of(context).textTheme.headline6),
         actions: [
           IconButton(
-            icon: const Icon(Icons.bookmark),
+            icon: Badge(
+              badgeContent: Text(
+                nberOfFavorites.toString(),
+                style: TextStyle(color: Colors.white),
+              ),
+              child: const Icon(
+                Icons.bookmark,
+              ),
+            ),
             tooltip: 'Sort matches according to your favorite teams',
             color: Colors.grey,
             onPressed: () {
@@ -165,18 +173,9 @@ class PanelWidget extends StatelessWidget {
         const SizedBox(height: 12),
         dragHandleBuilder(),
         const SizedBox(height: 18),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
-        MatchCard(match: match, isSelected: true),
+        SlideUpMatchCard(
+          match: match,
+        ),
         const SizedBox(height: 34)
       ],
     );
