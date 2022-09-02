@@ -1,28 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/model/match.dart';
-import 'package:frvb/model/team.dart';
 import 'package:intl/intl.dart';
 
-class MatchCard extends StatelessWidget {
+class MatchCard extends StatefulWidget {
   const MatchCard({
     Key? key,
     required this.match,
-    required this.isSelected,
+    this.isSelected = false,
   }) : super(key: key);
-
   final Match match;
-  final bool isSelected;
+  final bool? isSelected;
+
+  @override
+  State<MatchCard> createState() => _MatchCardState();
+}
+
+class _MatchCardState extends State<MatchCard> {
+  late final Color fvrtMatchIconColor;
+  late final Match match;
+
+  @override
+  void initState() {
+    fvrtMatchIconColor = Colors.orange;
+    match = widget.match;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+
     return Container(
       //padding: const EdgeInsets.all(12),
       padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
       margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        border:
-            Border.all(color: isSelected ? Colors.orange : Colors.transparent),
+        border: Border.all(
+            color:
+                match.isMyFavorite() ? fvrtMatchIconColor : Colors.transparent),
         borderRadius: BorderRadius.circular(15),
         //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
         //boxShadow:
@@ -54,51 +70,42 @@ class MatchCard extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.center,
-            child: Container(
-              child: Column(
-                children: [
-                  IconButton(
-                      padding: EdgeInsets.zero,
-                      color: Colors.green,
-                      iconSize: 30,
-                      onPressed: () {
-                        int size = favoriteMatches.length;
+            child: Column(
+              children: [
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  color: Colors.green,
+                  iconSize: 30,
+                  onPressed: () {
+                    //int size = favoriteMatches.length;
 
-                        if (match.isMyFavorite()) {
-                          displayAllFavorites();
-                          print('Favorite matches size before removal:$size\n');
+                    /*if (match.isMyFavorite()) {
+                        displayAllFavorites();
+                        print('Favorite matches size before removal:$size\n');
 
-                          match.removeToMyFavorite();
-                          print('Favorite matches size after removal:$size\n');
-                        } else {
-                          displayAllFavorites();
-                          print('Favorite matches size before add:$size\n');
-                          match.addToMyFavorite();
-                          print('Favorite matches size after add:$size\n');
-                        }
-                      },
-                      icon: Icon(
-                        Icons.bookmark,
-                        /*match.isMyFavorite()
-                            ? Icons.bookmark_added_outlined
-                            : Icons.bookmark_add_outlined,*/
-                        color: match.isMyFavorite()
-                            ? Colors.orangeAccent
-                            : Colors.grey,
-                      )),
-                  Text(
-                    match.time.hour.toString() +
-                        ":" +
-                        match.time.minute.toString(),
-                    style: const TextStyle(color: Colors.orange, fontSize: 20),
-                  ),
-                  Text(
-                    //"30 Oct",
-                    DateFormat('dd MMM').format(match.time),
-                    style: const TextStyle(fontSize: 18, color: Colors.grey),
-                  ),
-                ],
-              ),
+                        match.removeToMyFavorite();
+                        print('Favorite matches size after removal:$size\n');
+                      } else {
+                        displayAllFavorites();
+                        print('Favorite matches size before add:$size\n');
+                        match.addToMyFavorite();
+                        print('Favorite matches size after add:$size\n');
+                      }*/
+                  },
+                  icon: fvrtIcon(match),
+                ),
+                Text(
+                  match.time.hour.toString() +
+                      ":" +
+                      match.time.minute.toString(),
+                  style: const TextStyle(color: Colors.orange, fontSize: 20),
+                ),
+                Text(
+                  //"30 Oct",
+                  DateFormat('dd MMM').format(match.time),
+                  style: const TextStyle(fontSize: 18, color: Colors.grey),
+                ),
+              ],
             ),
           ),
           Positioned(
@@ -136,83 +143,72 @@ class SlideUpMatchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    return Container(
-      child: Expanded(
-        child: Row(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      //crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
           children: [
-            Column(
-              children: [
-                Text(
-                  match.homeTeam.name,
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.green,
-                    ),
-                  ),
-                  child: Image.asset(
-                    match.homeTeam.logo,
-                    width: width / 3,
-                  ),
-                ),
-              ],
+            Text(
+              match.homeTeam.name,
+              style: const TextStyle(
+                //fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
-            SizedBox(
-              width: 24,
+            const SizedBox(
+              height: 24,
             ),
-            Column(
-              children: [
-                Icon(Icons.bookmark),
-                SizedBox(
-                  height: 12,
-                ),
-                Text("2/10"),
-                Text("06 Sept"),
-              ],
-            ),
-            SizedBox(
-              width: 24,
-            ),
-            Column(
-              children: [
-                Text(
-                  match.awayTeam.name,
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.green,
-                    ),
-                  ),
-                  child: Image.asset(
-                    match.awayTeam.logo,
-                    width: width / 3,
-                  ),
-                ),
-              ],
+            Image.asset(
+              match.homeTeam.logo,
+              width: width / 3,
             ),
           ],
         ),
-      ),
+        const SizedBox(
+          width: 24,
+        ),
+        Column(
+          children: [
+            fvrtIcon(match),
+            const SizedBox(
+              height: 12,
+            ),
+            const Text("2/10"),
+            const Text("06 Sept"),
+          ],
+        ),
+        const SizedBox(
+          width: 24,
+        ),
+        Column(
+          children: [
+            Text(
+              match.awayTeam.name,
+              style: const TextStyle(
+                //fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            Image.asset(
+              match.awayTeam.logo,
+              width: width / 3,
+            ),
+          ],
+        ),
+      ],
     );
   }
+}
+
+Icon fvrtIcon(Match match) {
+  return Icon(
+    Icons.bookmark,
+    color: match.isMyFavorite() ? Colors.orangeAccent : Colors.grey,
+  );
 }
 
 List<BoxShadow> selectedCardBoxShadow() {
@@ -543,7 +539,7 @@ List<MatchCard> matchCards = [
 ];
 
 void displayAllFavorites() {
-  print(
+  /*print(
       '----------------------------------------------- BEGIN--------------------------------------\n');
   for (int x = 0; x < favoriteMatches.length; x++) {
     Match m = favoriteMatches.elementAt(x);
@@ -552,4 +548,5 @@ void displayAllFavorites() {
   }
   print(
       '----------------------------------------------- END---------------------------------------\n');
+*/
 }
