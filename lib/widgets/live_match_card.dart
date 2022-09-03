@@ -22,7 +22,7 @@ class LiveMatchCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       margin: const EdgeInsets.only(right: 16),
-      width: MediaQuery.of(context).size.width * 0.7,
+      //width: MediaQuery.of(context).size.width * 0.3,
       decoration: BoxDecoration(
         color: const Color(0xff493f5d),
         borderRadius: BorderRadius.circular(20),
@@ -47,7 +47,7 @@ class LiveMatchCard extends StatelessWidget {
             height: 12,
           ),
           Row(
-            // mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               LiveMatchColumn(team: match.homeTeam, isHome: true),

@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 14, top: 32, right: 14),
+          padding: const EdgeInsets.only(left: 14, top: 10, right: 14),
           child: Column(
             children: [
               /*Row(
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                         height: 250,
 
                         child: PageView(
-                          //physics: const BouncingScrollPhysics(),
+                          physics: const PageScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           controller: _controller,
                           children: lmcList,
@@ -150,32 +150,120 @@ class _HomePageState extends State<HomePage> {
                           count: lmcList.length,
                         ),
                       ),
-                      /*ListView(
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          LiveMatchCard(
-                            width: width,
-                            height: heigth,
-                            match: match9,
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Center(
+                        child: Container(
+                          width: width * 0.7,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    child: Image.asset("assets/booking.png"),
+                                    height: 70,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          spreadRadius: 2,
+                                          blurRadius: 10,
+                                          blurStyle: BlurStyle.outer,
+                                          color: Colors.grey.shade400,
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "Bookings",
+                                    style: TextStyle(
+                                      color: Colors.grey[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    child: Image.asset("assets/event.png"),
+                                    //width: 70,
+                                    height: 70,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          spreadRadius: 2,
+                                          blurRadius: 10,
+                                          blurStyle: BlurStyle.outer,
+                                          color: Colors.grey.shade400,
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "Events",
+                                    style: TextStyle(
+                                      color: Colors.grey[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    child:
+                                        Image.asset("assets/qr-code-scan.png"),
+                                    height: 70,
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          spreadRadius: 2,
+                                          blurRadius: 10,
+                                          blurStyle: BlurStyle.outer,
+                                          color: Colors.grey.shade400,
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "Pass",
+                                    style: TextStyle(
+                                      color: Colors.grey[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          LiveMatchCard(
-                            width: width,
-                            height: heigth,
-                            match: match10,
-                          ),
-                          LiveMatchCard(
-                            width: width,
-                            height: heigth,
-                            match: match10,
-                          ),
-                          LiveMatchCard(
-                            width: width,
-                            height: heigth,
-                            match: match10,
-                          ),
-                        ],
-                      ),*/
+                        ),
+                      ),
                       const SizedBox(
                         height: 24,
                       ),
