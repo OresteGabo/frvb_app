@@ -7,6 +7,7 @@ import 'package:frvb/model/competition.dart';
 import 'package:frvb/pages/matches_page.dart';
 import 'package:frvb/model/match.dart';
 import 'package:frvb/constants.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,6 +23,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var heigth = MediaQuery.of(context).size.height;
+
+    final _controller = PageController();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -122,24 +125,57 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 24,
                       ),
-                      SingleChildScrollView(
+                      Container(
+                        //padding: const EdgeInsets.all(16.0),
+                        height: 250,
+
+                        child: PageView(
+                          //physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          controller: _controller,
+                          children: lmcList,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Center(
+                        child: SmoothPageIndicator(
+                          controller: _controller,
+                          effect: const ExpandingDotsEffect(
+                            dotWidth: 10,
+                            dotHeight: 10,
+                            activeDotColor: Color(0xff493f5d),
+                          ),
+                          count: lmcList.length,
+                        ),
+                      ),
+                      /*ListView(
                         physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              LiveMatchCard(
-                                width: width,
-                                height: heigth,
-                                match: match9,
-                              ),
-                              LiveMatchCard(
-                                width: width,
-                                height: heigth,
-                                match: match10,
-                              ),
-                            ]),
-                      ),
+                        children: [
+                          LiveMatchCard(
+                            width: width,
+                            height: heigth,
+                            match: match9,
+                          ),
+                          LiveMatchCard(
+                            width: width,
+                            height: heigth,
+                            match: match10,
+                          ),
+                          LiveMatchCard(
+                            width: width,
+                            height: heigth,
+                            match: match10,
+                          ),
+                          LiveMatchCard(
+                            width: width,
+                            height: heigth,
+                            match: match10,
+                          ),
+                        ],
+                      ),*/
                       const SizedBox(
                         height: 24,
                       ),
