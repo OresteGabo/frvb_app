@@ -52,6 +52,7 @@ dependencies:
   flutter_map: ^2.2.0
   cached_network_image: ^3.2.1
   latlong: ^0.6.1
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
