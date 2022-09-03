@@ -1,20 +1,13 @@
 class Team {
-  String _logo;
-  String _name;
+  final String _logo;
+  final String _name;
+  late final fullName;
 
-  Team(this._logo, this._name);
+  Team(this._logo, this._name, {this.fullName = "NO FULL NAME"});
 
   String get name => _name;
-
-  set name(String value) {
-    _name = value;
-  }
-
   String get logo => _logo;
-
-  set logo(String value) {
-    _logo = value;
-  }
+  //String get fullName => _fullName;
 
   bool isMyFavorite() {
     for (int x = 0; x < favoriteTeams.length; x++) {
