@@ -8,13 +8,13 @@ import 'package:frvb/model/match.dart';
 class LiveMatchCard extends StatelessWidget {
   const LiveMatchCard({
     Key? key,
-    required this.width,
-    required this.height,
+    //required this.width,
+    //required this.height,
     required this.match,
   }) : super(key: key);
 
-  final double width;
-  final double height;
+  //final double width;
+  //final double height;
   final Match match;
 
   @override
@@ -22,7 +22,7 @@ class LiveMatchCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       margin: const EdgeInsets.only(right: 16),
-      width: width * 0.8,
+      width: MediaQuery.of(context).size.width * 0.7,
       decoration: BoxDecoration(
         color: const Color(0xff493f5d),
         borderRadius: BorderRadius.circular(20),
@@ -106,3 +106,18 @@ class LiveMatchCard extends StatelessWidget {
     );
   }
 }
+
+List<LiveMatchCard> lmcList = [
+  LiveMatchCard(
+    match: match9,
+  ),
+  LiveMatchCard(
+    match: match10,
+  ),
+  LiveMatchCard(
+    match: match10,
+  ),
+  LiveMatchCard(
+    match: match10,
+  ),
+];
