@@ -23,15 +23,23 @@ class _MatchCardState extends State<MatchCard> {
   late final Color fvrtMatchIconColor;
   late final Color selectedBorderColor;
   late final BoxShadow selectedBoxShadow;
+  late final BoxDecoration nonSelectedBoxDecoration;
 
   late final Color unFvrtMatchIconColor;
   late final Color nonSelectedBorderColor;
   late final BoxShadow nonSelectedBoxShadow;
+  late final BoxDecoration selectedBoxDecoration;
 
   @override
   void initState() {
     fvrtMatchIconColor = Colors.orangeAccent;
-    selectedBorderColor = Colors.transparent;
+    selectedBorderColor = Colors.white;
+    selectedBoxDecoration = BoxDecoration(
+      borderRadius: BorderRadius.circular(15),
+      color: Colors.grey[200],
+      border: Border.all(color: Colors.grey),
+      //borderRadius: BorderRadius.circular(12),
+    );
     selectedBoxShadow = const BoxShadow(
       color: Color.fromRGBO(211, 211, 211, 0.5),
       spreadRadius: 1,
@@ -41,6 +49,11 @@ class _MatchCardState extends State<MatchCard> {
     unFvrtMatchIconColor = Colors.grey;
     nonSelectedBorderColor = Colors.transparent;
     nonSelectedBoxShadow = const BoxShadow();
+    nonSelectedBoxDecoration = BoxDecoration(
+      color: Colors.grey[200],
+      //border: Border.all(color: Colors.grey),
+      borderRadius: BorderRadius.circular(15),
+    );
     super.initState();
   }
 
@@ -52,8 +65,10 @@ class _MatchCardState extends State<MatchCard> {
       //padding: const EdgeInsets.all(12),
       padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
       margin: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
+      decoration:
+          widget.isSelected ? selectedBoxDecoration : nonSelectedBoxDecoration,
+      /*BoxDecoration(
+        color: widget.isSelected ? Colors.grey[200] : Colors.white,
         border: Border.all(
             color: widget.isSelected
                 ? selectedBorderColor
@@ -66,7 +81,7 @@ class _MatchCardState extends State<MatchCard> {
         //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
         //boxShadow:
         //isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
-      ),
+      ),*/
 
       child: Stack(
         // mainAxisAlignment: MainAxisAlignment.center,
