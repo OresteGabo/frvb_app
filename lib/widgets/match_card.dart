@@ -3,13 +3,17 @@ import 'package:frvb/model/match.dart';
 import 'package:intl/intl.dart';
 
 class MatchCard extends StatefulWidget {
+  ///The current match to be used
+  final Match match;
+
+  ///indicate if the match is selected or not
+  final bool isSelected;
+
   const MatchCard({
     Key? key,
     required this.match,
     this.isSelected = false,
   }) : super(key: key);
-  final Match match;
-  final bool? isSelected;
 
   @override
   State<MatchCard> createState() => _MatchCardState();
@@ -17,12 +21,26 @@ class MatchCard extends StatefulWidget {
 
 class _MatchCardState extends State<MatchCard> {
   late final Color fvrtMatchIconColor;
-  late final Match match;
+  late final Color selectedBorderColor;
+  late final BoxShadow selectedBoxShadow;
+
+  late final Color unFvrtMatchIconColor;
+  late final Color nonSelectedBorderColor;
+  late final BoxShadow nonSelectedBoxShadow;
 
   @override
   void initState() {
-    fvrtMatchIconColor = Colors.orange;
-    match = widget.match;
+    fvrtMatchIconColor = Colors.orangeAccent;
+    selectedBorderColor = Colors.transparent;
+    selectedBoxShadow = const BoxShadow(
+      color: Color.fromRGBO(211, 211, 211, 0.5),
+      spreadRadius: 1,
+      blurRadius: 15,
+    );
+
+    unFvrtMatchIconColor = Colors.grey;
+    nonSelectedBorderColor = Colors.transparent;
+    nonSelectedBoxShadow = const BoxShadow();
     super.initState();
   }
 
@@ -37,9 +55,14 @@ class _MatchCardState extends State<MatchCard> {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(
-            color:
-                match.isMyFavorite() ? fvrtMatchIconColor : Colors.transparent),
+            color: widget.isSelected
+                ? selectedBorderColor
+                : nonSelectedBorderColor),
         borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          widget.isSelected ? selectedBoxShadow : nonSelectedBoxShadow
+        ],
+        //boxShadow: widget.isSelected ? selectedBoxShadow : nonSetectedBoxShadow,
         //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
         //boxShadow:
         //isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
@@ -55,14 +78,14 @@ class _MatchCardState extends State<MatchCard> {
             child: Row(
               children: [
                 Text(
-                  match.homeTeam.name,
+                  widget.match.homeTeam.name,
                   style: const TextStyle(fontSize: 20, color: Colors.black87),
                 ),
                 const SizedBox(
                   width: 8,
                 ),
                 Image.asset(
-                  match.homeTeam.logo,
+                  widget.match.homeTeam.logo,
                   width: 40,
                 ),
               ],
@@ -92,17 +115,22 @@ class _MatchCardState extends State<MatchCard> {
                         print('Favorite matches size after add:$size\n');
                       }*/
                   },
-                  icon: fvrtIcon(match),
+                  icon: Icon(
+                    Icons.favorite,
+                    color: widget.match.isMyFavorite()
+                        ? fvrtMatchIconColor
+                        : unFvrtMatchIconColor,
+                  ),
                 ),
                 Text(
-                  match.time.hour.toString() +
+                  widget.match.time.hour.toString() +
                       ":" +
-                      match.time.minute.toString(),
+                      widget.match.time.minute.toString(),
                   style: const TextStyle(color: Colors.orange, fontSize: 20),
                 ),
                 Text(
                   //"30 Oct",
-                  DateFormat('dd MMM').format(match.time),
+                  DateFormat('dd MMM').format(widget.match.time),
                   style: const TextStyle(fontSize: 18, color: Colors.grey),
                 ),
               ],
@@ -114,14 +142,14 @@ class _MatchCardState extends State<MatchCard> {
               // mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  match.awayTeam.logo,
+                  widget.match.awayTeam.logo,
                   width: 40,
                 ),
                 const SizedBox(
                   width: 8,
                 ),
                 Text(
-                  match.awayTeam.name,
+                  widget.match.awayTeam.name,
                   style: const TextStyle(fontSize: 20, color: Colors.black87),
                 ),
               ],
@@ -170,7 +198,10 @@ class SlideUpMatchCard extends StatelessWidget {
         ),
         Column(
           children: [
-            fvrtIcon(match),
+            Icon(
+              Icons.bookmark,
+              color: match.isMyFavorite() ? Colors.orangeAccent : Colors.grey,
+            ),
             const SizedBox(
               height: 12,
             ),
@@ -204,13 +235,14 @@ class SlideUpMatchCard extends StatelessWidget {
   }
 }
 
+/*
 Icon fvrtIcon(Match match) {
   return Icon(
     Icons.bookmark,
     color: match.isMyFavorite() ? Colors.orangeAccent : Colors.grey,
   );
 }
-
+*/
 List<BoxShadow> selectedCardBoxShadow() {
   return [
     const BoxShadow(

@@ -157,6 +157,7 @@ class _MatchesPageState extends State<MatchesPage> {
         bottom: TabBar(
           unselectedLabelColor: Colors.grey,
           labelColor: Colors.grey,
+          isScrollable: true,
           indicatorColor: Colors.orange,
           tabs: competitions.map(
             (e) {
