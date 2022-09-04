@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:frvb/main.dart';
+import 'package:frvb/constants.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
           onPressed: () {},
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           Container(
             height: 40,
@@ -42,49 +42,137 @@ class SettingsPage extends StatelessWidget {
             margin: const EdgeInsets.all(24),
             child: const TextField(
               decoration: InputDecoration(
-                border: InputBorder.none,
+                focusColor: Colors.red,
+                icon: Icon(Icons.search),
+                //border: InputBorder.none,
                 hintText: '    Search',
               ),
             ),
           ),
           const SizedBox(height: 12),
-          Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  spreadRadius: 2,
-                  blurRadius: 10,
-                  blurStyle: BlurStyle.outer,
-                  color: Colors.grey.shade400,
+          Column(
+            children: [
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "     General",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.grey,
+                  ),
                 ),
-              ],
-              color: Colors.white,
-              //border: Border.all(color: Colors.grey),
-            ),
-            child: Column(
-              children: [
-                const SizedBox(height: 12),
-                settingElement("Account", Icons.account_box),
-                const SizedBox(height: 6),
-                settingElementsDivider(),
-                const SizedBox(height: 6),
-                settingElement("Notifications", Icons.notification_important),
-                const SizedBox(height: 6),
-                settingElementsDivider(),
-                const SizedBox(height: 6),
-                settingElement("Dark mode", Icons.dark_mode_rounded,
-                    isSwitchButton: true),
-                const SizedBox(height: 6),
-                settingElementsDivider(),
-                const SizedBox(height: 6),
-                settingElement("Privacy & security", Icons.lock),
-                const SizedBox(height: 6),
-                settingElementsDivider(),
-                const SizedBox(height: 6),
-                settingElement("About", Icons.question_mark_outlined),
-                const SizedBox(height: 12),
-              ],
-            ),
+              ),
+              const SizedBox(height: 6),
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      blurStyle: BlurStyle.outer,
+                      color: Colors.grey.shade400,
+                    ),
+                  ],
+                  color: Colors.white,
+                  //border: Border.all(color: Colors.grey),
+                ),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        const SizedBox(height: 12),
+                        settingElement("Account", Icons.account_box),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement(
+                            "Notifications", Icons.notification_important),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement("Dark mode", Icons.dark_mode_rounded,
+                            isSwitchButton: true),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement("Privacy & security", Icons.lock),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement("About", Icons.question_mark_outlined),
+                        const SizedBox(height: 12),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "     Notifications",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      blurStyle: BlurStyle.outer,
+                      color: Colors.grey.shade400,
+                    ),
+                  ],
+                  color: Colors.white,
+                  //border: Border.all(color: Colors.grey),
+                ),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        const SizedBox(height: 12),
+                        settingElement("Live games", Icons.live_tv,
+                            isSwitchButton: true),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement(
+                            //like when a game is cancelled, or rescheduled
+                            "games update",
+                            Icons.sports_volleyball,
+                            isSwitchButton: true),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement(
+                            "Favorite Athlete update", Icons.bookmark,
+                            isSwitchButton: true),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement("Favorite competitions update",
+                            Icons.favorite_border_outlined,
+                            isSwitchButton: true),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement("Favorite teams update",
+                            Icons.question_mark_outlined,
+                            isSwitchButton: true),
+                        const SizedBox(height: 12),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -148,16 +236,17 @@ class SwitchButton extends StatefulWidget {
 }
 
 class _SwitchButtonState extends State<SwitchButton> {
-  bool _value = false;
+  //bool _value = appVars.darkMode;
   //currentTheme=ThemeData.light();
   @override
   Widget build(BuildContext context) {
     return CupertinoSwitch(
-      value: _value,
+      value: appVars.darkMode,
       activeColor: Colors.orangeAccent,
       onChanged: (bool value) {
         setState(() {
-          _value = value;
+          //_value = value;
+          appVars.darkMode = !appVars.darkMode;
         });
       },
     );
