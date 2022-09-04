@@ -61,7 +61,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   initialSelectedDate: DateTime.now(),
                   selectionColor: const Color(0xffFFF8EE),
                   selectedTextColor: Colors.black,
-                  selectedBorderColor: selectedBorderColor,
+                  selectedBorderColor: appVars.selectedBorderColor,
                   onDateChange: (date) {
                     setState(() {});
                   },
@@ -131,7 +131,7 @@ class CalendarMatchCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           width: 2,
-          color: isSelected ? selectedColor : Colors.transparent,
+          color: isSelected ? appVars.selectedColor : Colors.transparent,
         ),
       ),
       child: Column(
@@ -147,7 +147,7 @@ class CalendarMatchCard extends StatelessWidget {
                   image: const AssetImage(
                     "assets/later.png",
                   ),
-                  color: isSelected ? selectedColor : Colors.grey,
+                  color: isSelected ? appVars.selectedColor : Colors.grey,
                 ),
               ),
             ),

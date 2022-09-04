@@ -71,7 +71,7 @@ class _MainPageState extends State<MainPage> {
   NavigationBar navigationBar() {
     return NavigationBar(
       selectedIndex: _currentIndex,
-      backgroundColor: backgroundColor,
+      backgroundColor: appVars.backgroundColor,
       destinations: const [
         NavigationDestination(
             icon: Icon(
@@ -124,7 +124,7 @@ class _MainPageState extends State<MainPage> {
       showUnselectedLabels: false,
       showSelectedLabels: false,
       selectedItemColor: Colors.amber[800],
-      unselectedItemColor: iconColors,
+      unselectedItemColor: appVars.iconColors,
       iconSize: 27,
     );
   }

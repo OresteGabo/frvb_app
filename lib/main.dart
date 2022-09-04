@@ -49,9 +49,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'FRVB App',
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: backgroundColor,
-      ),
+      theme: appVars.darkMode
+          ? ThemeData.dark()
+          : ThemeData.light().copyWith(
+              scaffoldBackgroundColor: appVars.backgroundColor,
+            ),
       themeMode: currentTheme.currentTheme(),
       home: const MainPage(),
     );

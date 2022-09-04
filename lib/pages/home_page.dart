@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: backgroundColor,
+        backgroundColor: appVars.backgroundColor,
         leading: const CircleAvatar(
           backgroundImage: AssetImage("assets/frvblogo.jpg"),
         ),
