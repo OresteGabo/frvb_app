@@ -67,12 +67,14 @@ class SettingsPage extends StatelessWidget {
                 width: width * 0.95,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       spreadRadius: 2,
                       blurRadius: 10,
                       blurStyle: BlurStyle.outer,
-                      //color: Colors.grey.shade400,
+                      color: appVars.darkMode
+                          ? Colors.black45
+                          : Colors.grey.shade400,
                     ),
                   ],
                   //color: Colors.white,
@@ -126,16 +128,17 @@ class SettingsPage extends StatelessWidget {
                 width: width * 0.95,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       spreadRadius: 2,
                       blurRadius: 10,
                       blurStyle: BlurStyle.outer,
-                      //color: Colors.grey.shade400,
+                      color: appVars.darkMode
+                          ? Colors.black45
+                          : Colors.grey.shade400,
                     ),
                   ],
                   //color: Colors.white,
-                  //border: Border.all(color: Colors.grey),
                 ),
                 child: Column(
                   children: [
