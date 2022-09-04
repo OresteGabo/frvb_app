@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:frvb/main.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -67,7 +68,7 @@ class SettingsPage extends StatelessWidget {
                 const SizedBox(height: 6),
                 settingElementsDivider(),
                 const SizedBox(height: 6),
-                settingElement("Notifications", Icons.notification_add),
+                settingElement("Notifications", Icons.notification_important),
                 const SizedBox(height: 6),
                 settingElementsDivider(),
                 const SizedBox(height: 6),
@@ -148,6 +149,7 @@ class SwitchButton extends StatefulWidget {
 
 class _SwitchButtonState extends State<SwitchButton> {
   bool _value = false;
+  //currentTheme=ThemeData.light();
   @override
   Widget build(BuildContext context) {
     return CupertinoSwitch(
