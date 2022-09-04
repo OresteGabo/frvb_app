@@ -7,6 +7,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -30,7 +31,7 @@ class SettingsPage extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  spreadRadius: 2,
+                  spreadRadius: 1,
                   blurRadius: 10,
                   blurStyle: BlurStyle.outer,
                   color: Colors.grey.shade400,
@@ -42,9 +43,8 @@ class SettingsPage extends StatelessWidget {
             margin: const EdgeInsets.all(24),
             child: const TextField(
               decoration: InputDecoration(
-                focusColor: Colors.red,
                 icon: Icon(Icons.search),
-                //border: InputBorder.none,
+                border: InputBorder.none,
                 hintText: '    Search',
               ),
             ),
@@ -62,18 +62,20 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 12),
               Container(
+                width: width * 0.95,
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: const [
                     BoxShadow(
                       spreadRadius: 2,
                       blurRadius: 10,
                       blurStyle: BlurStyle.outer,
-                      color: Colors.grey.shade400,
+                      //color: Colors.grey.shade400,
                     ),
                   ],
-                  color: Colors.white,
+                  //color: Colors.white,
                   //border: Border.all(color: Colors.grey),
                 ),
                 child: Column(
@@ -119,18 +121,20 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 12),
               Container(
+                width: width * 0.95,
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: const [
                     BoxShadow(
                       spreadRadius: 2,
                       blurRadius: 10,
                       blurStyle: BlurStyle.outer,
-                      color: Colors.grey.shade400,
+                      //color: Colors.grey.shade400,
                     ),
                   ],
-                  color: Colors.white,
+                  //color: Colors.white,
                   //border: Border.all(color: Colors.grey),
                 ),
                 child: Column(
@@ -182,7 +186,7 @@ class SettingsPage extends StatelessWidget {
 
 Widget settingElementsDivider() {
   return Container(
-      margin: const EdgeInsets.only(left: 60),
+      margin: const EdgeInsets.only(left: 48),
       child: const Expanded(child: Divider(thickness: 1.0)));
 }
 
@@ -200,7 +204,7 @@ Widget settingElement(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Row(children: [
-        const SizedBox(width: 24),
+        const SizedBox(width: 12),
         Icon(
           icon,
           color: Colors.grey.shade600,
