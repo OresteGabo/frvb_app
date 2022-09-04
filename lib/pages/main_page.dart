@@ -4,6 +4,7 @@ import 'package:frvb/pages/calendar_page.dart';
 import 'package:frvb/pages/home_page.dart';
 import 'package:frvb/constants.dart';
 import 'package:frvb/pages/account_page.dart';
+import 'package:frvb/pages/settings.dart';
 import 'package:frvb/pages/stats_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainPageState extends State<MainPage> {
     const HomePage(),
     const CalendarPage(),
     const StatsPage(),
-    const AccountPage()
+    const SettingsPage()
   ];
 
   @override
