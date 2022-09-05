@@ -9,6 +9,12 @@ class appVars {
   static Color iconColors = Colors.grey;
   static Color selectedBorderColor = Colors.orange;
   static bool isDark = false;
+  static bool liveGamesNotificationEnabled = false;
+  static bool gamesUpdateNotificationEnaled = false;
+  static bool favoriteAthleteUpdateNotificationEnaled = false;
+
+  static bool favoriteTeamUpdateNotificationEnaled = false;
+
   static BoxShadow darkmodeShadow = const BoxShadow();
   static BoxShadow lightmodeShadow = const BoxShadow();
 
