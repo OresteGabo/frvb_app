@@ -478,38 +478,192 @@ class _SettingsPageState extends State<SettingsPage> {
                       Column(
                         children: [
                           const SizedBox(height: 12),
-                          settingElement(
-                            "Live games",
-                            Icons.live_tv,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(children: [
+                                const SizedBox(width: 12),
+                                Icon(
+                                  Icons.dark_mode_rounded,
+                                  color: Colors.grey.shade600,
+                                ),
+                                const SizedBox(width: 12),
+                                Text("Live games",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                    )),
+                              ]),
+                              Row(
+                                children: [
+                                  Switch(
+                                      activeColor: Colors.greenAccent,
+                                      value:
+                                          appVars.liveGamesNotificationEnabled,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          appVars.liveGamesNotificationEnabled =
+                                              !appVars
+                                                  .liveGamesNotificationEnabled;
+                                        });
+                                      }),
+                                  const SizedBox(
+                                    width: 12,
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 6),
                           settingElementsDivider(),
                           const SizedBox(height: 6),
-                          settingElement(
-                            //like when a game is cancelled, or rescheduled
-                            "games update",
-                            Icons.sports_volleyball,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(children: [
+                                const SizedBox(width: 12),
+                                Icon(
+                                  Icons.sports_volleyball,
+                                  color: Colors.grey.shade600,
+                                ),
+                                const SizedBox(width: 12),
+                                Text("games update",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                    )),
+                              ]),
+                              Row(
+                                children: [
+                                  Switch(
+                                      activeColor: Colors.greenAccent,
+                                      value:
+                                          appVars.liveGamesNotificationEnabled,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          appVars.liveGamesNotificationEnabled =
+                                              !appVars
+                                                  .liveGamesNotificationEnabled;
+                                        });
+                                      }),
+                                  const SizedBox(
+                                    width: 12,
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 6),
                           settingElementsDivider(),
                           const SizedBox(height: 6),
-                          settingElement(
-                            "Favorite Athlete update",
-                            Icons.bookmark,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(children: [
+                                const SizedBox(width: 12),
+                                Icon(
+                                  Icons.bookmark,
+                                  color: Colors.grey.shade600,
+                                ),
+                                const SizedBox(width: 12),
+                                Text("Favorite Athlete update",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                    )),
+                              ]),
+                              Row(
+                                children: [
+                                  Switch(
+                                      activeColor: Colors.greenAccent,
+                                      value:
+                                          appVars.liveGamesNotificationEnabled,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          appVars.liveGamesNotificationEnabled =
+                                              !appVars
+                                                  .liveGamesNotificationEnabled;
+                                        });
+                                      }),
+                                  const SizedBox(
+                                    width: 12,
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 6),
                           settingElementsDivider(),
                           const SizedBox(height: 6),
-                          settingElement(
-                            "Favorite competitions update",
-                            Icons.favorite_border_outlined,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(children: [
+                                const SizedBox(width: 12),
+                                Icon(
+                                  Icons.favorite,
+                                  color: Colors.grey.shade600,
+                                ),
+                                const SizedBox(width: 12),
+                                Text("Favorite competitions update",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                    )),
+                              ]),
+                              Row(
+                                children: [
+                                  Switch(
+                                      activeColor: Colors.greenAccent,
+                                      value:
+                                          appVars.liveGamesNotificationEnabled,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          appVars.liveGamesNotificationEnabled =
+                                              !appVars
+                                                  .liveGamesNotificationEnabled;
+                                        });
+                                      }),
+                                  const SizedBox(
+                                    width: 12,
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 6),
                           settingElementsDivider(),
                           const SizedBox(height: 6),
-                          settingElement(
-                            "Favorite teams update",
-                            Icons.question_mark_outlined,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(children: [
+                                const SizedBox(width: 12),
+                                Icon(
+                                  Icons.question_mark_outlined,
+                                  color: Colors.grey.shade600,
+                                ),
+                                const SizedBox(width: 12),
+                                Text("Favorite teams update",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                    )),
+                              ]),
+                              Row(
+                                children: [
+                                  Switch(
+                                      activeColor: Colors.greenAccent,
+                                      value:
+                                          appVars.liveGamesNotificationEnabled,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          appVars.liveGamesNotificationEnabled =
+                                              !appVars
+                                                  .liveGamesNotificationEnabled;
+                                        });
+                                      }),
+                                  const SizedBox(
+                                    width: 12,
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 12),
                         ],
