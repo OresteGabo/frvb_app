@@ -12,23 +12,9 @@ class appVars {
   static BoxShadow darkmodeShadow = const BoxShadow();
   static BoxShadow lightmodeShadow = const BoxShadow();
 
-  //appVars();
-
   static Color darkmodeShadowColor = Colors.black45;
   static Color lightmodeShadowColor = Colors.grey.shade400;
-  static BoxShadow boxShadow = isDark
-      ? BoxShadow(
-          spreadRadius: 2,
-          blurRadius: 10,
-          blurStyle: BlurStyle.outer,
-          color: appVars.darkmodeShadowColor,
-        )
-      : BoxShadow(
-          spreadRadius: 2,
-          blurRadius: 10,
-          blurStyle: BlurStyle.outer,
-          color: appVars.lightmodeShadowColor,
-        );
+  static BoxShadow boxShadow = isDark ? darkmodeShadow : lightmodeShadow;
 
   appVars() {
     darkmodeShadow = BoxShadow(
@@ -43,17 +29,5 @@ class appVars {
       blurStyle: BlurStyle.outer,
       color: lightmodeShadowColor,
     );
-  } //Color();
-
-  /*appVars (){
-    this.shadowColor = isDark ? Colors.black45 : Colors.grey.shade400;
-    this.darkmodeShadow = BoxShadow(
-      spreadRadius: 2,
-      blurRadius: 10,
-      blurStyle: BlurStyle.outer,
-      color: shadowColor,
-    );
-
-  }*/
-
+  }
 }
