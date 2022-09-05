@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:frvb/constants.dart';
 /*
 class SettingsPage extends StatelessWidget {
@@ -383,14 +382,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
-                      BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        blurStyle: BlurStyle.outer,
-                        color: appVars.isDark
-                            ? Colors.black45
-                            : Colors.grey.shade400,
-                      ),
+                      appVars.boxShadow,
                     ],
                     //color: Colors.white,
                     //border: Border.all(color: Colors.grey),
@@ -474,14 +466,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
-                      BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        blurStyle: BlurStyle.outer,
-                        color: appVars.isDark
-                            ? Colors.black45
-                            : Colors.grey.shade400,
-                      ),
+                      appVars.boxShadow,
+                      /*appVars.isDark
+                          ? appVars.darkmodeShadow
+                          : appVars.lightmodeShadow,*/
                     ],
                     //color: Colors.white,
                   ),
