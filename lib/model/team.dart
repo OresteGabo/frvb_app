@@ -7,6 +7,15 @@ class Team {
 
   String get name => _name;
   String get logo => _logo;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Team && runtimeType == other.runtimeType && _name == other._name;
+
+  @override
+  int get hashCode => _name.hashCode;
+
   //String get fullName => _fullName;
 
   bool isMyFavorite() {
