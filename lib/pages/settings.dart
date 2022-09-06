@@ -40,7 +40,6 @@ class _SettingsPageState extends State<SettingsPage> {
           Container(
             height: 40,
             decoration: BoxDecoration(
-              //color: AppVars.isDark ? Colors.grey : Colors.white,
               boxShadow: [
                 AppVars.boxShadow,
               ],
@@ -48,11 +47,15 @@ class _SettingsPageState extends State<SettingsPage> {
               borderRadius: BorderRadius.circular(15),
             ),
             margin: const EdgeInsets.all(24),
-            child: const TextField(
+            child: TextField(
               decoration: InputDecoration(
-                icon: Icon(Icons.search),
+                icon: IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: const Icon(CupertinoIcons.search),
+                  onPressed: () {},
+                ),
                 border: InputBorder.none,
-                hintText: '    Search',
+                hintText: 'Search',
               ),
             ),
           ),
@@ -103,7 +106,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           Icons.dark_mode_rounded,
                           "Dark & light mode",
                           CupertinoSwitch(
-                              activeColor: Colors.greenAccent,
+                              activeColor: AppVars.selectedColor,
                               value: AppVars.isDark,
                               onChanged: (value) {
                                 setState(() {
@@ -160,7 +163,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           Icons.live_tv,
                           "Live games",
                           CupertinoSwitch(
-                              activeColor: Colors.greenAccent,
+                              activeColor: AppVars.selectedColor,
                               value: AppVars.liveGamesNotificationsEnabled,
                               onChanged: (value) {
                                 setState(() {
@@ -176,7 +179,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           Icons.sports_volleyball,
                           "Games update",
                           CupertinoSwitch(
-                              activeColor: Colors.greenAccent,
+                              activeColor: AppVars.selectedColor,
                               value: AppVars.gamesUpdateNotificationsEnaled,
                               onChanged: (value) {
                                 setState(() {
@@ -192,7 +195,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icons.bookmark,
                             "Favorite Athlete update",
                             CupertinoSwitch(
-                                activeColor: Colors.greenAccent,
+                                activeColor: AppVars.selectedColor,
                                 value: AppVars
                                     .favoriteAthleteUpdateNotificationsEnabled,
                                 onChanged: (value) {
@@ -209,7 +212,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icons.bookmark,
                             "Favorite Competitions update",
                             CupertinoSwitch(
-                                activeColor: Colors.greenAccent,
+                                activeColor: AppVars.selectedColor,
                                 value: AppVars
                                     .favoriteCompetitionUpdateNotificationsEnabled,
                                 onChanged: (value) {
@@ -227,6 +230,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             "Favorite teams update",
                             CupertinoSwitch(
                                 //activeColor: Colors.greenAccent,
+                                activeColor: AppVars.selectedColor,
                                 value: AppVars
                                     .favoriteTeamUpdateNotificationsEnabled,
                                 onChanged: (value) {
