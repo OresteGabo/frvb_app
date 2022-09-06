@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
@@ -26,15 +27,50 @@ class _HomePageState extends State<HomePage> {
 
     final _controller = PageController();
     return Scaffold(
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
         backgroundColor: themeProvider.isDarkMode
             ? AppVars.darkThemeBackgroundColor
             : AppVars.lightThemeBackgroundColor,
-        leading: const CircleAvatar(
+        /*leading: const CircleAvatar(
           backgroundImage: AssetImage("assets/frvblogo.jpg"),
-        ),
+        ),*/
         title: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
