@@ -38,6 +38,19 @@ class Match {
 
   Team get awayTeam => _awayTeam;
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        other is Match &&
+            runtimeType == other.runtimeType &&
+            _homeTeam == other._homeTeam &&
+            _awayTeam == other._awayTeam &&
+            _time == other._time;
+  }
+
+  @override
+  int get hashCode => _homeTeam.hashCode ^ _awayTeam.hashCode ^ _time.hashCode;
+
   String get timeString {
     return _time.day.toString() +
         "/" +
