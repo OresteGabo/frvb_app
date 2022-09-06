@@ -30,30 +30,6 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  NavigationBar navigationBar() {
-    return NavigationBar(
-      selectedIndex: _currentIndex,
-      backgroundColor: AppVars.backgroundColor,
-      destinations: const [
-        NavigationDestination(
-            icon: Icon(
-              Icons.home,
-            ),
-            label: 'Home'),
-        NavigationDestination(
-            icon: Icon(Icons.calendar_month), label: 'Calendar'),
-        NavigationDestination(
-            icon: Icon(Icons.bar_chart_rounded), label: 'Statistics'),
-        NavigationDestination(icon: Icon(Icons.person), label: 'Account'),
-      ],
-      onDestinationSelected: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-    );
-  }
-
   BottomNavigationBar bottomNavigationBar() {
     return BottomNavigationBar(
       //backgroundColor: Colors.green,
