@@ -50,6 +50,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   provider:
   shared_preferences:
+  flutter_native_splash: ^2.2.8
 
 dev_dependencies:
   flutter_test:
