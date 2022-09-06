@@ -255,7 +255,7 @@ class SlideUpMatchCard extends StatelessWidget {
 }
 
 class MatchCardList {
-  List<Match> _matches;
+  final List<Match> _matches;
 
   MatchCardList(this._matches);
 
@@ -266,6 +266,14 @@ class MatchCardList {
       }
     }
     _matches.add(m);
+  }
+
+  void removeMatch(Match m) {
+    for (int x = 0; x < _matches.length; x++) {
+      if (m == _matches.elementAt(x)) {
+        _matches.removeAt(x);
+      }
+    }
   }
 
   List<MatchCard> getMatches() {
