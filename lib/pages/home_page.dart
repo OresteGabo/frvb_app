@@ -132,114 +132,179 @@ class _HomePageState extends State<HomePage> {
                         height: 25,
                       ),
                       Center(
-                        child: SizedBox(
-                          width: width * 0.7,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    child: Image.asset("assets/booking.png"),
-                                    height: 70,
-                                    padding: const EdgeInsets.all(20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Card(
+                                  elevation: 5,
+                                  shadowColor: themeProvider.isDarkMode
+                                      ? AppVars.darkmodeShadowColor
+                                      : AppVars.lightmodeShadowColor,
+                                  child: Container(
+                                    width: 100,
                                     decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          spreadRadius: 2,
-                                          blurRadius: 10,
-                                          blurStyle: BlurStyle.outer,
-                                          color: Colors.grey.shade400,
-                                        ),
-                                      ],
                                       color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    //padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 0, top: 8, bottom: 8, right: 0),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
+                                        backgroundColor: Colors.white,
+                                        elevation: 0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
+                                      onPressed: () {
+                                        final snackBar = SnackBar(
+                                          content: const Text(
+                                              'This button will show u all your bookings'),
+                                          action: SnackBarAction(
+                                            label: 'Undo',
+                                            onPressed: () {
+                                              // Some code to undo the change.
+                                            },
+                                          ),
+                                        );
+
+                                        // Find the ScaffoldMessenger in the widget tree
+                                        // and use it to show a SnackBar.
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar);
+                                      },
+                                      child: Image.asset("assets/booking.png"),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 5,
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Bookings",
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
                                   ),
-                                  Text(
-                                    "Bookings",
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    child: Image.asset("assets/event.png"),
-                                    //width: 70,
-                                    height: 70,
-                                    padding: const EdgeInsets.all(20),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Column(
+                              children: [
+                                Card(
+                                  elevation: 5,
+                                  shadowColor: themeProvider.isDarkMode
+                                      ? AppVars.darkmodeShadowColor
+                                      : AppVars.lightmodeShadowColor,
+                                  child: Container(
+                                    width: 100,
                                     decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          spreadRadius: 2,
-                                          blurRadius: 10,
-                                          blurStyle: BlurStyle.outer,
-                                          color: Colors.grey.shade400,
-                                        ),
-                                      ],
                                       color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    //padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 0, top: 8, bottom: 8, right: 0),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
+                                        backgroundColor: Colors.white,
+                                        elevation: 0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
+                                      onPressed: () {
+                                        final snackBar = SnackBar(
+                                          content: const Text(
+                                              'This button will show u all your bookings'),
+                                          action: SnackBarAction(
+                                            label: 'Undo',
+                                            onPressed: () {
+                                              // Some code to undo the change.
+                                            },
+                                          ),
+                                        );
+
+                                        // Find the ScaffoldMessenger in the widget tree
+                                        // and use it to show a SnackBar.
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar);
+                                      },
+                                      child: Image.asset("assets/event.png"),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 5,
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Events",
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
                                   ),
-                                  Text(
-                                    "Events",
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    child:
-                                        Image.asset("assets/qr-code-scan.png"),
-                                    height: 70,
-                                    padding: const EdgeInsets.all(20),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Column(
+                              children: [
+                                Card(
+                                  elevation: 5,
+                                  shadowColor: themeProvider.isDarkMode
+                                      ? AppVars.darkmodeShadowColor
+                                      : AppVars.lightmodeShadowColor,
+                                  child: Container(
+                                    width: 100,
                                     decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          spreadRadius: 2,
-                                          blurRadius: 10,
-                                          blurStyle: BlurStyle.outer,
-                                          color: Colors.grey.shade400,
-                                        ),
-                                      ],
                                       color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    //padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 0, top: 8, bottom: 8, right: 0),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
+                                        backgroundColor: Colors.white,
+                                        elevation: 0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
+                                      onPressed: () {
+                                        final snackBar = SnackBar(
+                                          content: const Text(
+                                              'This button will show u all your bookings'),
+                                          action: SnackBarAction(
+                                            label: 'Undo',
+                                            onPressed: () {
+                                              // Some code to undo the change.
+                                            },
+                                          ),
+                                        );
+
+                                        // Find the ScaffoldMessenger in the widget tree
+                                        // and use it to show a SnackBar.
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar);
+                                      },
+                                      child: Image.asset(
+                                          "assets/qr-code-scan.png"),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 5,
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Pass",
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
                                   ),
-                                  Text(
-                                    "Pass",
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(
