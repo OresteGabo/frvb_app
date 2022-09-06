@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:frvb/model/theme_provider.dart';
 
 class AppVars {
+  //
+
   /// Global variables
-  static const Color backgroundColor = Color.fromARGB(235, 246, 246, 246);
+  static const Color lightThemeBackgroundColor =
+      Color.fromARGB(235, 246, 246, 246);
+  static final Color darkThemeBackgroundColor = Colors.grey.shade900;
   static const Color pinkColor = Color(0xffff0e80);
   static const Color selectedColor = Color(0xffe5a457);
   static const Color iconColors = Colors.grey;
@@ -11,7 +17,7 @@ class AppVars {
   static const Color darkThemeTextColor = Colors.white70;
 
   /// Push notification variables  (controlled by Switch buttons)
-  static bool isDark = false;
+  //static bool isDark = true;
   static bool liveGamesNotificationsEnabled = false;
   static bool gamesUpdateNotificationsEnaled = false;
   static bool favoriteAthleteUpdateNotificationsEnabled = false;
@@ -33,5 +39,6 @@ class AppVars {
   );
   static const Color darkmodeShadowColor = Colors.black45;
   static Color lightmodeShadowColor = Colors.grey.shade400;
-  static BoxShadow boxShadow = isDark ? darkmodeShadow : lightmodeShadow;
+  //static BoxShadow boxShadow =
+  //ThemeMode.dark ? darkmodeShadow : lightmodeShadow;
 }
