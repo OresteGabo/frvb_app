@@ -53,6 +53,16 @@ class _SettingsPageState extends State<SettingsPage> {
             margin: const EdgeInsets.all(24),
             child: TextField(
               decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    color: themeProvider.isDarkMode
+                        ? AppVars.darkThemeTextColor
+                        : AppVars.iconColor,
+                    CupertinoIcons.clear,
+                  ),
+                ),
+                //isCollapsed: true,
                 icon: IconButton(
                   padding: EdgeInsets.zero,
                   icon: Icon(
@@ -115,8 +125,12 @@ class _SettingsPageState extends State<SettingsPage> {
                         settingElementsDivider(),
                         const SizedBox(height: 6),
                         settingsElementWithSwitch(
-                            Icons.dark_mode_rounded,
-                            "Dark & light mode",
+                            themeProvider.isDarkMode
+                                ? Icons.light_mode_rounded
+                                : Icons.dark_mode_rounded,
+                            themeProvider.isDarkMode
+                                ? "Swith to light mode"
+                                : "Switch to dark mode",
                             const ChangeThemeButtonWidget(),
                             themeProvider),
                         const SizedBox(height: 6),
