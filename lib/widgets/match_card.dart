@@ -186,100 +186,95 @@ class SlideUpMatchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      //crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Column(
-          children: [
-            Text(
-              match.homeTeam.name,
-              style: const TextStyle(
-                //fontWeight: FontWeight.bold,
-                fontSize: 20,
+    return Container(
+      //elevation: 1,
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              Text(
+                match.homeTeam.name,
+                style: const TextStyle(
+                  //fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Image.asset(
-              match.homeTeam.logo,
-              width: width / 3,
-            ),
-          ],
-        ),
-        const SizedBox(
-          width: 24,
-        ),
-        Column(
-          children: [
-            Icon(
-              Icons.bookmark,
-              color: match.isMyFavorite() ? Colors.orangeAccent : Colors.grey,
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            const Text("2/10"),
-            const Text("06 Sept"),
-          ],
-        ),
-        const SizedBox(
-          width: 24,
-        ),
-        Column(
-          children: [
-            Text(
-              match.awayTeam.name,
-              style: const TextStyle(
-                //fontWeight: FontWeight.bold,
-                fontSize: 20,
+              const SizedBox(
+                height: 1,
               ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Image.asset(
-              match.awayTeam.logo,
-              width: width / 3,
-            ),
-          ],
-        ),
-      ],
+              Image.asset(
+                match.homeTeam.logo,
+                width: width / 3,
+              ),
+            ],
+          ),
+          const SizedBox(
+            width: 24,
+          ),
+          Column(
+            children: [
+              Icon(
+                Icons.bookmark,
+                color: match.isMyFavorite() ? Colors.orangeAccent : Colors.grey,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              const Text("2/10"),
+              const Text("06 Sept"),
+            ],
+          ),
+          const SizedBox(
+            width: 24,
+          ),
+          Column(
+            children: [
+              Text(
+                match.awayTeam.name,
+                style: const TextStyle(
+                  //fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Image.asset(
+                match.awayTeam.logo,
+                width: width / 3,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
 
-/*
-Icon fvrtIcon(Match match) {
-  return Icon(
-    Icons.bookmark,
-    color: match.isMyFavorite() ? Colors.orangeAccent : Colors.grey,
-  );
-}
-*/
-List<BoxShadow> selectedCardBoxShadow() {
-  return [
-    const BoxShadow(
-      color: Colors.grey,
-      offset: Offset(
-        3.0,
-        3.0,
-      ),
-      blurRadius: 5.0,
-      spreadRadius: 1.0,
-    ),
-    const BoxShadow(
-      color: Colors.white,
-      offset: Offset(0.0, 0.0),
-      blurRadius: 0.0,
-      spreadRadius: 0.0,
-    )
-  ];
-}
+class MatchCardList {
+  List<Match> _matches;
 
-List<BoxShadow> unSelectedCardBoxShadow() {
-  return [];
+  MatchCardList(this._matches);
+
+  void addMatch(Match m) {
+    for (int x = 0; x < _matches.length; x++) {
+      if (_matches.elementAt(x) == m) {
+        return;
+      }
+    }
+    _matches.add(m);
+  }
+
+  List<MatchCard> getMatches() {
+    List<MatchCard> mc = []; //= List(_matches.length);
+    for (int x = 0; x < _matches.length; x++) {
+      mc.add(MatchCard(match: _matches.elementAt(x)));
+    }
+    return mc;
+  }
 }
 
 List<MatchCard> matchCards = [
