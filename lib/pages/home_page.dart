@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:frvb/widgets/change_theme_button_widget.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
 import 'package:frvb/model/competition.dart';
@@ -7,6 +8,8 @@ import 'package:frvb/pages/matches_page.dart';
 import 'package:frvb/model/match.dart';
 import 'package:frvb/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:provider/provider.dart';
+import 'package:frvb/model/theme_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,13 +25,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var heigth = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     final _controller = PageController();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: AppVars.backgroundColor,
+        backgroundColor: themeProvider.isDarkMode
+            ? AppVars.darkThemeBackgroundColor
+            : AppVars.lightThemeBackgroundColor,
         leading: const CircleAvatar(
           backgroundImage: AssetImage("assets/frvblogo.jpg"),
         ),
