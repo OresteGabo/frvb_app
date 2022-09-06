@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/constants.dart';
 /*
@@ -29,12 +30,13 @@ class SettingsPage extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               boxShadow: [
-                BoxShadow(
+                AppVars.lightmodeShadow,
+                /*BoxShadow(
                   spreadRadius: 1,
                   blurRadius: 10,
                   blurStyle: BlurStyle.outer,
                   color: Colors.grey.shade400,
-                ),
+                ),*/
               ],
               //border: Border.all(color: Colors.white),
               borderRadius: BorderRadius.circular(15),
@@ -71,7 +73,7 @@ class SettingsPage extends StatelessWidget {
                       spreadRadius: 2,
                       blurRadius: 10,
                       blurStyle: BlurStyle.outer,
-                      color: appVars.darkMode
+                      color: AppVars.isDark
                           ? Colors.black45
                           : Colors.grey.shade400,
                     ),
@@ -132,7 +134,7 @@ class SettingsPage extends StatelessWidget {
                       spreadRadius: 2,
                       blurRadius: 10,
                       blurStyle: BlurStyle.outer,
-                      color: appVars.darkMode
+                      color: AppVars.isDark
                           ? Colors.black45
                           : Colors.grey.shade400,
                     ),
@@ -184,61 +186,94 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget settingElementsDivider() {
-  return Container(
-      margin: const EdgeInsets.only(left: 48),
-      child: const Expanded(child: Divider(thickness: 1.0)));
-}
-
-Widget settingElement(
-  String label,
-  IconData icon, {
-  IconData actionButton = Icons.arrow_forward_ios_rounded,
-  bool isSelected = false,
-  bool isPremium = false,
-  bool isSwitchButton = false,
-}) {
-  List<bool> _values = [true, false, true, false, false];
-  const int count = 4;
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Row(children: [
-        const SizedBox(width: 12),
-        Icon(
-          icon,
-          color: Colors.grey.shade600,
-        ),
-        const SizedBox(width: 12),
-        Text(label,
+  Widget settingsElementWithSwitch(
+      IconData icon, String label, Switch switchVal) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(children: [
+          const SizedBox(width: 12),
+          Icon(
+            icon,
+            color: Colors.grey.shade600,
+          ),
+          const SizedBox(width: 12),
+          Text(
+            label,
             style: TextStyle(
               color: Colors.grey.shade600,
-            )),
-      ]),
-      Row(
-        children: [
-          isSwitchButton
-              ? const SwitchButton()
-              : Icon(
-                  actionButton,
-                  color: Colors.grey.shade600,
-                ),
-          const SizedBox(
-            width: 12,
-          )
-        ],
-      ),
-    ],
-  );
+            ),
+          ),
+        ]),
+        Row(
+          children: [
+            switchVal,
+            const SizedBox(
+              width: 12,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget settingElementsDivider() {
+    return Container(
+        margin: const EdgeInsets.only(left: 48),
+        child: const Expanded(child: Divider(thickness: 1.0)));
+  }
+
+  Widget settingElement(
+    String label,
+    IconData icon, {
+    IconData actionButton = Icons.arrow_forward_ios_rounded,
+    bool isSelected = false,
+    bool isPremium = false,
+    bool isSwitchButton = false,
+  }) {
+    List<bool> _values = [true, false, true, false, false];
+    const int count = 4;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(children: [
+          const SizedBox(width: 12),
+          Icon(
+            icon,
+            color: Colors.grey.shade600,
+          ),
+          const SizedBox(width: 12),
+          Text(label,
+              style: TextStyle(
+                color: Colors.grey.shade600,
+              )),
+        ]),
+        Row(
+          children: [
+            isSwitchButton
+                ? Switch(
+                    value: AppVars.isDark,
+                    onChanged: (bool value) {
+                      AppVars.isDark = !AppVars.isDark;
+                    },
+                  )
+                : Icon(
+                    actionButton,
+                    color: Colors.grey.shade600,
+                  ),
+            const SizedBox(
+              width: 12,
+            )
+          ],
+        ),
+      ],
+    );
+  }
 }
 
-
-
-
 Widget darkSettingElement(String label) {
-  bool isDark=false;
+  bool isDark = false;
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -256,14 +291,11 @@ Widget darkSettingElement(String label) {
       ]),
       Row(
         children: [
+          Switch(value: AppVars.isDark, onChanged: (value) {}),
           Switch(
               activeColor: Colors.greenAccent,
-              value: isDark,
-              onChanged: (value) {
-                setState(() {
-                  isDark = !isDark;
-                });
-              }),
+              value: AppVars.isDark,
+              onChanged: (value) {}),
           const SizedBox(
             width: 12,
           )
@@ -271,38 +303,6 @@ Widget darkSettingElement(String label) {
       ),
     ],
   );
-}
-
-
-
-
-
-
-
-
-class SwitchButton extends StatefulWidget {
-  const SwitchButton({Key? key}) : super(key: key);
-
-  @override
-  State<SwitchButton> createState() => _SwitchButtonState();
-}
-
-class _SwitchButtonState extends State<SwitchButton> {
-  //bool _value = appVars.darkMode;
-  //currentTheme=ThemeData.light();
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoSwitch(
-      value: appVars.darkMode,
-      activeColor: Colors.orangeAccent,
-      onChanged: (bool value) {
-        setState(() {
-          //_value = value;
-          appVars.darkMode = !appVars.darkMode;
-        });
-      },
-    );
-  }
 }
 */
 
@@ -319,439 +319,316 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    bool darkMode = appVars.isDark;
-    return MaterialApp(
-      theme: darkMode ? ThemeData.dark() : ThemeData.light(),
-      home: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: Text(
-            "Settings",
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.green,
-            ),
-            onPressed: () {},
-          ),
+    bool darkMode = AppVars.isDark;
+    //return MaterialApp(
+    ///theme: darkMode ? ThemeData.dark() : ThemeData.light(),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 1,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text(
+          "Settings",
+          style: Theme.of(context).textTheme.headline4,
         ),
-        body: ListView(
-          children: [
-            Container(
-              height: 40,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    spreadRadius: 1,
-                    blurRadius: 10,
-                    blurStyle: BlurStyle.outer,
-                    color: Colors.grey.shade400,
-                  ),
-                ],
-                //border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              margin: const EdgeInsets.all(24),
-              child: const TextField(
-                decoration: InputDecoration(
-                  icon: Icon(Icons.search),
-                  border: InputBorder.none,
-                  hintText: '    Search',
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Column(
-              children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "     General",
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  width: width * 0.95,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      appVars.boxShadow,
-                    ],
-                    //color: Colors.white,
-                    //border: Border.all(color: Colors.grey),
-                  ),
-                  child: Column(
-                    children: [
-                      Column(
-                        children: [
-                          const SizedBox(height: 12),
-                          settingElement("Account", Icons.account_box),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingElement(
-                              "Notifications", Icons.notification_important),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(children: [
-                                const SizedBox(width: 12),
-                                Icon(
-                                  Icons.dark_mode_rounded,
-                                  color: Colors.grey.shade600,
-                                ),
-                                const SizedBox(width: 12),
-                                Text("Dark & light mode",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                    )),
-                              ]),
-                              Row(
-                                children: [
-                                  Switch(
-                                      activeColor: Colors.greenAccent,
-                                      value: appVars.isDark,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          appVars.isDark = !appVars.isDark;
-                                        });
-                                      }),
-                                  const SizedBox(
-                                    width: 12,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingElement("Privacy & security", Icons.lock),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingElement("About", Icons.question_mark_outlined),
-                          const SizedBox(height: 12),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "     Notifications",
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  width: width * 0.95,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      appVars.boxShadow,
-                      /*appVars.isDark
-                          ? appVars.darkmodeShadow
-                          : appVars.lightmodeShadow,*/
-                    ],
-                    //color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Column(
-                        children: [
-                          const SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(children: [
-                                const SizedBox(width: 12),
-                                Icon(
-                                  Icons.dark_mode_rounded,
-                                  color: Colors.grey.shade600,
-                                ),
-                                const SizedBox(width: 12),
-                                Text("Live games",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                    )),
-                              ]),
-                              Row(
-                                children: [
-                                  Switch(
-                                      activeColor: Colors.greenAccent,
-                                      value:
-                                          appVars.liveGamesNotificationEnabled,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          appVars.liveGamesNotificationEnabled =
-                                              !appVars
-                                                  .liveGamesNotificationEnabled;
-                                        });
-                                      }),
-                                  const SizedBox(
-                                    width: 12,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(children: [
-                                const SizedBox(width: 12),
-                                Icon(
-                                  Icons.sports_volleyball,
-                                  color: Colors.grey.shade600,
-                                ),
-                                const SizedBox(width: 12),
-                                Text("games update",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                    )),
-                              ]),
-                              Row(
-                                children: [
-                                  Switch(
-                                      activeColor: Colors.greenAccent,
-                                      value:
-                                          appVars.liveGamesNotificationEnabled,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          appVars.liveGamesNotificationEnabled =
-                                              !appVars
-                                                  .liveGamesNotificationEnabled;
-                                        });
-                                      }),
-                                  const SizedBox(
-                                    width: 12,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(children: [
-                                const SizedBox(width: 12),
-                                Icon(
-                                  Icons.bookmark,
-                                  color: Colors.grey.shade600,
-                                ),
-                                const SizedBox(width: 12),
-                                Text("Favorite Athlete update",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                    )),
-                              ]),
-                              Row(
-                                children: [
-                                  Switch(
-                                      activeColor: Colors.greenAccent,
-                                      value:
-                                          appVars.liveGamesNotificationEnabled,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          appVars.liveGamesNotificationEnabled =
-                                              !appVars
-                                                  .liveGamesNotificationEnabled;
-                                        });
-                                      }),
-                                  const SizedBox(
-                                    width: 12,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(children: [
-                                const SizedBox(width: 12),
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.grey.shade600,
-                                ),
-                                const SizedBox(width: 12),
-                                Text("Favorite competitions update",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                    )),
-                              ]),
-                              Row(
-                                children: [
-                                  Switch(
-                                      activeColor: Colors.greenAccent,
-                                      value:
-                                          appVars.liveGamesNotificationEnabled,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          appVars.liveGamesNotificationEnabled =
-                                              !appVars
-                                                  .liveGamesNotificationEnabled;
-                                        });
-                                      }),
-                                  const SizedBox(
-                                    width: 12,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(children: [
-                                const SizedBox(width: 12),
-                                Icon(
-                                  Icons.question_mark_outlined,
-                                  color: Colors.grey.shade600,
-                                ),
-                                const SizedBox(width: 12),
-                                Text("Favorite teams update",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                    )),
-                              ]),
-                              Row(
-                                children: [
-                                  Switch(
-                                      activeColor: Colors.greenAccent,
-                                      value:
-                                          appVars.liveGamesNotificationEnabled,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          appVars.liveGamesNotificationEnabled =
-                                              !appVars
-                                                  .liveGamesNotificationEnabled;
-                                        });
-                                      }),
-                                  const SizedBox(
-                                    width: 12,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.green,
+          ),
+          onPressed: () {},
+        ),
+      ),
+      body: ListView(
+        children: [
+          ///
+          Container(
+            height: 40,
+            decoration: BoxDecoration(
+              //color: AppVars.isDark ? Colors.grey : Colors.white,
+              boxShadow: [
+                AppVars.boxShadow,
               ],
+              //border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(15),
             ),
-          ],
-        ),
+            margin: const EdgeInsets.all(24),
+            child: const TextField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.search),
+                border: InputBorder.none,
+                hintText: '    Search',
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          /// Main body of the page
+          Column(
+            children: [
+              /// Text Separator of general settings "General"
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "     General",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              ///General settings container
+              Container(
+                width: width * 0.95,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    AppVars.boxShadow,
+                  ],
+                  //color: Colors.white,
+                  //border: Border.all(color: Colors.grey),
+                ),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        const SizedBox(height: 12),
+                        settingElement("Account", Icons.account_box),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement(
+                            "Notifications", Icons.notification_important),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingsElementWithSwitch(
+                          Icons.dark_mode_rounded,
+                          "Dark & light mode",
+                          CupertinoSwitch(
+                              activeColor: Colors.greenAccent,
+                              value: AppVars.isDark,
+                              onChanged: (value) {
+                                setState(() {
+                                  AppVars.isDark = !AppVars.isDark;
+                                });
+                              }),
+                        ),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement("Privacy & security", Icons.lock),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingElement("About", Icons.question_mark_outlined),
+                        const SizedBox(height: 12),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+
+              /// Text Separator
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "     Notifications",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              /// Push notification settings
+              Container(
+                width: width * 0.95,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    AppVars.boxShadow,
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        const SizedBox(height: 12),
+                        settingsElementWithSwitch(
+                          Icons.live_tv,
+                          "Live games",
+                          CupertinoSwitch(
+                              activeColor: Colors.greenAccent,
+                              value: AppVars.liveGamesNotificationsEnabled,
+                              onChanged: (value) {
+                                setState(() {
+                                  AppVars.liveGamesNotificationsEnabled =
+                                      !AppVars.liveGamesNotificationsEnabled;
+                                });
+                              }),
+                        ),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingsElementWithSwitch(
+                          Icons.sports_volleyball,
+                          "Games update",
+                          CupertinoSwitch(
+                              activeColor: Colors.greenAccent,
+                              value: AppVars.gamesUpdateNotificationsEnaled,
+                              onChanged: (value) {
+                                setState(() {
+                                  AppVars.gamesUpdateNotificationsEnaled =
+                                      !AppVars.gamesUpdateNotificationsEnaled;
+                                });
+                              }),
+                        ),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingsElementWithSwitch(
+                            Icons.bookmark,
+                            "Favorite Athlete update",
+                            CupertinoSwitch(
+                                activeColor: Colors.greenAccent,
+                                value: AppVars
+                                    .favoriteAthleteUpdateNotificationsEnabled,
+                                onChanged: (value) {
+                                  setState(() {
+                                    AppVars.favoriteAthleteUpdateNotificationsEnabled =
+                                        !AppVars
+                                            .favoriteAthleteUpdateNotificationsEnabled;
+                                  });
+                                })),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingsElementWithSwitch(
+                            Icons.bookmark,
+                            "Favorite Competitions update",
+                            CupertinoSwitch(
+                                activeColor: Colors.greenAccent,
+                                value: AppVars
+                                    .favoriteCompetitionUpdateNotificationsEnabled,
+                                onChanged: (value) {
+                                  setState(() {
+                                    AppVars.favoriteCompetitionUpdateNotificationsEnabled =
+                                        !AppVars
+                                            .favoriteCompetitionUpdateNotificationsEnabled;
+                                  });
+                                })),
+                        const SizedBox(height: 6),
+                        settingElementsDivider(),
+                        const SizedBox(height: 6),
+                        settingsElementWithSwitch(
+                            Icons.bookmark,
+                            "Favorite teams update",
+                            CupertinoSwitch(
+                                //activeColor: Colors.greenAccent,
+                                value: AppVars
+                                    .favoriteTeamUpdateNotificationsEnabled,
+                                onChanged: (value) {
+                                  setState(() {
+                                    AppVars.favoriteTeamUpdateNotificationsEnabled =
+                                        !AppVars
+                                            .favoriteTeamUpdateNotificationsEnabled;
+                                  });
+                                })),
+                        const SizedBox(height: 12),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
-}
 
-Widget settingElement(String label, IconData icon,
-    {IconData actionButton = Icons.arrow_forward_ios_rounded,
-    bool isSelected = false,
-    bool isPremium = false}) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Row(children: [
-        const SizedBox(width: 12),
-        Icon(
-          icon,
-          color: Colors.grey.shade600,
-        ),
-        const SizedBox(width: 12),
-        Text(label,
-            style: TextStyle(
-              color: Colors.grey.shade600,
-            )),
-      ]),
-      Row(
-        children: [
+  Widget settingsElementWithSwitch(
+      IconData icon, String label, CupertinoSwitch switchVal) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(children: [
+          const SizedBox(width: 12),
           Icon(
-            actionButton,
-            color: Colors.grey.shade600,
+            icon,
+            color: AppVars.isDark
+                ? AppVars.darkThemeTextColor
+                : AppVars.lightThemeTextColor,
           ),
-          const SizedBox(
-            width: 12,
-          )
-        ],
-      ),
-    ],
-  );
-}
-
-/*
-Widget darkModeElement() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Row(children: [
-        const SizedBox(width: 12),
-        Icon(
-          Icons.dark_mode_rounded,
-          color: Colors.grey.shade600,
-        ),
-        const SizedBox(width: 12),
-        Text("Dark & light mode",
+          const SizedBox(width: 12),
+          Text(
+            label,
             style: TextStyle(
+              color: AppVars.isDark
+                  ? AppVars.darkThemeTextColor
+                  : AppVars.lightThemeTextColor,
+            ),
+          ),
+        ]),
+        Row(
+          children: [
+            switchVal,
+            const SizedBox(
+              width: 12,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget settingElement(String label, IconData icon,
+      {IconData actionButton = Icons.arrow_forward_ios_rounded,
+      bool isSelected = false,
+      bool isPremium = false}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(children: [
+          const SizedBox(width: 12),
+          Icon(
+            icon,
+            color: AppVars.isDark
+                ? AppVars.darkThemeTextColor
+                : AppVars.lightThemeTextColor,
+          ),
+          const SizedBox(width: 12),
+          Text(label,
+              style: TextStyle(
+                color: AppVars.isDark
+                    ? AppVars.darkThemeTextColor
+                    : AppVars.lightThemeTextColor,
+              )),
+        ]),
+        Row(
+          children: [
+            Icon(
+              actionButton,
               color: Colors.grey.shade600,
-            )),
-      ]),
-      Row(
-        children: [
-          Switch(
-              activeColor: Colors.greenAccent,
-              value: isDark,
-              onChanged: (value) {
-                setState(() {
-                  isDark = !isDark;
-                });
-              }),
-          const SizedBox(
-            width: 12,
-          )
-        ],
-      ),
-    ],
-  );
-}
-*/
-Widget settingElementsDivider() {
-  return Container(
-      margin: const EdgeInsets.only(left: 48),
-      child: const Expanded(child: Divider(thickness: 1.0)));
+            ),
+            const SizedBox(
+              width: 12,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget settingElementsDivider() {
+    return Container(
+        margin: const EdgeInsets.only(left: 48),
+        child: const Expanded(child: Divider(thickness: 1.0)));
+  }
 }
