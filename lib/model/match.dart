@@ -52,7 +52,7 @@ class Match {
 
   void addToMyFavorite() {
     String x = toString();
-    if (this.isMyFavorite()) {
+    if (isMyFavorite()) {
       print(
           '###################################  $x already exist in my favorite\n');
     } else {
@@ -62,7 +62,7 @@ class Match {
 
   void removeToMyFavorite() {
     String x = toString();
-    if (this.isMyFavorite()) {
+    if (isMyFavorite()) {
       favoriteMatches.remove(this);
     } else {
       print('################################   $x is not among my favorites');

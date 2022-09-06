@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:frvb/widgets/change_theme_button_widget.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
 import 'package:frvb/model/competition.dart';
@@ -19,12 +17,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _selectedCompetition = competitions[0].name;
+  final String _selectedCompetition = competitions[0].name;
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var heigth = MediaQuery.of(context).size.height;
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     final _controller = PageController();
@@ -70,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 24,
                       ),
-                      Container(
+                      SizedBox(
                         //padding: const EdgeInsets.all(16.0),
                         height: 250,
 
@@ -99,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                         height: 25,
                       ),
                       Center(
-                        child: Container(
+                        child: SizedBox(
                           width: width * 0.7,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,7 +223,7 @@ class _HomePageState extends State<HomePage> {
                                   builder: (context) => MaterialApp(
                                         home: DefaultTabController(
                                           length: competitions.length,
-                                          child: MatchesPage(),
+                                          child: const MatchesPage(),
                                         ),
                                       )));
                             },

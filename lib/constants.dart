@@ -9,9 +9,9 @@ class AppVars {
   static const Color lightThemeBackgroundColor =
       Color.fromARGB(235, 246, 246, 246);
   static final Color darkThemeBackgroundColor = Colors.grey.shade900;
-  static const Color pinkColor = Color(0xffff0e80);
+  //static const Color pinkColor = Color(0xffff0e80);
   static const Color selectedColor = Color(0xffe5a457);
-  static const Color iconColors = Colors.grey;
+  static const Color iconColor = Colors.black54;
   static const Color selectedBorderColor = Colors.orange;
   static const Color lightThemeTextColor = Colors.black54;
   static const Color darkThemeTextColor = Colors.white70;

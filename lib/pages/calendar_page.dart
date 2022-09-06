@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:frvb/clones_packages/datePicker/date_picker_widget.dart';
 import 'package:frvb/constants.dart';
 import 'package:frvb/model/mensdiv1comp.dart';
-import 'package:frvb/model/team.dart';
 import 'package:frvb/model/match.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -121,7 +120,6 @@ class CalendarMatchCard extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    Match match6 = Match(gsob, aprvc);
     return Container(
       padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
       margin: const EdgeInsets.symmetric(vertical: 12),

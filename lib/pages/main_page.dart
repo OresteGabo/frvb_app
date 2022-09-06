@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:frvb/model/theme_provider.dart';
 import 'package:frvb/pages/calendar_page.dart';
 import 'package:frvb/pages/home_page.dart';
 import 'package:frvb/constants.dart';
-import 'package:frvb/pages/account_page.dart';
 import 'package:frvb/pages/settings.dart';
 import 'package:frvb/pages/stats_page.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -24,13 +25,14 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      bottomNavigationBar: bottomNavigationBar(),
+      bottomNavigationBar: bottomNavigationBar(themeProvider),
       body: _children[_currentIndex],
     );
   }
 
-  BottomNavigationBar bottomNavigationBar() {
+  BottomNavigationBar bottomNavigationBar(ThemeProvider themeProvider) {
     return BottomNavigationBar(
       //backgroundColor: Colors.green,
 
@@ -62,7 +64,9 @@ class _MainPageState extends State<MainPage> {
       showUnselectedLabels: false,
       showSelectedLabels: false,
       selectedItemColor: Colors.amber[800],
-      unselectedItemColor: AppVars.iconColors,
+      unselectedItemColor: themeProvider.isDarkMode
+          ? AppVars.darkThemeTextColor
+          : AppVars.iconColor,
       iconSize: 27,
     );
   }

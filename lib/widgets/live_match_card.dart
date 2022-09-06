@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/widgets/live_match_column.dart';
 
-import 'package:frvb/constants.dart';
-import 'package:frvb/model/team.dart';
 import 'package:frvb/model/match.dart';
 
 class LiveMatchCard extends StatelessWidget {
   const LiveMatchCard({
     Key? key,
-    //required this.width,
-    //required this.height,
     required this.match,
   }) : super(key: key);
 
-  //final double width;
-  //final double height;
   final Match match;
 
   @override
@@ -22,17 +16,12 @@ class LiveMatchCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       margin: const EdgeInsets.only(right: 16),
-      //width: MediaQuery.of(context).size.width * 0.3,
       decoration: BoxDecoration(
         color: const Color(0xff493f5d),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         children: [
-          /*const Text(
-            "DIV 1 Champ",
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),*/
           const SizedBox(
             height: 5,
           ),

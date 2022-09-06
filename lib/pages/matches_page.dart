@@ -17,7 +17,7 @@ class MatchesPage extends StatefulWidget {
 }
 
 class _MatchesPageState extends State<MatchesPage> {
-  String _selectedCompetition = competitions[0].name;
+  final String _selectedCompetition = competitions[0].name;
   Match _selectedMatch = matchCards[0].match;
   bool _slideupPanelUp = false;
   final panelController = PanelController();
@@ -187,7 +187,7 @@ class _MatchesPageState extends State<MatchesPage> {
             icon: Badge(
               badgeContent: Text(
                 nberOfFavorites.toString(),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
               child: const Icon(
                 Icons.bookmark,

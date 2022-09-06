@@ -55,7 +55,12 @@ class _SettingsPageState extends State<SettingsPage> {
               decoration: InputDecoration(
                 icon: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: const Icon(CupertinoIcons.search),
+                  icon: Icon(
+                    CupertinoIcons.search,
+                    color: themeProvider.isDarkMode
+                        ? AppVars.darkThemeTextColor
+                        : AppVars.iconColor,
+                  ),
                   onPressed: () {},
                 ),
                 border: InputBorder.none,
@@ -112,7 +117,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         settingsElementWithSwitch(
                             Icons.dark_mode_rounded,
                             "Dark & light mode",
-                            ChangeThemeButtonWidget(),
+                            const ChangeThemeButtonWidget(),
                             themeProvider),
                         const SizedBox(height: 6),
                         settingElementsDivider(),
@@ -167,6 +172,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icons.live_tv,
                             "Live games",
                             CupertinoSwitch(
+                                trackColor: AppVars.iconColor,
                                 activeColor: AppVars.selectedColor,
                                 value: AppVars.liveGamesNotificationsEnabled,
                                 onChanged: (value) {
@@ -183,6 +189,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icons.sports_volleyball,
                             "Games update",
                             CupertinoSwitch(
+                                trackColor: AppVars.iconColor,
                                 activeColor: AppVars.selectedColor,
                                 value: AppVars.gamesUpdateNotificationsEnaled,
                                 onChanged: (value) {
@@ -199,6 +206,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icons.bookmark,
                             "Favorite Athlete update",
                             CupertinoSwitch(
+                                trackColor: AppVars.iconColor,
                                 activeColor: AppVars.selectedColor,
                                 value: AppVars
                                     .favoriteAthleteUpdateNotificationsEnabled,
@@ -217,6 +225,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icons.bookmark,
                             "Favorite Competitions update",
                             CupertinoSwitch(
+                                trackColor: AppVars.iconColor,
                                 activeColor: AppVars.selectedColor,
                                 value: AppVars
                                     .favoriteCompetitionUpdateNotificationsEnabled,
@@ -235,7 +244,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Icons.bookmark,
                             "Favorite teams update",
                             CupertinoSwitch(
-                                //activeColor: Colors.greenAccent,
+                                trackColor: AppVars.iconColor,
                                 activeColor: AppVars.selectedColor,
                                 value: AppVars
                                     .favoriteTeamUpdateNotificationsEnabled,
@@ -272,7 +281,7 @@ class _SettingsPageState extends State<SettingsPage> {
             //themeProvider.isDarkMode ? AppVars.darkmodeShadow:AppVars.lightmodeShadow,
             color: themeProvider.isDarkMode
                 ? AppVars.darkThemeTextColor
-                : AppVars.lightThemeTextColor,
+                : AppVars.iconColor,
           ),
           const SizedBox(width: 12),
           Text(
@@ -280,7 +289,7 @@ class _SettingsPageState extends State<SettingsPage> {
             style: TextStyle(
               color: themeProvider.isDarkMode
                   ? AppVars.darkThemeTextColor
-                  : AppVars.lightThemeTextColor,
+                  : AppVars.iconColor,
             ),
           ),
         ]),
@@ -307,7 +316,7 @@ class _SettingsPageState extends State<SettingsPage> {
             icon,
             color: themeProvider.isDarkMode
                 ? AppVars.darkThemeTextColor
-                : AppVars.lightThemeTextColor,
+                : AppVars.iconColor,
           ),
           const SizedBox(width: 12),
           Text(label,
@@ -321,7 +330,9 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Icon(
               Icons.arrow_forward_ios_rounded,
-              color: Colors.grey.shade600,
+              color: themeProvider.isDarkMode
+                  ? AppVars.darkThemeTextColor
+                  : AppVars.iconColor,
             ),
             const SizedBox(
               width: 12,
