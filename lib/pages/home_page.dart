@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:frvb/widgets/live_match_card.dart';
-import 'package:frvb/widgets/competitionWidget.dart';
 import 'package:frvb/widgets/match_card.dart';
 import 'package:frvb/model/competition.dart';
 import 'package:frvb/pages/matches_page.dart';
@@ -29,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: appVars.backgroundColor,
+        backgroundColor: AppVars.backgroundColor,
         leading: const CircleAvatar(
           backgroundImage: AssetImage("assets/frvblogo.jpg"),
         ),
@@ -53,66 +52,6 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.only(left: 14, top: 10, right: 14),
           child: Column(
             children: [
-              /*Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage("assets/frvblogo.jpg"),
-                  ),
-                  RichText(
-                      text: TextSpan(
-                          style: Theme.of(context).textTheme.headline4,
-                          children: [
-                        const TextSpan(text: "FR"),
-                        TextSpan(
-                          text: "VB",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ])),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Icon(
-                      CupertinoIcons.search,
-                      size: 30,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: competitions
-                      .map(
-                        (e) => InkWell(
-                            onTap: () => setState(() {
-                                  _selectedCompetition = e.name;
-                                }),
-                            child: CompetitionWidget(
-                                image: e.images,
-                                name: e.name,
-                                isSelected: e.name == _selectedCompetition)),
-                      )
-                      .toList(),
-                ),
-              ),
-              const SizedBox(
-                height: 24,
-              ),*/
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
