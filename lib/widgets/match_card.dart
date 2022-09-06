@@ -276,7 +276,7 @@ class MatchCardList {
     }
   }
 
-  List<MatchCard> getMatches() {
+  List<MatchCard> getMatchCards() {
     List<MatchCard> mc = []; //= List(_matches.length);
     for (int x = 0; x < _matches.length; x++) {
       mc.add(MatchCard(match: _matches.elementAt(x)));

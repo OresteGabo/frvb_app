@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frvb/constants.dart';
 import 'package:frvb/pages/main_page.dart';
 import 'package:frvb/model/theme_provider.dart';
 import 'package:provider/provider.dart';

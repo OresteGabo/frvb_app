@@ -131,6 +131,8 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 25,
                       ),
+
+                      /// Three elevated buttons (Bookings, Events and Pass)
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
