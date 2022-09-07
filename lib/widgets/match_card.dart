@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/model/match.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:frvb/model/theme_provider.dart';
 
 class MatchCard extends StatefulWidget {
   ///The current match to be used
@@ -33,15 +35,15 @@ class _MatchCardState extends State<MatchCard> {
   @override
   void initState() {
     fvrtMatchIconColor = Colors.orangeAccent;
-    selectedBorderColor = Colors.white;
+    //selectedBorderColor = Colors.white;
     selectedBoxDecoration = BoxDecoration(
       borderRadius: BorderRadius.circular(15),
-      color: Colors.grey[200],
+      //color: Colors.grey[200],
       border: Border.all(color: Colors.grey),
       //borderRadius: BorderRadius.circular(12),
     );
     selectedBoxShadow = const BoxShadow(
-      color: Color.fromRGBO(211, 211, 211, 0.5),
+      //color: Color.fromRGBO(211, 211, 211, 0.5),
       spreadRadius: 1,
       blurRadius: 15,
     );
@@ -50,8 +52,8 @@ class _MatchCardState extends State<MatchCard> {
     nonSelectedBorderColor = Colors.transparent;
     nonSelectedBoxShadow = const BoxShadow();
     nonSelectedBoxDecoration = BoxDecoration(
-      color: Colors.grey[200],
-      //border: Border.all(color: Colors.grey),
+      //color: Colors.grey[200],
+      border: Border.all(color: Colors.grey),
       borderRadius: BorderRadius.circular(15),
     );
     super.initState();
@@ -61,12 +63,16 @@ class _MatchCardState extends State<MatchCard> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
 
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Container(
       //padding: const EdgeInsets.all(12),
       padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
       margin: const EdgeInsets.symmetric(vertical: 8),
-      decoration:
-          widget.isSelected ? selectedBoxDecoration : nonSelectedBoxDecoration,
+
+      decoration: BoxDecoration(
+        color: themeProvider.isDarkMode ? Colors.transparent : Colors.white,
+      ),
+      // widget.isSelected ? selectedBoxDecoration : nonSelectedBoxDecoration,
       /*BoxDecoration(
         color: widget.isSelected ? Colors.grey[200] : Colors.white,
         border: Border.all(
@@ -94,7 +100,11 @@ class _MatchCardState extends State<MatchCard> {
               children: [
                 Text(
                   widget.match.homeTeam.name,
-                  style: const TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white
+                          : Colors.black87),
                 ),
                 const SizedBox(
                   width: 8,
@@ -112,7 +122,6 @@ class _MatchCardState extends State<MatchCard> {
               children: [
                 IconButton(
                   padding: EdgeInsets.zero,
-                  color: Colors.green,
                   iconSize: 30,
                   onPressed: () {
                     //int size = favoriteMatches.length;
@@ -165,7 +174,11 @@ class _MatchCardState extends State<MatchCard> {
                 ),
                 Text(
                   widget.match.awayTeam.name,
-                  style: const TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white
+                          : Colors.black87),
                 ),
               ],
             ),
