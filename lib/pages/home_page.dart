@@ -17,8 +17,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final String _selectedCompetition = competitions[0].name;
+  bool _isPlay = false;
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    _animationController =
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                         height: 25,
                       ),
 
-                      /// Three elevated buttons (Bookings, Events and Pass)
+                      /// Three elevated buttons (Bookmarks, Events and Pass)
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -145,55 +153,29 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Card(
                                   elevation: 5,
-                                  shadowColor: themeProvider.isDarkMode
-                                      ? AppVars.darkmodeShadowColor
-                                      : AppVars.lightmodeShadowColor,
-                                  child: Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      color: themeProvider.isDarkMode
-                                          ? Colors.grey.shade700
-                                          : Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    //padding: const EdgeInsets.all(8.0),
-                                    padding: const EdgeInsets.only(
-                                        left: 0, top: 8, bottom: 8, right: 0),
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
-                                        backgroundColor:
-                                            themeProvider.isDarkMode
-                                                ? Colors.grey.shade700
-                                                : Colors.white,
-                                        elevation: 0,
-                                      ),
-                                      onPressed: () {
-                                        final snackBar = SnackBar(
-                                          content: const Text(
-                                              'This button will show u all your bookings'),
-                                          action: SnackBarAction(
-                                            label: 'Undo',
-                                            onPressed: () {
-                                              // Some code to undo the change.
-                                            },
-                                          ),
-                                        );
-
-                                        // Find the ScaffoldMessenger in the widget tree
-                                        // and use it to show a SnackBar.
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(snackBar);
-                                      },
-                                      child: Image.asset("assets/booking.png"),
-                                    ),
+                                  child: IconButton(
+                                    iconSize: 50,
+                                    color: themeProvider.isDarkMode
+                                        ? AppVars.darkThemeTextColor
+                                        : AppVars.iconColor,
+                                    icon: const Icon(Icons.bookmark_outline),
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          // builder: (context) => const MatchesPage()));
+                                          builder: (context) => MaterialApp(
+                                                home: DefaultTabController(
+                                                  length: competitions.length,
+                                                  child: const MatchesPage(),
+                                                ),
+                                              )));
+                                    },
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 5,
                                 ),
                                 Text(
-                                  "Bookings",
+                                  "Bookmarks",
                                   style: TextStyle(
                                     color: Colors.grey[700],
                                   ),
@@ -207,48 +189,24 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Card(
                                   elevation: 5,
-                                  shadowColor: themeProvider.isDarkMode
-                                      ? AppVars.darkmodeShadowColor
-                                      : AppVars.lightmodeShadowColor,
-                                  child: Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      color: themeProvider.isDarkMode
-                                          ? Colors.grey.shade700
-                                          : Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
+                                  child: IconButton(
+                                    iconSize: 50,
+                                    color: themeProvider.isDarkMode
+                                        ? AppVars.darkThemeTextColor
+                                        : AppVars.iconColor,
+                                    icon: const Icon(
+                                      Icons.calendar_month,
                                     ),
-                                    //padding: const EdgeInsets.all(8.0),
-                                    padding: const EdgeInsets.only(
-                                        left: 0, top: 8, bottom: 8, right: 0),
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
-                                        backgroundColor:
-                                            themeProvider.isDarkMode
-                                                ? Colors.grey.shade700
-                                                : Colors.white,
-                                        elevation: 0,
-                                      ),
-                                      onPressed: () {
-                                        final snackBar = SnackBar(
-                                          content: const Text(
-                                              'This button will show u all your bookings'),
-                                          action: SnackBarAction(
-                                            label: 'Undo',
-                                            onPressed: () {
-                                              // Some code to undo the change.
-                                            },
-                                          ),
-                                        );
-
-                                        // Find the ScaffoldMessenger in the widget tree
-                                        // and use it to show a SnackBar.
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(snackBar);
-                                      },
-                                      child: Image.asset("assets/event.png"),
-                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          // builder: (context) => const MatchesPage()));
+                                          builder: (context) => MaterialApp(
+                                                home: DefaultTabController(
+                                                  length: competitions.length,
+                                                  child: const MatchesPage(),
+                                                ),
+                                              )));
+                                    },
                                   ),
                                 ),
                                 const SizedBox(
@@ -272,44 +230,23 @@ class _HomePageState extends State<HomePage> {
                                   shadowColor: themeProvider.isDarkMode
                                       ? AppVars.darkmodeShadowColor
                                       : AppVars.lightmodeShadowColor,
-                                  child: Container(
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      color: themeProvider.isDarkMode
-                                          ? Colors.grey.shade700
-                                          : Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    //padding: const EdgeInsets.all(8.0),
-                                    padding: const EdgeInsets.only(
-                                        left: 0, top: 8, bottom: 8, right: 0),
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
-                                        backgroundColor:
-                                            themeProvider.isDarkMode
-                                                ? Colors.grey.shade700
-                                                : Colors.white,
-                                        elevation: 0,
-                                      ),
-                                      onPressed: () {
-                                        final snackBar = SnackBar(
-                                          content: const Text(
-                                              'This button will show u all your bookings'),
-                                          action: SnackBarAction(
-                                            label: 'Undo',
-                                            onPressed: () {
-                                              // Some code to undo the change.
-                                            },
-                                          ),
-                                        );
-
-                                        // Find the ScaffoldMessenger in the widget tree
-                                        // and use it to show a SnackBar.
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(snackBar);
-                                      },
-                                      child: Image.asset("assets/qr-code.png"),
+                                  child: IconButton(
+                                    iconSize: 50,
+                                    color: themeProvider.isDarkMode
+                                        ? AppVars.darkThemeTextColor
+                                        : AppVars.iconColor,
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          // builder: (context) => const MatchesPage()));
+                                          builder: (context) => MaterialApp(
+                                                home: DefaultTabController(
+                                                  length: competitions.length,
+                                                  child: const MatchesPage(),
+                                                ),
+                                              )));
+                                    },
+                                    icon: const Icon(
+                                      Icons.qr_code_2,
                                     ),
                                   ),
                                 ),
