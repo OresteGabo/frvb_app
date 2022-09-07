@@ -119,8 +119,11 @@ class _SettingsPageState extends State<SettingsPage> {
                         const SizedBox(height: 6),
                         settingElementsDivider(),
                         const SizedBox(height: 6),
-                        settingElement("Notifications",
-                            Icons.notification_important, themeProvider),
+                        settingElement(
+                          "Notifications",
+                          CupertinoIcons.bell_solid,
+                          themeProvider,
+                        ),
                         const SizedBox(height: 6),
                         settingElementsDivider(),
                         const SizedBox(height: 6),

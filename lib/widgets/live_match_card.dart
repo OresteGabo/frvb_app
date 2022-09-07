@@ -27,7 +27,7 @@ class LiveMatchCard extends StatelessWidget {
             height: 5,
           ),
           Text(
-            'SET ${match.awaySetsWon + match.homeSetsWon}',
+            'SET ${match.awaySetsWon + match.homeSetsWon + 1}',
             style: Theme.of(context)
                 .textTheme
                 .headline6!
@@ -159,9 +159,9 @@ List<LiveMatchCard> lmcList = [
     match: match10,
   ),
   LiveMatchCard(
-    match: match10,
+    match: match5,
   ),
   LiveMatchCard(
-    match: match10,
+    match: match4,
   ),
 ];
