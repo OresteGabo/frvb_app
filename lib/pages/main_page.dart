@@ -50,7 +50,7 @@ class _MainPageState extends State<MainPage> {
             label: 'calendar'),
         BottomNavigationBarItem(
             icon: Icon(
-              Icons.bar_chart_rounded,
+              Icons.sports_volleyball,
             ),
             label: 'statist'),
         BottomNavigationBarItem(
