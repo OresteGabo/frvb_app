@@ -7,10 +7,16 @@ class Match {
   late DateTime _time;
   late int _awayGoals;
   late int _homeGoals;
+  int _currentSet = 0;
+  int _awaySetsWon = 0;
+  int _homeSetsWon = 0;
 
   Match(this._homeTeam, this._awayTeam) {
-    _awayGoals = random(0, 3);
-    _homeGoals = random(0, 3);
+    _awayGoals = random(0, 25);
+    _homeGoals = random(0, 25);
+    _awaySetsWon = random(0, 3);
+    _homeSetsWon = random(0, 3);
+    _currentSet = random(1, 5);
     _time = DateTime(
       random(2020, 2024),
       random(1, 12),
@@ -20,7 +26,7 @@ class Match {
     );
     addToMyFavorite();
   }
-  int random(min, max) {
+  static int random(min, max) {
     return min + Random().nextInt(max - min);
   }
 
@@ -31,6 +37,10 @@ class Match {
   }
 
   int get awayGoals => _awayGoals;
+
+  int get currentSet => _currentSet;
+  int get awaySetsWon => _awaySetsWon;
+  int get homeSetsWon => _homeSetsWon;
 
   int get homeGoals => _homeGoals;
 
