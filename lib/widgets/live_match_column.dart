@@ -14,9 +14,12 @@ class LiveMatchColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(
-          team.logo,
-          height: 85,
+        CircleAvatar(
+          radius: 40,
+          backgroundColor: Colors.transparent,
+          backgroundImage: AssetImage(
+            team.logo,
+          ),
         ),
         SizedBox(
           height: 8,
