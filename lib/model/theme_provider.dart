@@ -9,6 +9,23 @@ class MyThemes {
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: AppVars.lightThemeBackgroundColor,
     colorScheme: const ColorScheme.light(),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide: BorderSide(color: Color.fromRGBO(214, 215, 220, 1)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide: BorderSide(color: Color.fromRGBO(214, 215, 220, 1)),
+      ),
+      focusedBorder: InputBorder.none,
+      errorBorder: InputBorder.none,
+      disabledBorder: InputBorder.none,
+      contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+
+      filled: true, //<-- SEE HERE
+      fillColor: Color.fromRGBO(214, 215, 220, 1), //<-- SEE HERE
+    ),
   );
 }
 

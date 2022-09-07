@@ -37,48 +37,34 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: ListView(
         children: [
-          ///
-          Container(
-            height: 40,
-            decoration: BoxDecoration(
-              boxShadow: [
-                //AppVars.boxShadow,
-                themeProvider.isDarkMode
-                    ? AppVars.darkmodeShadow
-                    : AppVars.lightmodeShadow,
-              ],
-              //border: Border.all(color: Colors.white),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            margin: const EdgeInsets.all(24),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
             child: TextField(
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    color: themeProvider.isDarkMode
-                        ? AppVars.darkThemeTextColor
-                        : AppVars.iconColor,
-                    CupertinoIcons.clear,
-                  ),
+                decoration: InputDecoration(
+              border: UnderlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0)),
+              suffixIcon: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  color: themeProvider.isDarkMode
+                      ? AppVars.darkThemeTextColor
+                      : AppVars.iconColor,
+                  CupertinoIcons.clear,
                 ),
-                //isCollapsed: true,
-                icon: IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: Icon(
-                    CupertinoIcons.search,
-                    color: themeProvider.isDarkMode
-                        ? AppVars.darkThemeTextColor
-                        : AppVars.iconColor,
-                  ),
-                  onPressed: () {},
-                ),
-                border: InputBorder.none,
-                hintText: 'Search',
               ),
-            ),
+              prefixIcon: IconButton(
+                padding: EdgeInsets.zero,
+                icon: Icon(
+                  CupertinoIcons.search,
+                  color: themeProvider.isDarkMode
+                      ? AppVars.darkThemeTextColor
+                      : AppVars.iconColor,
+                ),
+                onPressed: () {},
+              ),
+              hintText: 'Search',
+            )),
           ),
-          const SizedBox(height: 12),
 
           /// Main body of the page
           Column(
@@ -100,6 +86,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Container(
                 width: width * 0.95,
                 decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.black),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     themeProvider.isDarkMode
