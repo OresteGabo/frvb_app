@@ -309,8 +309,7 @@ class _HomePageState extends State<HomePage> {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(snackBar);
                                       },
-                                      child: Image.asset(
-                                          "assets/qr-code-scan.png"),
+                                      child: Image.asset("assets/qr-code.png"),
                                     ),
                                   ),
                                 ),
