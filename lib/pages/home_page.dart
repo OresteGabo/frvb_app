@@ -63,6 +63,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
+        iconTheme: IconThemeData(
+            color: themeProvider.isDarkMode
+                ? AppVars.darkThemeTextColor
+                : AppVars.iconColor),
         centerTitle: true,
         elevation: 0,
         backgroundColor: themeProvider.isDarkMode
@@ -147,7 +151,9 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     width: 100,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: themeProvider.isDarkMode
+                                          ? Colors.grey.shade700
+                                          : Colors.white,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     //padding: const EdgeInsets.all(8.0),
@@ -156,7 +162,10 @@ class _HomePageState extends State<HomePage> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
-                                        backgroundColor: Colors.white,
+                                        backgroundColor:
+                                            themeProvider.isDarkMode
+                                                ? Colors.grey.shade700
+                                                : Colors.white,
                                         elevation: 0,
                                       ),
                                       onPressed: () {
@@ -204,7 +213,9 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     width: 100,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: themeProvider.isDarkMode
+                                          ? Colors.grey.shade700
+                                          : Colors.white,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     //padding: const EdgeInsets.all(8.0),
@@ -213,7 +224,10 @@ class _HomePageState extends State<HomePage> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
-                                        backgroundColor: Colors.white,
+                                        backgroundColor:
+                                            themeProvider.isDarkMode
+                                                ? Colors.grey.shade700
+                                                : Colors.white,
                                         elevation: 0,
                                       ),
                                       onPressed: () {
@@ -261,7 +275,9 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     width: 100,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: themeProvider.isDarkMode
+                                          ? Colors.grey.shade700
+                                          : Colors.white,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     //padding: const EdgeInsets.all(8.0),
@@ -270,7 +286,10 @@ class _HomePageState extends State<HomePage> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         /// This background has to be modified later, to fit the darkmode (should be similar to the container color)
-                                        backgroundColor: Colors.white,
+                                        backgroundColor:
+                                            themeProvider.isDarkMode
+                                                ? Colors.grey.shade700
+                                                : Colors.white,
                                         elevation: 0,
                                       ),
                                       onPressed: () {
