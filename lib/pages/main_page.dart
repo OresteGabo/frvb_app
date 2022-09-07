@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/model/theme_provider.dart';
 import 'package:frvb/pages/calendar_page.dart';
@@ -39,25 +40,26 @@ class _MainPageState extends State<MainPage> {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.home_rounded,
+            CupertinoIcons.house_fill,
           ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
             icon: Icon(
-              Icons.calendar_month,
+              Icons.emoji_events,
             ),
-            label: 'calendar'),
+            label: 'Competitions'),
         BottomNavigationBarItem(
             icon: Icon(
-              Icons.sports_volleyball,
+              CupertinoIcons.news_solid,
+              //Icons.newspaper,
             ),
             label: 'statist'),
         BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
+              CupertinoIcons.settings_solid,
             ),
-            label: 'account'),
+            label: 'settings'),
       ],
       currentIndex: _currentIndex,
       onTap: onTabTapped,
