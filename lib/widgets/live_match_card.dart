@@ -15,7 +15,7 @@ class LiveMatchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.only(left: 14, right: 14),
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         color: const Color(0xff493f5d),
@@ -26,6 +26,7 @@ class LiveMatchCard extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
+          //Divider(),
           Text(
             'SET ${match.awaySetsWon + match.homeSetsWon + 1}',
             style: Theme.of(context)
@@ -46,9 +47,7 @@ class LiveMatchCard extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        decoration: const BoxDecoration(
-                            //color: Colors.green,
-                            ),
+                        decoration: const BoxDecoration(),
                         child: Align(
                           alignment: Alignment.bottomRight,
                           child: Text(
@@ -101,7 +100,6 @@ class LiveMatchCard extends StatelessWidget {
                               .textTheme
                               .headline6!
                               .copyWith(
-                                //color: Colors.orangeAccent,
                                 color: const Color.fromRGBO(199, 100, 65, 0.7),
                               ),
                         ),
@@ -135,7 +133,6 @@ class LiveMatchCard extends StatelessWidget {
                       onPressed: () {},
                       icon: const Icon(
                         color: Colors.red,
-                        //Icons.radio_button_unchecked_rounded,
                         CupertinoIcons.antenna_radiowaves_left_right,
                       ),
                     ),
