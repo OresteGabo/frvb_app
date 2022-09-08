@@ -17,7 +17,7 @@ class MatchesPage extends StatefulWidget {
 }
 
 class _MatchesPageState extends State<MatchesPage> {
-  final String _selectedCompetition = competitions[0].name;
+  String _selectedCompetition = competitions[0].name;
   Match _selectedMatch = matchCards[0].match;
   bool _slideupPanelUp = false;
   final panelController = PanelController();
@@ -88,7 +88,7 @@ class _MatchesPageState extends State<MatchesPage> {
           parallaxEnabled: true,
           parallaxOffset: 0.2,
           backdropEnabled: true,
-          backdropColor: Colors.black,
+          //backdropColor: Colors.black,
           backdropOpacity: 0.5,
           //color: Colors.green,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
@@ -149,25 +149,12 @@ class _MatchesPageState extends State<MatchesPage> {
       ),
     );
   }*/
+
   Widget build(BuildContext context) {
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.1;
     final panelHeightOpened = MediaQuery.of(context).size.height * 0.6;
     return Scaffold(
       appBar: AppBar(
-        bottom: TabBar(
-          unselectedLabelColor: Colors.grey,
-          labelColor: Colors.grey,
-          isScrollable: true,
-          indicatorColor: Colors.orange,
-          tabs: competitions.map(
-            (e) {
-              return InkWell(
-                  child: Tab(
-                text: e.name,
-              ));
-            },
-          ).toList(),
-        ),
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
@@ -240,7 +227,7 @@ class _MatchesPageState extends State<MatchesPage> {
             padding: const EdgeInsets.only(left: 14, top: 32, right: 14),
             child: Column(
               children: [
-                /*SingleChildScrollView(
+                SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -262,7 +249,7 @@ class _MatchesPageState extends State<MatchesPage> {
                 ),
                 const SizedBox(
                   height: 24,
-                ),*/
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
