@@ -99,21 +99,18 @@ class _SettingsPageState extends State<SettingsPage> {
                     children: [
                       Column(
                         children: [
-                          const ListTile(
-                            title: Text("Account"),
-                            leading: Icon(Icons.account_box_outlined),
-                            trailing: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                            ),
-                          ),
+                          settingListTileElement(
+                              label: "Account",
+                              icon: Icons.account_box_outlined,
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const MainPage()));
+                              }),
                           settingElementsDivider(),
-                          const ListTile(
-                            title: Text("Notifications"),
-                            leading: Icon(Icons.notifications),
-                            trailing: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                            ),
-                          ),
+                          settingListTileElement(
+                              label: "Notifications",
+                              icon: Icons.notifications,
+                              onTap: () {}),
                           settingElementsDivider(),
                           SwitchListTile(
                             value: themeProvider.isDarkMode,
@@ -137,21 +134,15 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                           ),
                           settingElementsDivider(),
-                          const ListTile(
-                            title: Text("Privacy & security"),
-                            leading: Icon(Icons.lock),
-                            trailing: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                            ),
-                          ),
+                          settingListTileElement(
+                              label: "Privacy & security",
+                              icon: Icons.lock,
+                              onTap: () {}),
                           settingElementsDivider(),
-                          const ListTile(
-                            title: Text("About"),
-                            leading: Icon(Icons.notifications),
-                            trailing: Icon(
-                              Icons.question_mark_outlined,
-                            ),
-                          ),
+                          settingListTileElement(
+                              label: "About",
+                              icon: Icons.question_mark_outlined,
+                              onTap: () {}),
                         ],
                       ),
                     ],
@@ -266,5 +257,25 @@ class _SettingsPageState extends State<SettingsPage> {
     return Container(
         margin: const EdgeInsets.only(left: 48),
         child: const Expanded(child: Divider(thickness: 1.0)));
+  }
+}
+
+class settingListTileElement extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final GestureTapCallback onTap;
+  const settingListTileElement(
+      {required this.label, required this.icon, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(label),
+      leading: Icon(icon),
+      trailing: const Icon(
+        Icons.arrow_forward_ios_rounded,
+      ),
+      onTap: onTap,
+    );
   }
 }
