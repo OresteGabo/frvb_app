@@ -64,126 +64,132 @@ class _MatchCardState extends State<MatchCard> {
     var width = MediaQuery.of(context).size.width;
 
     final themeProvider = Provider.of<ThemeProvider>(context);
-    return Container(
-      //padding: const EdgeInsets.all(12),
-      padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
-      margin: const EdgeInsets.symmetric(vertical: 8),
+    return Card(
+      elevation: 0,
+      child: Container(
+        //padding: const EdgeInsets.all(12),
+        //padding: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
+        //margin: const EdgeInsets.symmetric(vertical: 48),
 
-      decoration: BoxDecoration(
-        color: themeProvider.isDarkMode ? Colors.transparent : Colors.white,
-      ),
-      // widget.isSelected ? selectedBoxDecoration : nonSelectedBoxDecoration,
-      /*BoxDecoration(
-        color: widget.isSelected ? Colors.grey[200] : Colors.white,
-        border: Border.all(
-            color: widget.isSelected
-                ? selectedBorderColor
-                : nonSelectedBorderColor),
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          widget.isSelected ? selectedBoxShadow : nonSelectedBoxShadow
-        ],
-        //boxShadow: widget.isSelected ? selectedBoxShadow : nonSetectedBoxShadow,
-        //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
-        //boxShadow:
-        //isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
-      ),*/
-
-      child: Stack(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        alignment: Alignment.center,
-
-        children: [
-          Positioned(
-            right: width / 2 + 20,
-            child: Row(
-              children: [
-                Text(
-                  widget.match.homeTeam.name,
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: themeProvider.isDarkMode
-                          ? Colors.white
-                          : Colors.black87),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Image.asset(
-                  widget.match.homeTeam.logo,
-                  width: 40,
-                ),
-              ],
+        decoration: BoxDecoration(
+            //color: themeProvider.isDarkMode ? Colors.transparent : Colors.white,
             ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  iconSize: 30,
-                  onPressed: () {
-                    //int size = favoriteMatches.length;
+        // widget.isSelected ? selectedBoxDecoration : nonSelectedBoxDecoration,
+        /*BoxDecoration(
+          color: widget.isSelected ? Colors.grey[200] : Colors.white,
+          border: Border.all(
+              color: widget.isSelected
+                  ? selectedBorderColor
+                  : nonSelectedBorderColor),
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            widget.isSelected ? selectedBoxShadow : nonSelectedBoxShadow
+          ],
+          //boxShadow: widget.isSelected ? selectedBoxShadow : nonSetectedBoxShadow,
+          //border: match.isMyFavorite() ? Border.all(color: Colors.orange) : null,
+          //boxShadow:
+          //isSelected ? selectedCardBoxShadow() : unSelectedCardBoxShadow(),
+        ),*/
 
-                    /*if (match.isMyFavorite()) {
-                        displayAllFavorites();
-                        print('Favorite matches size before removal:$size\n');
+        child: Stack(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          alignment: Alignment.center,
 
-                        match.removeToMyFavorite();
-                        print('Favorite matches size after removal:$size\n');
-                      } else {
-                        displayAllFavorites();
-                        print('Favorite matches size before add:$size\n');
-                        match.addToMyFavorite();
-                        print('Favorite matches size after add:$size\n');
-                      }*/
-                  },
-                  icon: Icon(
-                    Icons.favorite,
-                    color: widget.match.isMyFavorite()
-                        ? fvrtMatchIconColor
-                        : unFvrtMatchIconColor,
+          children: [
+            Positioned(
+              right: width / 2 + 20,
+              child: Row(
+                children: [
+                  Text(
+                    widget.match.homeTeam.name,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: themeProvider.isDarkMode
+                            ? Colors.white
+                            : Colors.black87),
                   ),
-                ),
-                Text(
-                  widget.match.time.hour.toString() +
-                      ":" +
-                      widget.match.time.minute.toString(),
-                  style: const TextStyle(color: Colors.orange, fontSize: 20),
-                ),
-                Text(
-                  //"30 Oct",
-                  DateFormat('dd MMM').format(widget.match.time),
-                  style: const TextStyle(fontSize: 18, color: Colors.grey),
-                ),
-              ],
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Image.asset(
+                    widget.match.homeTeam.logo,
+                    width: 40,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            left: width / 2 + 20,
-            child: Row(
-              // mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  widget.match.awayTeam.logo,
-                  width: 40,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  widget.match.awayTeam.name,
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: themeProvider.isDarkMode
-                          ? Colors.white
-                          : Colors.black87),
-                ),
-              ],
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    iconSize: 30,
+                    onPressed: () {
+                      //int size = favoriteMatches.length;
+
+                      /*if (match.isMyFavorite()) {
+                          displayAllFavorites();
+                          print('Favorite matches size before removal:$size\n');
+
+                          match.removeToMyFavorite();
+                          print('Favorite matches size after removal:$size\n');
+                        } else {
+                          displayAllFavorites();
+                          print('Favorite matches size before add:$size\n');
+                          match.addToMyFavorite();
+                          print('Favorite matches size after add:$size\n');
+                        }*/
+                    },
+                    icon: Icon(
+                      Icons.favorite,
+                      color: widget.match.isMyFavorite()
+                          ? fvrtMatchIconColor
+                          : unFvrtMatchIconColor,
+                    ),
+                  ),
+                  Text(
+                    widget.match.time.hour.toString() +
+                        ":" +
+                        widget.match.time.minute.toString(),
+                    style: const TextStyle(color: Colors.orange, fontSize: 20),
+                  ),
+                  Text(
+                    //"30 Oct",
+                    DateFormat('dd MMM').format(widget.match.time),
+                    style: const TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            Positioned(
+              left: width / 2 + 20,
+              child: Row(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    widget.match.awayTeam.logo,
+                    width: 40,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    widget.match.awayTeam.name,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: themeProvider.isDarkMode
+                            ? Colors.white
+                            : Colors.black87),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
