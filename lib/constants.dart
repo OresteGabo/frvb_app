@@ -7,14 +7,17 @@ class AppVars {
 
   /// Global variables
   static const Color lightThemeBackgroundColor =
-      Color.fromARGB(255, 239, 240, 244);
-  static final Color darkThemeBackgroundColor = Colors.grey.shade900;
+      Color.fromARGB(255, 239, 240, 244); //copied from github mobile app
+  static const Color darkThemeBackgroundColor =
+      Color.fromRGBO(5, 5, 5, 1); //copied from github mobile app
   static const Color selectedColor = Color(0xffe5a457);
   static const Color teftFieldFillColor = Color.fromRGBO(214, 215, 220, 1);
   static const Color iconColor = Colors.black54;
   static const Color selectedBorderColor = Colors.orange;
   static const Color lightThemeTextColor = Colors.black;
   static const Color darkThemeTextColor = Colors.white70;
+  static const Color darkThemeCardBackgroundColor =
+      Color.fromRGBO(23, 24, 28, 1); //copied from github mobile app
 
   /// Push notification variables  (controlled by Switch buttons)
   //static bool isDark = true;
