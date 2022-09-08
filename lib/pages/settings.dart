@@ -17,8 +17,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var textScale = MediaQuery.of(context).textScaleFactor;
+    //var width = MediaQuery.of(context).size.width;
+    //var textScale = MediaQuery.of(context).textScaleFactor;
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     ///theme: darkMode ? ThemeData.dark() : ThemeData.light(),
@@ -44,7 +44,6 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
       body: Padding(
-        //padding: const EdgeInsets.all(18.0),
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: ListView(
           children: [
@@ -100,51 +99,59 @@ class _SettingsPageState extends State<SettingsPage> {
                     children: [
                       Column(
                         children: [
-                          const SizedBox(height: 12),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                // builder: (context) => const MatchesPage()));
-                                builder: (context) => const AccountPage(),
-                              ));
-                            },
-                            child: settingElement(
-                              "Account",
-                              Icons.account_box_outlined,
-                              themeProvider,
+                          const ListTile(
+                            title: Text("Account"),
+                            leading: Icon(Icons.account_box_outlined),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios_rounded,
                             ),
                           ),
-                          const SizedBox(height: 6),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingElement(
-                            "Notifications",
-                            CupertinoIcons.bell_solid,
-                            themeProvider,
+                          const ListTile(
+                            title: Text("Notifications"),
+                            leading: Icon(Icons.notifications),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                            ),
                           ),
-                          const SizedBox(height: 6),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingsElementWithSwitch(
-                              themeProvider.isDarkMode
-                                  ? Icons.light_mode_rounded
-                                  : Icons.dark_mode_rounded,
+                          SwitchListTile(
+                            value: themeProvider.isDarkMode,
+                            title: Text(
                               themeProvider.isDarkMode
                                   ? "Swith to light mode"
                                   : "Switch to dark mode",
-                              const ChangeThemeButtonWidget(),
-                              themeProvider),
-                          const SizedBox(height: 6),
+                            ),
+                            onChanged: (bool value) {
+                              setState(() {
+                                final provider = Provider.of<ThemeProvider>(
+                                    context,
+                                    listen: false);
+                                provider.toggleTheme(value);
+                              });
+                            },
+                            secondary: Icon(
+                              themeProvider.isDarkMode
+                                  ? Icons.light_mode_rounded
+                                  : Icons.dark_mode_rounded,
+                            ),
+                          ),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingElement(
-                              "Privacy & security", Icons.lock, themeProvider),
-                          const SizedBox(height: 6),
+                          const ListTile(
+                            title: Text("Privacy & security"),
+                            leading: Icon(Icons.lock),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                            ),
+                          ),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingElement("About", Icons.question_mark_outlined,
-                              themeProvider),
-                          const SizedBox(height: 12),
+                          const ListTile(
+                            title: Text("About"),
+                            leading: Icon(Icons.notifications),
+                            trailing: Icon(
+                              Icons.question_mark_outlined,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -171,98 +178,66 @@ class _SettingsPageState extends State<SettingsPage> {
                     children: [
                       Column(
                         children: [
-                          const SizedBox(height: 12),
-                          settingsElementWithSwitch(
-                              Icons.live_tv,
-                              "Live games",
-                              CupertinoSwitch(
-                                  trackColor: AppVars.iconColor,
-                                  activeColor: AppVars.selectedColor,
-                                  value: AppVars.liveGamesNotificationsEnabled,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      AppVars.liveGamesNotificationsEnabled =
-                                          !AppVars
-                                              .liveGamesNotificationsEnabled;
-                                    });
-                                  }),
-                              themeProvider),
-                          const SizedBox(height: 6),
+                          SwitchListTile(
+                            title: const Text('Live games'),
+                            value: AppVars.liveGamesNotificationsEnabled,
+                            onChanged: (bool value) {
+                              setState(() {
+                                AppVars.liveGamesNotificationsEnabled = value;
+                              });
+                            },
+                            secondary: const Icon(Icons.live_tv),
+                          ),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingsElementWithSwitch(
-                              Icons.sports_volleyball,
-                              "Games update",
-                              CupertinoSwitch(
-                                  trackColor: AppVars.iconColor,
-                                  activeColor: AppVars.selectedColor,
-                                  value: AppVars.gamesUpdateNotificationsEnaled,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      AppVars.gamesUpdateNotificationsEnaled =
-                                          !AppVars
-                                              .gamesUpdateNotificationsEnaled;
-                                    });
-                                  }),
-                              themeProvider),
-                          const SizedBox(height: 6),
+                          SwitchListTile(
+                            title: const Text('Game Updates'),
+                            value: AppVars.gamesUpdateNotificationsEnaled,
+                            onChanged: (bool value) {
+                              setState(() {
+                                AppVars.gamesUpdateNotificationsEnaled = value;
+                              });
+                            },
+                            secondary: const Icon(Icons.sports_volleyball),
+                          ),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingsElementWithSwitch(
-                              Icons.bookmark,
-                              "Favorite Athlete update",
-                              CupertinoSwitch(
-                                  trackColor: AppVars.iconColor,
-                                  activeColor: AppVars.selectedColor,
-                                  value: AppVars
-                                      .favoriteAthleteUpdateNotificationsEnabled,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      AppVars.favoriteAthleteUpdateNotificationsEnabled =
-                                          !AppVars
-                                              .favoriteAthleteUpdateNotificationsEnabled;
-                                    });
-                                  }),
-                              themeProvider),
-                          const SizedBox(height: 6),
+                          SwitchListTile(
+                            title: const Text('Favorite Competitions update'),
+                            value: AppVars
+                                .favoriteCompetitionUpdateNotificationsEnabled,
+                            onChanged: (bool value) {
+                              setState(() {
+                                AppVars.favoriteCompetitionUpdateNotificationsEnabled =
+                                    value;
+                              });
+                            },
+                            secondary: const Icon(Icons.bookmark),
+                          ),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingsElementWithSwitch(
-                              Icons.bookmark,
-                              "Favorite Competitions update",
-                              CupertinoSwitch(
-                                  trackColor: AppVars.iconColor,
-                                  activeColor: AppVars.selectedColor,
-                                  value: AppVars
-                                      .favoriteCompetitionUpdateNotificationsEnabled,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      AppVars.favoriteCompetitionUpdateNotificationsEnabled =
-                                          !AppVars
-                                              .favoriteCompetitionUpdateNotificationsEnabled;
-                                    });
-                                  }),
-                              themeProvider),
-                          const SizedBox(height: 6),
+                          SwitchListTile(
+                            title: const Text('Favorite athletes update'),
+                            value: AppVars
+                                .favoriteAthleteUpdateNotificationsEnabled,
+                            onChanged: (bool value) {
+                              setState(() {
+                                AppVars.favoriteAthleteUpdateNotificationsEnabled =
+                                    value;
+                              });
+                            },
+                            secondary: const Icon(Icons.lightbulb_outline),
+                          ),
                           settingElementsDivider(),
-                          const SizedBox(height: 6),
-                          settingsElementWithSwitch(
-                              Icons.bookmark,
-                              "Favorite teams update",
-                              CupertinoSwitch(
-                                  trackColor: AppVars.iconColor,
-                                  activeColor: AppVars.selectedColor,
-                                  value: AppVars
-                                      .favoriteTeamUpdateNotificationsEnabled,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      AppVars.favoriteTeamUpdateNotificationsEnabled =
-                                          !AppVars
-                                              .favoriteTeamUpdateNotificationsEnabled;
-                                    });
-                                  }),
-                              themeProvider),
-                          const SizedBox(height: 12),
+                          SwitchListTile(
+                            title: const Text('Favorite teams update'),
+                            value:
+                                AppVars.favoriteTeamUpdateNotificationsEnabled,
+                            onChanged: (bool value) {
+                              setState(() {
+                                AppVars.favoriteTeamUpdateNotificationsEnabled =
+                                    value;
+                              });
+                            },
+                            secondary: const Icon(Icons.lightbulb_outline),
+                          ),
                         ],
                       ),
                     ],
@@ -284,82 +259,6 @@ class _SettingsPageState extends State<SettingsPage> {
         fontSize: 22,
         color: Colors.black,
       ),
-    );
-  }
-
-  Widget settingsElementWithSwitch(IconData icon, String label,
-      Widget switchVal, ThemeProvider themeProvider) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(children: [
-          const SizedBox(width: 12),
-          Icon(
-            icon,
-            //themeProvider.isDarkMode ? AppVars.darkmodeShadow:AppVars.lightmodeShadow,
-            color: themeProvider.isDarkMode
-                ? AppVars.darkThemeTextColor
-                : AppVars.iconColor,
-          ),
-          const SizedBox(width: 12),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 17 * MediaQuery.of(context).textScaleFactor,
-              color: themeProvider.isDarkMode
-                  ? AppVars.darkThemeTextColor
-                  : AppVars.lightThemeTextColor,
-            ),
-          ),
-        ]),
-        Row(
-          children: [
-            switchVal,
-            const SizedBox(
-              width: 12,
-            )
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget settingElement(
-      String label, IconData icon, ThemeProvider themeProvider) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(children: [
-          const SizedBox(width: 12),
-          Icon(
-            icon,
-            color: themeProvider.isDarkMode
-                ? AppVars.darkThemeTextColor
-                : AppVars.iconColor,
-          ),
-          const SizedBox(width: 12),
-          Text(label,
-              style: TextStyle(
-                fontSize: 17 * MediaQuery.of(context).textScaleFactor,
-                color: themeProvider.isDarkMode
-                    ? AppVars.darkThemeTextColor
-                    : AppVars.lightThemeTextColor,
-              )),
-        ]),
-        Row(
-          children: [
-            Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: themeProvider.isDarkMode
-                  ? AppVars.darkThemeTextColor
-                  : AppVars.iconColor,
-            ),
-            const SizedBox(
-              width: 12,
-            )
-          ],
-        ),
-      ],
     );
   }
 
