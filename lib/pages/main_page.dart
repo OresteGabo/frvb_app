@@ -7,6 +7,7 @@ import 'package:frvb/constants.dart';
 import 'package:frvb/pages/settings.dart';
 import 'package:frvb/pages/stats_page.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -18,10 +19,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   var _currentIndex = 0;
   final _children = [
-    const HomePage(),
-    const CalendarPage(),
-    const StatsPage(),
-    const SettingsPage()
+    Builder(builder: (_) => const HomePage()),
+    Builder(builder: (_) => const CalendarPage()),
+    Builder(builder: (_) => const StatsPage()),
+    Builder(builder: (_) => const SettingsPage())
   ];
 
   @override
