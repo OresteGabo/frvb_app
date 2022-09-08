@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frvb/pages/settings.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -21,7 +22,11 @@ class _AccountPageState extends State<AccountPage> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SettingsPage(),
+            ));
+          },
         ),
         actions: [
           IconButton(
