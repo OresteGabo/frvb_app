@@ -9,6 +9,7 @@ import 'package:frvb/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:frvb/model/theme_provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,11 +21,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final String _selectedCompetition = competitions[0].name;
   bool _isPlay = false;
+  final bookMarksKey = GlobalKey();
   late AnimationController _animationController;
   @override
   void initState() {
     _animationController =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ShowCaseWidget.of(context).startShowCase([
+        bookMarksKey,
+      ]);
+    });
+
     super.initState();
   }
 
@@ -81,8 +89,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ? AppVars.darkThemeBackgroundColor
             : AppVars.lightThemeBackgroundColor,
         /*leading: const CircleAvatar(
-          backgroundImage: AssetImage("assets/frvblogo.jpg"),
-        ),*/
+            backgroundImage: AssetImage("assets/frvblogo.jpg"),
+          ),*/
         title: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
@@ -153,22 +161,32 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               children: [
                                 Card(
                                   elevation: 5,
-                                  child: IconButton(
-                                    iconSize: 50,
-                                    color: themeProvider.isDarkMode
-                                        ? AppVars.darkThemeTextColor
-                                        : AppVars.iconColor,
-                                    icon: const Icon(Icons.bookmark_outline),
-                                    onPressed: () {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          // builder: (context) => const MatchesPage()));
-                                          builder: (context) => MaterialApp(
-                                                home: DefaultTabController(
-                                                  length: competitions.length,
-                                                  child: const MatchesPage(),
-                                                ),
-                                              )));
-                                    },
+                                  child: Showcase(
+                                    key: bookMarksKey,
+                                    description:
+                                        "This will show all your likes, saves and bookmarks",
+                                    child: IconButton(
+                                      iconSize: 50,
+                                      color: themeProvider.isDarkMode
+                                          ? AppVars.darkThemeTextColor
+                                          : AppVars.iconColor,
+                                      icon: const Icon(Icons.bookmark_outline),
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                // builder: (context) => const MatchesPage()));
+                                                builder: (context) =>
+                                                    MaterialApp(
+                                                      home:
+                                                          DefaultTabController(
+                                                        length:
+                                                            competitions.length,
+                                                        child:
+                                                            const MatchesPage(),
+                                                      ),
+                                                    )));
+                                      },
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
