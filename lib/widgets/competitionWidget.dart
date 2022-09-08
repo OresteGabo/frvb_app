@@ -21,7 +21,7 @@ class CompetitionWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(5),
           color: isSelected ? const Color(0xffFFF8EE) : Colors.white,
           border: Border.all(
             color: isSelected ? Colors.orange : Colors.white,
