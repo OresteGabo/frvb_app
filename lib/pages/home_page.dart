@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frvb/widgets/app_drawer.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
 import 'package:frvb/model/competition.dart';
@@ -43,41 +44,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     final _controller = PageController();
     return Scaffold(
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(
             color: themeProvider.isDarkMode
@@ -120,13 +87,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         "Live Match",
                         style: Theme.of(context).textTheme.headline4,
                       ),
+
                       const SizedBox(
                         height: 24,
                       ),
-                      SizedBox(
-                        //padding: const EdgeInsets.all(16.0),
-                        height: 250,
-
+                      Container(
+                        height: 210,
                         child: PageView(
                           physics: const PageScrollPhysics(),
                           scrollDirection: Axis.horizontal,
@@ -295,13 +261,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  // builder: (context) => const MatchesPage()));
-                                  builder: (context) => MaterialApp(
-                                        home: DefaultTabController(
-                                          length: competitions.length,
-                                          child: const MatchesPage(),
-                                        ),
-                                      )));
+                                  builder: (context) => const MatchesPage()));
                             },
                             child: const Text(
                               "See All",
@@ -316,23 +276,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                       MatchCard(
                         match: match1,
-                        isSelected: false,
                       ),
                       MatchCard(
                         match: match2,
-                        isSelected: false,
                       ),
                       MatchCard(
                         match: match3,
-                        isSelected: false,
                       ),
                       MatchCard(
                         match: match4,
-                        isSelected: false,
                       ),
                       MatchCard(
                         match: match5,
-                        isSelected: false,
                       ),
                     ],
                   ),
