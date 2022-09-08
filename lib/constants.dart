@@ -13,7 +13,7 @@ class AppVars {
   static const Color teftFieldFillColor = Color.fromRGBO(214, 215, 220, 1);
   static const Color iconColor = Colors.black54;
   static const Color selectedBorderColor = Colors.orange;
-  static const Color lightThemeTextColor = Colors.black54;
+  static const Color lightThemeTextColor = Colors.black;
   static const Color darkThemeTextColor = Colors.white70;
 
   /// Push notification variables  (controlled by Switch buttons)
