@@ -64,244 +64,259 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         elevation: 0,
         backgroundColor: themeProvider.isDarkMode
             ? AppVars.darkThemeBackgroundColor
-            : AppVars.lightThemeBackgroundColor,
+            : const Color.fromRGBO(0, 186, 255, 1),
+        flexibleSpace: Container(),
         /*leading: const CircleAvatar(
             backgroundImage: AssetImage("assets/frvblogo.jpg"),
           ),*/
         title: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-                style: Theme.of(context).textTheme.headline4,
-                children: [
-                  const TextSpan(text: "FR"),
-                  TextSpan(
-                    text: "VB",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                ])),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 14, top: 10, right: 14),
-          child: Column(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            style: Theme.of(context).textTheme.headline4,
             children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height:
-                            lmcList.isNotEmpty && AppVars.showLiveMatchWidget
-                                ? 35
-                                : 0,
-                        color: AppVars.backgroundDebuggerColor,
-                        child: Text(
-                          "Live Match scores",
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      Container(
-                        height:
-                            lmcList.isNotEmpty && AppVars.showLiveMatchWidget
-                                ? 210
-                                : 0,
-                        color: AppVars.backgroundDebuggerColor,
-                        child: PageView(
-                          physics: const PageScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          controller: _controller,
-                          children: lmcList,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Center(
-                        child: SmoothPageIndicator(
-                          controller: _controller,
-                          effect: ExpandingDotsEffect(
-                            dotWidth: 10,
-                            dotHeight: lmcList.isNotEmpty &&
-                                    AppVars.showLiveMatchWidget
-                                ? 10
-                                : 0,
-                            activeDotColor: const Color(0xff493f5d),
-                          ),
-                          count: lmcList.length,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-
-                      /// Three elevated buttons (Bookmarks, Events and Pass)
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                Card(
-                                  elevation: 5,
-                                  child: Showcase(
-                                    key: bookMarksKey,
-                                    description:
-                                        "This will show all your likes, saves and bookmarks",
-                                    child: IconButton(
-                                      iconSize: 50,
-                                      color: themeProvider.isDarkMode
-                                          ? AppVars.darkThemeTextColor
-                                          : AppVars.iconColor,
-                                      icon: const Icon(Icons.bookmark_outline),
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const BookmarkPage()));
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Bookmarks",
-                                  style: TextStyle(
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            Column(
-                              children: [
-                                Card(
-                                  elevation: 5,
-                                  child: IconButton(
-                                    iconSize: 50,
-                                    color: themeProvider.isDarkMode
-                                        ? AppVars.darkThemeTextColor
-                                        : AppVars.iconColor,
-                                    icon: const Icon(
-                                      Icons.calendar_month,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const EventsPage()));
-                                    },
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Events",
-                                  style: TextStyle(
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            Column(
-                              children: [
-                                Card(
-                                  elevation: 5,
-                                  shadowColor: themeProvider.isDarkMode
-                                      ? AppVars.darkmodeShadowColor
-                                      : AppVars.lightmodeShadowColor,
-                                  child: IconButton(
-                                    iconSize: 50,
-                                    color: themeProvider.isDarkMode
-                                        ? AppVars.darkThemeTextColor
-                                        : AppVars.iconColor,
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const WalletPage()));
-                                    },
-                                    icon: const Icon(
-                                      Icons.qr_code_2,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Pass",
-                                  style: TextStyle(
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Matches",
-                            style: Theme.of(context).textTheme.headline4,
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const MatchesPage()));
-                            },
-                            child: const Text(
-                              "See All",
-                              style:
-                                  TextStyle(color: Colors.orange, fontSize: 20),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      MatchCard(
-                        match: match1,
-                      ),
-                      MatchCard(
-                        match: match2,
-                      ),
-                      MatchCard(
-                        match: match3,
-                      ),
-                      MatchCard(
-                        match: match4,
-                      ),
-                      MatchCard(
-                        match: match5,
-                      ),
-                    ],
-                  ),
-                ),
+              TextSpan(
+                text: "FRVB",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
+        ),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: themeProvider.isDarkMode
+                              ? const AssetImage("assets/bg_dk.png")
+                              : const AssetImage("assets/bg.png"),
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.topLeft,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 24,
+                          ),
+
+                          Container(
+                            width: width * 0.9,
+                            height: lmcList.isNotEmpty &&
+                                    AppVars.showLiveMatchWidget
+                                ? 210
+                                : 0,
+                            color: AppVars.backgroundDebuggerColor,
+                            child: PageView(
+                              physics: const PageScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              controller: _controller,
+                              children: lmcList,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          Center(
+                            child: SmoothPageIndicator(
+                              controller: _controller,
+                              effect: ExpandingDotsEffect(
+                                dotWidth: 10,
+                                dotHeight: lmcList.isNotEmpty &&
+                                        AppVars.showLiveMatchWidget
+                                    ? 10
+                                    : 0,
+                                activeDotColor: const Color(0xff493f5d),
+                              ),
+                              count: lmcList.length,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+
+                          /// Three elevated buttons (Bookmarks, Events and Pass)
+                          Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    Card(
+                                      elevation: 5,
+                                      child: Showcase(
+                                        key: bookMarksKey,
+                                        description:
+                                            "This will show all your likes, saves and bookmarks",
+                                        child: IconButton(
+                                          iconSize: 50,
+                                          color: themeProvider.isDarkMode
+                                              ? AppVars.darkThemeTextColor
+                                              : AppVars.iconColor,
+                                          icon: const Icon(
+                                              Icons.bookmark_outline),
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const BookmarkPage()));
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Bookmarks",
+                                      style: TextStyle(
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Column(
+                                  children: [
+                                    Card(
+                                      elevation: 5,
+                                      child: IconButton(
+                                        iconSize: 50,
+                                        color: themeProvider.isDarkMode
+                                            ? AppVars.darkThemeTextColor
+                                            : AppVars.iconColor,
+                                        icon: const Icon(
+                                          Icons.calendar_month,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const EventsPage()));
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Events",
+                                      style: TextStyle(
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Column(
+                                  children: [
+                                    Card(
+                                      elevation: 5,
+                                      shadowColor: themeProvider.isDarkMode
+                                          ? AppVars.darkmodeShadowColor
+                                          : AppVars.lightmodeShadowColor,
+                                      child: IconButton(
+                                        iconSize: 50,
+                                        color: themeProvider.isDarkMode
+                                            ? AppVars.darkThemeTextColor
+                                            : AppVars.iconColor,
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const WalletPage()));
+                                        },
+                                        icon: const Icon(
+                                          Icons.qr_code_2,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Pass",
+                                      style: TextStyle(
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 14, top: 10, right: 14),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Matches",
+                                style: Theme.of(context).textTheme.headline4,
+                              ),
+                              const Spacer(),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MatchesPage()));
+                                },
+                                child: const Text(
+                                  "See All",
+                                  style: TextStyle(
+                                      color: Colors.orange, fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          MatchCard(
+                            match: match1,
+                          ),
+                          MatchCard(
+                            match: match2,
+                          ),
+                          MatchCard(
+                            match: match3,
+                          ),
+                          MatchCard(
+                            match: match4,
+                          ),
+                          MatchCard(
+                            match: match5,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
