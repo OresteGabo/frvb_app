@@ -187,10 +187,10 @@ class _SettingsPageState extends State<SettingsPage> {
                           settingElementsDivider(),
                           SwitchListTile(
                             title: const Text('Game Updates'),
-                            value: AppVars.gamesUpdateNotificationsEnaled,
+                            value: AppVars.gamesUpdateNotificationsEnabled,
                             onChanged: (bool value) {
                               setState(() {
-                                AppVars.gamesUpdateNotificationsEnaled = value;
+                                AppVars.gamesUpdateNotificationsEnabled = value;
                               });
                             },
                             secondary: const Icon(Icons.sports_volleyball),

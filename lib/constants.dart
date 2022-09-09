@@ -19,12 +19,12 @@ class AppVars {
   static const Color darkThemeCardBackgroundColor =
       Color.fromRGBO(23, 24, 28, 1); //copied from github mobile app
   static const Color backgroundDebuggerColor = Colors.transparent;
-  static bool showLiveMatchWidget = false;
+  static bool showLiveMatchWidget = true;
 
   /// Push notification variables  (controlled by Switch buttons)
   //static bool isDark = true;
   static bool liveGamesNotificationsEnabled = false;
-  static bool gamesUpdateNotificationsEnaled = false;
+  static bool gamesUpdateNotificationsEnabled = false;
   static bool favoriteAthleteUpdateNotificationsEnabled = false;
   static bool favoriteCompetitionUpdateNotificationsEnabled = false;
   static bool favoriteTeamUpdateNotificationsEnabled = false;
