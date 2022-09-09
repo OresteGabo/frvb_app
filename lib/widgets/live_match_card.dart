@@ -15,8 +15,13 @@ class LiveMatchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      /**
+       * Do not add a padding top or bottom in here,
+       * when doing so, remember to increase the card height in homepage where is is used, and redementionned
+       * */
       padding: const EdgeInsets.only(left: 14, right: 14),
-      margin: const EdgeInsets.only(right: 16),
+      //margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         color: const Color(0xff493f5d),
         borderRadius: BorderRadius.circular(20),
