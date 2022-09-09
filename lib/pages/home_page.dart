@@ -5,6 +5,8 @@ import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
 import 'package:frvb/model/competition.dart';
 import 'package:frvb/pages/matches_page.dart';
+import 'package:frvb/pages/bookmarks_page.dart';
+import 'package:frvb/pages/wallet_page.dart';
 import 'package:frvb/model/match.dart';
 import 'package:frvb/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,9 +23,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final String _selectedCompetition = competitions[0].name;
-  bool _isPlay = false;
+  //bool _isPlay = false;
   final bookMarksKey = GlobalKey();
   late AnimationController _animationController;
+
+  /// variables that will reduce the size of the live video area to zero, in cas no stream is available
+
   @override
   void initState() {
     _animationController =
@@ -43,6 +48,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     final _controller = PageController();
+    void goTo(Widget widget) {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const MatchesPage()));
+    }
+
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
@@ -83,16 +93,27 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Live Match",
-                        style: Theme.of(context).textTheme.headline4,
+                      Container(
+                        height:
+                            lmcList.isNotEmpty && AppVars.showLiveMatchWidget
+                                ? 35
+                                : 0,
+                        color: AppVars.backgroundDebuggerColor,
+                        child: Text(
+                          "Live Match scores",
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
                       ),
 
                       const SizedBox(
                         height: 24,
                       ),
                       Container(
-                        height: 210,
+                        height:
+                            lmcList.isNotEmpty && AppVars.showLiveMatchWidget
+                                ? 210
+                                : 0,
+                        color: AppVars.backgroundDebuggerColor,
                         child: PageView(
                           physics: const PageScrollPhysics(),
                           scrollDirection: Axis.horizontal,
@@ -106,10 +127,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Center(
                         child: SmoothPageIndicator(
                           controller: _controller,
-                          effect: const ExpandingDotsEffect(
+                          effect: ExpandingDotsEffect(
                             dotWidth: 10,
-                            dotHeight: 10,
-                            activeDotColor: Color(0xff493f5d),
+                            dotHeight: lmcList.isNotEmpty &&
+                                    AppVars.showLiveMatchWidget
+                                ? 10
+                                : 0,
+                            activeDotColor: const Color(0xff493f5d),
                           ),
                           count: lmcList.length,
                         ),
@@ -140,17 +164,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       onPressed: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
-                                                // builder: (context) => const MatchesPage()));
                                                 builder: (context) =>
-                                                    MaterialApp(
-                                                      home:
-                                                          DefaultTabController(
-                                                        length:
-                                                            competitions.length,
-                                                        child:
-                                                            const MatchesPage(),
-                                                      ),
-                                                    )));
+                                                    const BookmarkPage()));
                                       },
                                     ),
                                   ),
@@ -182,14 +197,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       Icons.calendar_month,
                                     ),
                                     onPressed: () {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          // builder: (context) => const MatchesPage()));
-                                          builder: (context) => MaterialApp(
-                                                home: DefaultTabController(
-                                                  length: competitions.length,
-                                                  child: const MatchesPage(),
-                                                ),
-                                              )));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const EventsPage()));
                                     },
                                   ),
                                 ),
@@ -220,14 +231,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         ? AppVars.darkThemeTextColor
                                         : AppVars.iconColor,
                                     onPressed: () {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          // builder: (context) => const MatchesPage()));
-                                          builder: (context) => MaterialApp(
-                                                home: DefaultTabController(
-                                                  length: competitions.length,
-                                                  child: const MatchesPage(),
-                                                ),
-                                              )));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const WalletPage()));
                                     },
                                     icon: const Icon(
                                       Icons.qr_code_2,
