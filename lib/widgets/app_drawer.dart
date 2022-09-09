@@ -13,9 +13,9 @@ class AppDrawer extends StatelessWidget {
             text: 'Contacts',
             onTap: () {},
           ),
-          const Image(
-            image: AssetImage('assets/frvblogo.png'),
-          ),
+          /*const Image(
+            image: AssetImage("assets/frvblogo.jpg"),
+          ),*/
           _createDrawerItem(
             icon: Icons.event,
             text: 'Events',
@@ -49,22 +49,52 @@ class AppDrawer extends StatelessWidget {
   }
 
   Widget _createHeader() {
-    return DrawerHeader(
+    /*return DrawerHeader(
         margin: EdgeInsets.zero,
         padding: EdgeInsets.zero,
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill, image: AssetImage('assets/frvblogo.png'))),
+          color: Colors.orangeAccent,
+          image: DecorationImage(
+            //fit: BoxFit.fill,
+            image: AssetImage("assets/frvblogo.png"),
+          ),
+        ),
         child: Stack(children: const <Widget>[
-          Positioned(
+          /*Positioned(
               bottom: 12.0,
               left: 16.0,
               child: Text("Flutter Step-by-Step",
                   style: TextStyle(
                       color: Colors.green,
                       fontSize: 20.0,
-                      fontWeight: FontWeight.w500))),
-        ]));
+                      fontWeight: FontWeight.w500))),*/
+        ]));*/
+    return DrawerHeader(
+      decoration: const BoxDecoration(
+        color: Colors.orangeAccent,
+        image: DecorationImage(
+          //fit: BoxFit.fill,
+          image: AssetImage("assets/frvblogo.png"),
+        ),
+      ),
+      child: Stack(
+        children: const <Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: CircleAvatar(
+              //child: AssetImage("assets/frvblogo.png"),
+              //backgroundColor: Colors.orangeAccent,
+              backgroundImage: AssetImage("assets/frvblogo.jpg"),
+              radius: 50,
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text("FRVB Mobile news app"),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _createDrawerItem(
@@ -101,7 +131,7 @@ class EventsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Events"),
+          title: const Text("Events"),
         ),
         drawer: AppDrawer(),
         body: const Center(child: Text("Events")));
