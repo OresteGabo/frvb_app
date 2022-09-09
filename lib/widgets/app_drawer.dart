@@ -1,3 +1,8 @@
+/*Trying to design an appdrawer that will fit the general public, with indicators of the user being a verified coach, federation admin,or a div 1 athlete, a journalism
+ that add contents, .... and all other profiles that can be needed"
+[main 356763a] Trying to design an appdrawer that will fit the general public, with indicators of the user being a verified coach, federation admin,or a div 1 athlete, a journalism that add contents, .... and all other profiles that can be needed
+*/
+
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {

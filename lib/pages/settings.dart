@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/constants.dart';
+import 'package:frvb/pages/about_page.dart';
 import 'package:frvb/pages/account_page.dart';
+import 'package:frvb/pages/events_page.dart';
 import 'package:frvb/pages/main_page.dart';
 import 'package:frvb/widgets/change_theme_button_widget.dart';
 import 'package:provider/provider.dart';
@@ -142,7 +144,10 @@ class _SettingsPageState extends State<SettingsPage> {
                           settingListTileElement(
                               label: "About",
                               icon: Icons.question_mark_outlined,
-                              onTap: () {}),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const About()));
+                              }),
                         ],
                       ),
                     ],
