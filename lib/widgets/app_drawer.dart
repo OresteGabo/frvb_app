@@ -14,8 +14,8 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           _createHeader(),
           _createDrawerItem(
-            icon: Icons.contacts,
-            text: 'Contacts',
+            icon: Icons.home_filled,
+            text: 'Home',
             onTap: () {},
           ),
           /*const Image(
@@ -26,18 +26,12 @@ class AppDrawer extends StatelessWidget {
             text: 'Events',
             onTap: () {},
           ),
-          _createDrawerItem(
-            icon: Icons.note,
-            text: 'Notes',
-            onTap: () {},
-          ),
           const Divider(),
           _createDrawerItem(
-              icon: Icons.collections_bookmark, text: 'Steps', onTap: () {}),
-          _createDrawerItem(icon: Icons.face, text: 'Authors', onTap: () {}),
+              icon: Icons.schedule, text: 'Schedules', onTap: () {}),
           _createDrawerItem(
-              icon: Icons.account_box,
-              text: 'Flutter Documentation',
+              icon: Icons.local_grocery_store_sharp,
+              text: 'Store',
               onTap: () {}),
           _createDrawerItem(
               icon: Icons.stars, text: 'Useful Links', onTap: () {}),
@@ -54,48 +48,66 @@ class AppDrawer extends StatelessWidget {
   }
 
   Widget _createHeader() {
-    /*return DrawerHeader(
-        margin: EdgeInsets.zero,
-        padding: EdgeInsets.zero,
-        decoration: const BoxDecoration(
-          color: Colors.orangeAccent,
-          image: DecorationImage(
-            //fit: BoxFit.fill,
-            image: AssetImage("assets/frvblogo.png"),
-          ),
-        ),
-        child: Stack(children: const <Widget>[
-          /*Positioned(
-              bottom: 12.0,
-              left: 16.0,
-              child: Text("Flutter Step-by-Step",
-                  style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500))),*/
-        ]));*/
     return DrawerHeader(
       decoration: const BoxDecoration(
-        color: Colors.orangeAccent,
-        image: DecorationImage(
-          //fit: BoxFit.fill,
-          image: AssetImage("assets/frvblogo.png"),
-        ),
+        color: Color.fromARGB(150, 0, 0, 0),
       ),
       child: Stack(
-        children: const <Widget>[
-          Align(
+        children: <Widget>[
+          const Align(
             alignment: Alignment.centerLeft,
             child: CircleAvatar(
-              //child: AssetImage("assets/frvblogo.png"),
-              //backgroundColor: Colors.orangeAccent,
               backgroundImage: AssetImage("assets/frvblogo.jpg"),
-              radius: 50,
+              //NetworkImage(
+              //'http://www.bbk.ac.uk/mce/wp-content/uploads/2015/03/8327142885_9b447935ff.jpg'),
+              radius: 50.0,
+            ),
+          ),
+          const Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'Muhire Jabo Honoré',
+              style: TextStyle(color: Colors.white, fontSize: 17.0),
             ),
           ),
           Align(
-            alignment: Alignment.centerRight,
-            child: Text("FRVB Mobile news app"),
+            alignment: Alignment.centerRight + const Alignment(0, .3),
+            child: const Text(
+              'Athlete',
+              style: TextStyle(
+                color: Colors.white70,
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight + const Alignment(0, .8),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 3.0, left: 8),
+                child: Wrap(
+                  children: const [
+                    Text(
+                      'Verified',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Icon(
+                      Icons.verified,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
