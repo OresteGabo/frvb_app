@@ -13,6 +13,7 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
+  var _selectedMatch = competition1.matches[0];
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -78,24 +79,20 @@ class _CalendarPageState extends State<CalendarPage> {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: div1games
-                        .map(
-                          (e) => CalendarMatchCard(
-                            width: width,
-                            isSelected: e.isSelected,
-                            onPressed: () {
-                              setState(() {
-                                e.isSelected = !e.isSelected;
-                              });
-                            },
-                            match: e,
-                          ),
-                        )
-                        .toList(),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: competition1.matches.map(
+                      (e) {
+                        return InkWell(
+                            onTap: () => setState(() {
+                                  _selectedMatch = e;
+                                }),
+                            child: CalendarMatchCard(
+                                width: width,
+                                match: e,
+                                isSelected: e == _selectedMatch));
+                      },
+                    ).toList(),
                   ),
                 ),
               ),
@@ -105,31 +102,38 @@ class _CalendarPageState extends State<CalendarPage> {
   }
 }
 
-class CalendarMatchCard extends StatelessWidget {
-  const CalendarMatchCard({
+class CalendarMatchCard extends StatefulWidget {
+  final Match match;
+  final double width;
+  late bool isSelected;
+  late bool isFavorite;
+  //final VoidCallback onPressed;
+  CalendarMatchCard({
     Key? key,
     required this.match,
     required this.width,
-    required this.onPressed,
-    required this.isSelected,
+    //required this.onPressed,
+    this.isFavorite = false,
+    this.isSelected = false,
   }) : super(key: key);
 
-  final Match match;
-  final double width;
-  final bool isSelected;
-  final VoidCallback onPressed;
+  @override
+  State<CalendarMatchCard> createState() => _CalendarMatchCardState();
+}
+
+class _CalendarMatchCardState extends State<CalendarMatchCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
       margin: const EdgeInsets.symmetric(vertical: 12),
-      width: width,
+      width: widget.width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           width: 2,
-          color: isSelected ? AppVars.selectedColor : Colors.transparent,
+          color: widget.isSelected ? AppVars.selectedColor : Colors.transparent,
         ),
       ),
       child: Column(
@@ -138,20 +142,25 @@ class CalendarMatchCard extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: InkWell(
-              onTap: onPressed,
+              onTap: () {
+                setState(() {
+                  widget.isFavorite = !widget.isFavorite;
+                  //widget.isSelected = !widget.isSelected;
+                });
+              },
               child: Container(
                 height: 40,
-                child: Image(
-                  image: const AssetImage(
-                    "assets/later.png",
-                  ),
-                  color: isSelected ? AppVars.selectedColor : Colors.grey,
+                child: Icon(
+                  Icons.bookmark,
+                  color:
+                      widget.isFavorite ? AppVars.selectedColor : Colors.grey,
+                  size: 45,
                 ),
               ),
             ),
           ),
           Text(
-            match.timeString,
+            widget.match.timeString,
             style: const TextStyle(color: Colors.grey, fontSize: 16),
           ),
           const SizedBox(
@@ -159,9 +168,9 @@ class CalendarMatchCard extends StatelessWidget {
           ),
           //TeamRow(score: homeGoals, teamName: homeName, image: homeImage),
           TeamRow(
-              score: match.homeGoals,
-              teamName: match.homeTeam.name,
-              image: match.homeTeam.logo),
+              score: widget.match.homeGoals,
+              teamName: widget.match.homeTeam.name,
+              image: widget.match.homeTeam.logo),
           Row(
             children: const [
               SizedBox(
@@ -175,9 +184,9 @@ class CalendarMatchCard extends StatelessWidget {
             ],
           ),
           TeamRow(
-              score: match.awayGoals,
-              teamName: match.awayTeam.name,
-              image: match.awayTeam.logo),
+              score: widget.match.awayGoals,
+              teamName: widget.match.awayTeam.name,
+              image: widget.match.awayTeam.logo),
         ],
       ),
     );
