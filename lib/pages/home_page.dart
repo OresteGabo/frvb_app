@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:frvb/widgets/app_drawer.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
-import 'package:frvb/model/competition.dart';
 import 'package:frvb/pages/matches_page.dart';
 import 'package:frvb/pages/bookmarks_page.dart';
 import 'package:frvb/pages/wallet_page.dart';
@@ -22,8 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  final String _selectedCompetition = competitions[0].name;
-  //bool _isPlay = false;
   final bookMarksKey = GlobalKey();
   late AnimationController _animationController;
 
@@ -38,7 +35,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         bookMarksKey,
       ]);
     });
-
     super.initState();
   }
 
@@ -64,11 +60,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         elevation: 0,
         backgroundColor: themeProvider.isDarkMode
             ? AppVars.darkThemeBackgroundColor
-            : const Color.fromRGBO(0, 186, 255, 1),
+            : const Color.fromRGBO(255, 217, 198, 1),
         flexibleSpace: Container(),
-        /*leading: const CircleAvatar(
-            backgroundImage: AssetImage("assets/frvblogo.jpg"),
-          ),*/
         title: RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
@@ -98,7 +91,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         image: DecorationImage(
                           image: themeProvider.isDarkMode
                               ? const AssetImage("assets/bg_dk.png")
-                              : const AssetImage("assets/bg.png"),
+                              : const AssetImage("assets/bg.jpg"),
                           fit: BoxFit.fitWidth,
                           alignment: Alignment.topLeft,
                         ),
@@ -111,7 +104,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ),
 
                           Container(
-                            width: width * 0.9,
                             height: lmcList.isNotEmpty &&
                                     AppVars.showLiveMatchWidget
                                 ? 210
@@ -167,9 +159,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               Icons.bookmark_outline),
                                           onPressed: () {
                                             Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const BookmarkPage()));
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const BookmarkPage(),
+                                              ),
+                                            );
                                           },
                                         ),
                                       ),
@@ -279,9 +273,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               const Spacer(),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const MatchesPage()));
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => const MatchesPage(),
+                                    ),
+                                  );
                                 },
                                 child: const Text(
                                   "See All",
