@@ -1,26 +1,57 @@
+import 'package:frvb/model/team.dart';
+import 'package:frvb/model/match.dart';
+
 class Competition {
-  String images;
-  String name;
+  final String images;
+  final String name;
+  final DateTime start;
+  final DateTime end;
+  final String description;
+  List<Match> matches;
 
   Competition({
     this.images = '',
-    this.name = '',
+    required this.name,
+    required this.start,
+    required this.end,
+    required this.description,
+    required this.matches,
   });
+  void addMatch(Match m) {
+    matches.add(m);
+  }
 }
 
-List<Competition> competitions = [
-  Competition(
-    //images: "assets/trophy.jpg",
-    //images: Icon(Icons.audiotrack),
-    name: "GMT",
-  ),
-  Competition(
-    name: "Zone 5",
-  ),
-  Competition(
-    name: "Championat",
-  ),
-  Competition(
-    name: "Kayumba",
-  ),
-];
+var competition1 = Competition(
+    name: "Rutsindura",
+    start: DateTime.now(),
+    end: DateTime.now(),
+    description:
+        "This is a rutsindura competition to remember alphose rutsindura who passed away in 1994",
+    matches: [
+      match1,
+      match2,
+      match3,
+    ]);
+var competition2 = Competition(
+    name: "Rutsindura",
+    start: DateTime.now(),
+    end: DateTime.now(),
+    description:
+        "This is a rutsindura competition to remember alphose rutsindura who passed away in 1994",
+    matches: [
+      match1,
+      match2,
+      match3,
+    ]);
+var competition3 = Competition(
+    name: "Rutsindura",
+    start: DateTime.now(),
+    end: DateTime.now(),
+    description:
+        "This is a rutsindura competition to remember alphose rutsindura who passed away in 1994",
+    matches: [
+      match1,
+      match2,
+      match3,
+    ]);
