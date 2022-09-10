@@ -21,7 +21,7 @@ class LiveMatchCard extends StatelessWidget {
        * when doing so, remember to increase the card height in homepage where is is used, and redementionned
        * */
       padding: const EdgeInsets.only(left: 14, right: 14),
-      //margin: const EdgeInsets.only(right: 16),
+      margin: const EdgeInsets.only(left: 14, right: 14),
       decoration: BoxDecoration(
         color: const Color(0xff493f5d),
         borderRadius: BorderRadius.circular(20),

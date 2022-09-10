@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/model/theme_provider.dart';
-import 'package:frvb/pages/calendar_page.dart';
+import 'package:frvb/pages/past_games_page.dart';
 import 'package:frvb/pages/home_page.dart';
 import 'package:frvb/constants.dart';
 import 'package:frvb/pages/settings.dart';
@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
   var _currentIndex = 0;
   final _children = [
     Builder(builder: (_) => const HomePage()),
-    Builder(builder: (_) => const CalendarPage()),
+    Builder(builder: (_) => const PastGamesPage()),
     Builder(builder: (_) => const StatsPage()),
     Builder(builder: (_) => const SettingsPage())
   ];

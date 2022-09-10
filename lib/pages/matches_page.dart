@@ -4,7 +4,7 @@ import 'package:frvb/model/match.dart';
 import 'package:badges/badges.dart';
 import 'package:frvb/pages/main_page.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:frvb/widgets/competitionWidget.dart';
+import 'package:frvb/widgets/competition_widget.dart';
 import 'package:frvb/widgets/match_card.dart';
 
 class MatchesPage extends StatefulWidget {
