@@ -13,8 +13,17 @@ import 'package:provider/provider.dart';
 import 'package:frvb/model/theme_provider.dart';
 import 'package:showcaseview/showcaseview.dart';
 
+const List<String> list = <String>[
+  'Saved matches',
+  'Favorite matches',
+  'All matches'
+  //'ooo'
+];
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,6 +32,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final bookMarksKey = GlobalKey();
   late AnimationController _animationController;
+
+  String dropdownValue = list.first;
 
   /// variables that will reduce the size of the live video area to zero, in cas no stream is available
 
@@ -271,18 +282,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 style: Theme.of(context).textTheme.headline4,
                               ),
                               const Spacer(),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => const MatchesPage(),
+                              Container(
+                                child: PopupMenuButton(
+                                  itemBuilder: (BuildContext context) =>
+                                      <PopupMenuEntry>[
+                                    const PopupMenuItem(
+                                      child: ListTile(
+                                        leading: Icon(Icons.favorite),
+                                        title: Text('Favorite Matches'),
+                                      ),
                                     ),
-                                  );
-                                },
-                                child: const Text(
-                                  "See All",
-                                  style: TextStyle(
-                                      color: Colors.orange, fontSize: 20),
+                                    const PopupMenuItem(
+                                      child: ListTile(
+                                        leading: Icon(Icons.save),
+                                        title: Text('Saved Matches'),
+                                      ),
+                                    ),
+                                    const PopupMenuItem(
+                                      child: ListTile(
+                                        leading: Icon(Icons.article),
+                                        title: Text('All matches'),
+                                      ),
+                                    ),
+                                    const PopupMenuDivider(),
+                                  ],
                                 ),
                               ),
                             ],
