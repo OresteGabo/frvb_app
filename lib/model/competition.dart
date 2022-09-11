@@ -55,3 +55,9 @@ var competition3 = Competition(
       match2,
       match3,
     ]);
+
+List<Competition> competitions = [
+  competition1,
+  competition2,
+  competition3,
+];
