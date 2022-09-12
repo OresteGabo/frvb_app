@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frvb/pages/competitions_page.dart';
+import 'package:frvb/pages/settings.dart';
 import 'package:frvb/widgets/app_drawer.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
@@ -12,6 +14,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:frvb/model/theme_provider.dart';
 import 'package:showcaseview/showcaseview.dart';
+import 'package:frvb/pages/main_page.dart';
 
 const List<String> list = <String>[
   'Saved matches',
@@ -57,7 +60,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final _controller = PageController();
     void goTo(Widget widget) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const MatchesPage()));
+          .push(MaterialPageRoute(builder: (context) => widget));
     }
 
     return Scaffold(
@@ -276,37 +279,65 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       child: Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 "Matches",
                                 style: Theme.of(context).textTheme.headline4,
                               ),
-                              const Spacer(),
-                              Container(
-                                child: PopupMenuButton(
-                                  itemBuilder: (BuildContext context) =>
-                                      <PopupMenuEntry>[
-                                    const PopupMenuItem(
-                                      child: ListTile(
-                                        leading: Icon(Icons.favorite),
-                                        title: Text('Favorite Matches'),
-                                      ),
-                                    ),
-                                    const PopupMenuItem(
-                                      child: ListTile(
-                                        leading: Icon(Icons.save),
-                                        title: Text('Saved Matches'),
-                                      ),
-                                    ),
-                                    const PopupMenuItem(
-                                      child: ListTile(
-                                        leading: Icon(Icons.article),
-                                        title: Text('All matches'),
-                                      ),
-                                    ),
-                                    const PopupMenuDivider(),
-                                  ],
+                              //const Spacer(),
+                              PopupMenuButton(
+                                elevation: 2,
+                                icon: const Icon(
+                                  Icons.more_horiz,
                                 ),
+                                itemBuilder: (BuildContext context) =>
+                                    <PopupMenuEntry>[
+                                  PopupMenuItem(
+                                    child: ListTile(
+                                      leading: Icon(Icons.favorite),
+                                      title: Text('Favorite Matches'),
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CompetitionsPage(),
+                                        ));
+                                      },
+                                    ),
+                                  ),
+                                  PopupMenuItem(
+                                    child: ListTile(
+                                      leading: Icon(Icons.save),
+                                      title: Text('Saved Matches'),
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CompetitionsPage(),
+                                        ));
+                                      },
+                                    ),
+                                  ),
+                                  PopupMenuItem(
+                                    child: ListTile(
+                                      subtitle: const Text(
+                                        "subs",
+                                        textDirection: TextDirection.rtl,
+                                      ),
+                                      leading: const Icon(Icons.article),
+                                      title: const Text('All matches'),
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CompetitionsPage(),
+                                        ));
+                                      },
+                                    ),
+                                  ),
+                                  const PopupMenuDivider(),
+                                ],
                               ),
                             ],
                           ),
