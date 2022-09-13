@@ -52,6 +52,7 @@ dependencies:
   shared_preferences:
   flutter_native_splash: ^2.2.8
   showcaseview: ^1.1.8
+  flutter_next: ^0.1.1
 
 dev_dependencies:
   flutter_test:
