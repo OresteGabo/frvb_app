@@ -7,7 +7,7 @@ class Competition {
   final DateTime start;
   final DateTime end;
   final String description;
-  List<Match> matches;
+  List<Team> teams;
 
   Competition({
     this.images = '',
@@ -15,10 +15,20 @@ class Competition {
     required this.start,
     required this.end,
     required this.description,
-    required this.matches,
+    required this.teams,
   });
   void addMatch(Match m) {
     matches.add(m);
+  }
+
+  List<String> teamLogos() {
+    List<String> logos = [
+      "assets/bg_dk.png",
+    ];
+    for (int x = 0; x < teams.length; x++) {
+      logos.add(teams[x].logo);
+    }
+    return logos;
   }
 }
 
@@ -28,10 +38,10 @@ var competition1 = Competition(
     end: DateTime.now(),
     description:
         "This is a rutsindura competition to remember alphose rutsindura who passed away in 1994",
-    matches: [
-      match1,
-      match2,
-      match3,
+    teams: [
+      aprvc,
+      kvc,
+      kirehe,
     ]);
 var competition2 = Competition(
     name: "Rutsindura",
@@ -39,10 +49,10 @@ var competition2 = Competition(
     end: DateTime.now(),
     description:
         "This is a rutsindura competition to remember alphose rutsindura who passed away in 1994",
-    matches: [
-      match1,
-      match2,
-      match3,
+    teams: [
+      gisagara,
+      rukinzo,
+      rra,
     ]);
 var competition3 = Competition(
     name: "Rutsindura",
@@ -50,10 +60,10 @@ var competition3 = Competition(
     end: DateTime.now(),
     description:
         "This is a rutsindura competition to remember alphose rutsindura who passed away in 1994",
-    matches: [
-      match1,
-      match2,
-      match3,
+    teams: [
+      kirehe,
+      reg,
+      kvc,
     ]);
 
 List<Competition> competitions = [
