@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/model/competition.dart';
 import 'package:frvb/constants.dart';
+import 'package:frvb/clones_packages/avatar_group/avatar_group.dart';
+import 'package:intl/intl.dart';
 
 class CompetitionCard extends StatefulWidget {
   final Competition competition;
@@ -28,7 +30,7 @@ class _CompetitionCardState extends State<CompetitionCard> {
       margin: const EdgeInsets.symmetric(vertical: 12),
       width: widget.width,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color.fromARGB(62, 175, 135, 76),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           width: 2,
@@ -42,7 +44,7 @@ class _CompetitionCardState extends State<CompetitionCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.competition.start.toString(),
+                '${DateFormat('dd MMM').format(widget.competition.start)} to ${DateFormat('dd MMM yyyy').format(widget.competition.end)}',
                 style: const TextStyle(color: Colors.grey, fontSize: 16),
               ),
               InkWell(
@@ -57,8 +59,9 @@ class _CompetitionCardState extends State<CompetitionCard> {
                     widget.isFavorite
                         ? Icons.bookmark
                         : Icons.bookmark_outline_rounded,
-                    color:
-                        widget.isFavorite ? AppVars.selectedColor : Colors.grey,
+                    color: widget.isFavorite
+                        ? AppVars.selectedColor
+                        : Colors.black,
                     size: 45,
                   ),
                 ),
@@ -68,26 +71,23 @@ class _CompetitionCardState extends State<CompetitionCard> {
           const SizedBox(
             height: 12,
           ),
-          /*TeamRow(
-              score: widget.match.homeSetsWon,
-              teamName: widget.match.homeTeam.name,
-              image: widget.match.homeTeam.logo),*/
           Row(
             children: const [
-              SizedBox(
-                width: 60,
-              ),
-              Text(
-                "vs",
-                style: TextStyle(color: Colors.grey, fontSize: 16),
-              ),
+              Expanded(child: Divider()),
               Expanded(child: Divider()),
             ],
           ),
-          /*TeamRow(
-              score: widget.match.awaySetsWon,
-              teamName: widget.match.awayTeam.name,
-              image: widget.match.awayTeam.logo),*/
+          const Text(
+              "This is the description text that describes a competition in a very brief resume This is the description text that describes a competition in a very brief resume  "),
+          Row(
+            children: [
+              const Spacer(),
+              AvatarGroup(
+                widthFactor: 0.2,
+                imagesList: widget.competition.teamLogos(),
+              ),
+            ],
+          )
         ],
       ),
     );
