@@ -14,7 +14,7 @@ class PastGamesPage extends StatefulWidget {
 }
 
 class _PastGamesPageState extends State<PastGamesPage> {
-  var _selectedMatch = competition1.matches[0];
+  //var _selectedMatch = competition1.matches[0];
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -78,7 +78,7 @@ class _PastGamesPageState extends State<PastGamesPage> {
               const SizedBox(
                 height: 12,
               ),
-              Expanded(
+              /*Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +96,7 @@ class _PastGamesPageState extends State<PastGamesPage> {
                     ).toList(),
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         )));

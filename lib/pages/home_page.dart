@@ -308,8 +308,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                   PopupMenuItem(
                                     child: ListTile(
-                                      leading: Icon(Icons.save),
-                                      title: Text('Saved Matches'),
+                                      leading: const Icon(Icons.save),
+                                      title: const Text('Saved Matches'),
                                       onTap: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
