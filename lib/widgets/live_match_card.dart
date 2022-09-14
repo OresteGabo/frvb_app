@@ -15,13 +15,13 @@ class LiveMatchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.9,
+      //width: MediaQuery.of(context).size.width * 0.8,
       /**
        * Do not add a padding top or bottom in here,
        * when doing so, remember to increase the card height in homepage where is is used, and redementionned
        * */
-      padding: const EdgeInsets.only(left: 14, right: 14),
-      margin: const EdgeInsets.only(left: 14, right: 14),
+      padding: const EdgeInsets.only(left: 6, right: 6),
+      margin: const EdgeInsets.only(left: 6, right: 6),
       decoration: BoxDecoration(
         color: const Color(0xff493f5d),
         borderRadius: BorderRadius.circular(20),
@@ -51,7 +51,7 @@ class LiveMatchCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Container(
+                      /*Container(
                         decoration: const BoxDecoration(),
                         child: Align(
                           alignment: Alignment.bottomRight,
@@ -67,7 +67,7 @@ class LiveMatchCard extends StatelessWidget {
                                 ),
                           ),
                         ),
-                      ),
+                      ),*/
                       const SizedBox(width: 6),
                       Text(
                         match.homeGoals.toString(),
@@ -97,7 +97,7 @@ class LiveMatchCard extends StatelessWidget {
                             .copyWith(color: Colors.white),
                       ),
                       const SizedBox(width: 6),
-                      Align(
+                      /*Align(
                         alignment: Alignment.bottomLeft,
                         child: Text(
                           '${match.awaySetsWon}',
@@ -108,7 +108,7 @@ class LiveMatchCard extends StatelessWidget {
                                 color: const Color.fromRGBO(199, 100, 65, 0.7),
                               ),
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                   Container(
