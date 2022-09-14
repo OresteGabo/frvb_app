@@ -34,7 +34,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final bookMarksKey = GlobalKey();
-  late AnimationController _animationController;
+  late PageController _pageController;
 
   String dropdownValue = list.first;
 
@@ -42,13 +42,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    /*_animationController = PageController(
+      //duration: const Duration(seconds: 1),
+      //vsync: this,
+    ) as AnimationController;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ShowCaseWidget.of(context).startShowCase([
         bookMarksKey,
       ]);
-    });
+    });*/
+    _pageController = PageController(initialPage: 2, viewportFraction: .8);
+
     super.initState();
   }
 
@@ -57,7 +61,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     var width = MediaQuery.of(context).size.width;
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    final _controller = PageController();
+    final _controller = _pageController;
     void goTo(Widget widget) {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => widget));
@@ -123,11 +127,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 ? 210
                                 : 0,
                             color: AppVars.backgroundDebuggerColor,
-                            child: PageView(
+                            child: PageView.builder(
+                              itemCount: lmcList.length,
                               physics: const PageScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               controller: _controller,
-                              children: lmcList,
+                              itemBuilder: (BuildContext context, int index) {
+                                return cardSlider(index);
+                              },
+                              //children: lmcList,
                             ),
                           ),
                           const SizedBox(
@@ -370,5 +378,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+
+  Widget cardSlider(int index) {
+    return AnimatedBuilder(
+        child: Container(
+          child: lmcList[index],
+        ),
+        animation: _pageController,
+        builder: (BuildContext context, widget) {
+          return Center(
+            child: widget,
+          );
+        });
   }
 }
