@@ -6,11 +6,12 @@ class Palette {
   final Color backgroundColorLightMode;
   final Color backgroundColorDarkMode;
 
-  Palette(
-      {required this.backgroundImageLightMode,
-      required this.backgroundImageDarkMode,
-      required this.backgroundColorLightMode,
-      required this.backgroundColorDarkMode});
+  Palette({
+    this.backgroundImageLightMode = "assets/palettes/bk_1.jpg",
+    this.backgroundImageDarkMode = "assets/bg_dk.png",
+    this.backgroundColorLightMode = const Color.fromRGBO(255, 217, 198, 1),
+    this.backgroundColorDarkMode = const Color.fromRGBO(0, 0, 0, 1),
+  });
   DecorationImage getDecorationImage(bool isDark) {
     return DecorationImage(
       fit: BoxFit.fitWidth,
