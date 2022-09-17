@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     palette18,
     palette19,
   ];
-  Palette _palette = palette1;
+  // Palette palette = palette1;
   String dropdownValue = list.first;
 
   /// variables that will reduce the size of the live video area to zero, in cas no stream is available
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     _pageController = PageController(initialPage: 2, viewportFraction: .8);
-    _palette = _palettes[Math.random(0, 18)];
+    AppVars.palette = _palettes[Math.random(0, 18)];
     super.initState();
   }
 
@@ -80,7 +80,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 : AppVars.iconColor),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: _palette.getBackgroundColor(themeProvider.isDarkMode),
+        backgroundColor:
+            AppVars.palette.getBackgroundColor(themeProvider.isDarkMode),
         flexibleSpace: Container(),
         title: RichText(
           textAlign: TextAlign.center,
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       //width: width,
 
                       decoration: BoxDecoration(
-                        image: _palette
+                        image: AppVars.palette
                             .getDecorationImage(themeProvider.isDarkMode),
                       ),
                       child: Column(
