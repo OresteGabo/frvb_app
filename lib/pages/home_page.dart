@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frvb/model/palette.dart';
 import 'package:frvb/pages/competitions_page.dart';
-import 'package:frvb/pages/settings.dart';
 import 'package:frvb/widgets/app_drawer.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
-import 'package:frvb/pages/matches_page.dart';
 import 'package:frvb/pages/bookmarks_page.dart';
 import 'package:frvb/pages/wallet_page.dart';
 import 'package:frvb/model/match.dart';
@@ -13,8 +11,6 @@ import 'package:frvb/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:frvb/model/theme_provider.dart';
-import 'package:showcaseview/showcaseview.dart';
-import 'package:frvb/pages/main_page.dart';
 
 const List<String> list = <String>[
   'Saved matches',
@@ -35,37 +31,45 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final bookMarksKey = GlobalKey();
   late PageController _pageController;
-
+  final _palettes = [
+    palette1,
+    palette2,
+    palette3,
+    palette4,
+    palette5,
+    palette6,
+    palette7,
+    palette8,
+    palette9,
+    palette10,
+    palette11,
+    palette12,
+    palette13,
+    palette14,
+    palette15,
+    palette16,
+    palette17,
+    palette18,
+    palette19,
+  ];
+  Palette _palette = palette1;
   String dropdownValue = list.first;
 
   /// variables that will reduce the size of the live video area to zero, in cas no stream is available
 
   @override
   void initState() {
-    /*_animationController = PageController(
-      //duration: const Duration(seconds: 1),
-      //vsync: this,
-    ) as AnimationController;
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ShowCaseWidget.of(context).startShowCase([
-        bookMarksKey,
-      ]);
-    });*/
     _pageController = PageController(initialPage: 2, viewportFraction: .8);
-
+    _palette = _palettes[Math.random(0, 18)];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    //var width = MediaQuery.of(context).size.width;
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     final _controller = _pageController;
-    void goTo(Widget widget) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => widget));
-    }
 
     return Scaffold(
       drawer: AppDrawer(),
@@ -76,9 +80,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 : AppVars.iconColor),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: themeProvider.isDarkMode
-            ? AppVars.darkThemeBackgroundColor
-            : const Color.fromRGBO(255, 217, 198, 1),
+        backgroundColor: _palette.getBackgroundColor(themeProvider.isDarkMode),
         flexibleSpace: Container(),
         title: RichText(
           textAlign: TextAlign.center,
@@ -104,15 +106,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    //Image.asset("assets/bg_dk.png"),
                     Container(
+                      //height: 140.0,
+                      //width: width,
+
                       decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: themeProvider.isDarkMode
-                              ? const AssetImage("assets/bg_dk.png")
-                              : const AssetImage("assets/bg.jpg"),
-                          fit: BoxFit.fitWidth,
-                          alignment: Alignment.topLeft,
-                        ),
+                        image: _palette
+                            .getDecorationImage(themeProvider.isDarkMode),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -168,35 +169,37 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   children: [
                                     Card(
                                       elevation: 5,
-                                      child: Showcase(
-                                        key: bookMarksKey,
-                                        description:
-                                            "This will show all your likes, saves and bookmarks",
-                                        child: IconButton(
-                                          iconSize: 50,
-                                          color: themeProvider.isDarkMode
-                                              ? AppVars.darkThemeTextColor
-                                              : AppVars.iconColor,
-                                          icon: const Icon(
-                                              Icons.bookmark_outline),
-                                          onPressed: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const BookmarkPage(),
-                                              ),
-                                            );
-                                          },
-                                        ),
+                                      child: IconButton(
+                                        iconSize: 50,
+                                        color: themeProvider.isDarkMode
+                                            ? AppVars.darkThemeTextColor
+                                            : AppVars.iconColor,
+                                        icon:
+                                            const Icon(Icons.bookmark_outline),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BookmarkPage(),
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ),
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
-                                      "Bookmarks",
-                                      style: TextStyle(
-                                        color: Colors.grey[700],
+                                    Container(
+                                      padding: const EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: Text(
+                                        "Bookmarks",
+                                        style: TextStyle(
+                                          color: Colors.grey[700],
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -227,10 +230,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
-                                      "Events",
-                                      style: TextStyle(
-                                        color: Colors.grey[700],
+                                    Container(
+                                      padding: const EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: Text(
+                                        "Events",
+                                        style: TextStyle(
+                                          color: Colors.grey[700],
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -264,10 +274,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
-                                      "Pass",
-                                      style: TextStyle(
-                                        color: Colors.grey[700],
+                                    Container(
+                                      padding: const EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: Text(
+                                        "Pass",
+                                        style: TextStyle(
+                                          color: Colors.grey[700],
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -303,8 +320,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     <PopupMenuEntry>[
                                   PopupMenuItem(
                                     child: ListTile(
-                                      leading: Icon(Icons.favorite),
-                                      title: Text('Favorite Matches'),
+                                      leading: const Icon(Icons.favorite),
+                                      title: const Text('Favorite Matches'),
                                       onTap: () {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
