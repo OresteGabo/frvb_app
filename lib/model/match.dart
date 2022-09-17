@@ -12,22 +12,19 @@ class Match {
   int _homeSetsWon = 0;
 
   Match(this._homeTeam, this._awayTeam) {
-    _awayGoals = random(0, 25);
-    _homeGoals = random(0, 25);
-    _awaySetsWon = random(0, 3);
-    _homeSetsWon = random(0, 3);
-    _currentSet = random(1, 5);
+    _awayGoals = Math.random(0, 25);
+    _homeGoals = Math.random(0, 25);
+    _awaySetsWon = Math.random(0, 3);
+    _homeSetsWon = Math.random(0, 3);
+    _currentSet = Math.random(1, 5);
     _time = DateTime(
-      random(2020, 2024),
-      random(1, 12),
-      random(1, 28),
-      random(1, 12),
-      random(0, 59),
+      Math.random(2020, 2024),
+      Math.random(1, 12),
+      Math.random(1, 28),
+      Math.random(1, 12),
+      Math.random(0, 59),
     );
     addToMyFavorite();
-  }
-  static int random(min, max) {
-    return min + Random().nextInt(max - min);
   }
 
   DateTime get time => _time;
@@ -105,6 +102,12 @@ class Match {
     String awayTeamName = _awayTeam.name;
     String homeTeamName = _homeTeam.name;
     return '(Away) $awayTeamName $_awayGoals : $_homeGoals $homeTeamName (Home) ';
+  }
+}
+
+class Math {
+  static int random(min, max) {
+    return min + Random().nextInt(max - min);
   }
 }
 
