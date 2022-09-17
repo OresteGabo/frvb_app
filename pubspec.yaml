@@ -80,26 +80,6 @@ flutter:
     - assets/
     - assets/clubs/
     - assets/palettes/
-    - assets/palettes/p1/
-    - assets/palettes/p2/
-    - assets/palettes/p3/
-    - assets/palettes/p4/
-    - assets/palettes/p5/
-    - assets/palettes/p6/
-    - assets/palettes/p7/
-    - assets/palettes/p8/
-    - assets/palettes/p9/
-    - assets/palettes/p10/
-    - assets/palettes/p11/
-    - assets/palettes/p12/
-    - assets/palettes/p13/
-    - assets/palettes/p14/
-    - assets/palettes/p15/
-    - assets/palettes/p16/
-    - assets/palettes/p17/
-    - assets/palettes/p18/
-    - assets/palettes/p19/
-    - assets/palettes/p20/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
