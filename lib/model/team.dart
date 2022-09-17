@@ -35,7 +35,7 @@ final Team bugiri = Team(logo: "assets/clubs/bugirivbc", name: "BUGIRI");
 final Team sainJoseph =
     Team(logo: "assets/clubs/gs_saint-joseph", name: "st Joseph");
 final Team gsjinaa = Team(logo: "assets/clubs/gsjinja.png", name: "GS JINJA");
-final Team gsob = Team(name: "assets/clubs/gsob.png", logo: "GSOB");
+final Team gsob = Team(logo: "assets/clubs/gsob.png", name: "GSOB");
 final Team iprcsouth =
     Team(logo: "assets/clubs/iprcsouth.png", name: "IPRC ST");
 final Team kavc = Team(logo: "assets/clubs/kavc.webp", name: "KAVC");

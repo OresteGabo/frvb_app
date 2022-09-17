@@ -19,7 +19,7 @@ class AppVars {
   static const Color darkThemeCardBackgroundColor =
       Color.fromRGBO(23, 24, 28, 1); //copied from github mobile app
   static const Color backgroundDebuggerColor = Colors.transparent;
-  static bool showLiveMatchWidget = true;
+  static bool showLiveMatchWidget = false;
 
   /// Push notification variables  (controlled by Switch buttons)
   //static bool isDark = true;

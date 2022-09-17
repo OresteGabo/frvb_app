@@ -119,7 +119,7 @@ class LiveMatchCard extends StatelessWidget {
                         color: const Color(0x7e493f5d),
                         border: Border.all(color: Colors.orange, width: 2)),
                     child: Text(
-                      '${Match.random(10, 100)}\'',
+                      '${Math.random(10, 100)}\'',
                       style: const TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),
