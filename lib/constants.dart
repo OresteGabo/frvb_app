@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:frvb/model/theme_provider.dart';
+import 'package:frvb/model/palette.dart';
 
 class AppVars {
   //
@@ -20,6 +19,8 @@ class AppVars {
       Color.fromRGBO(23, 24, 28, 1); //copied from github mobile app
   static const Color backgroundDebuggerColor = Colors.transparent;
   static bool showLiveMatchWidget = false;
+
+  static Palette palette = Palette();
 
   /// Push notification variables  (controlled by Switch buttons)
   //static bool isDark = true;
