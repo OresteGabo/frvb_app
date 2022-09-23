@@ -11,11 +11,17 @@ class MatchCard extends StatefulWidget {
   ///indicate if the match is selected or not
   final bool isSelected;
 
-  const MatchCard({
-    Key? key,
-    required this.match,
-    this.isSelected = false,
-  }) : super(key: key);
+  ///is
+  bool isFavorite;
+  bool isSaved;
+
+  MatchCard(
+      {Key? key,
+      required this.match,
+      this.isSelected = false,
+      this.isFavorite = false,
+      this.isSaved = false})
+      : super(key: key);
 
   @override
   State<MatchCard> createState() => _MatchCardState();
@@ -57,6 +63,14 @@ class _MatchCardState extends State<MatchCard> {
       borderRadius: BorderRadius.circular(15),
     );
     super.initState();
+  }
+
+  void saveUnsave() {
+    widget.isSaved = !widget.isSaved;
+  }
+
+  void fvrtUnFvrt() {
+    widget.isFavorite = !widget.isFavorite;
   }
 
   @override
@@ -103,10 +117,14 @@ class _MatchCardState extends State<MatchCard> {
                 IconButton(
                   padding: EdgeInsets.zero,
                   iconSize: 30,
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      fvrtUnFvrt();
+                    });
+                  },
                   icon: Icon(
                     Icons.favorite,
-                    color: widget.match.isMyFavorite()
+                    color: widget.isFavorite
                         ? fvrtMatchIconColor
                         : unFvrtMatchIconColor,
                   ),
@@ -265,27 +283,14 @@ class MatchCardList {
 }
 
 List<MatchCard> matchCards = [
-  MatchCard(match: match1, isSelected: true),
-  MatchCard(match: match2, isSelected: true),
-  MatchCard(match: match3, isSelected: false),
-  MatchCard(match: match4, isSelected: false),
-  MatchCard(match: match5, isSelected: false),
-  MatchCard(match: match6, isSelected: false),
-  MatchCard(match: match7, isSelected: false),
-  MatchCard(match: match8, isSelected: false),
-  MatchCard(match: match9, isSelected: false),
-  MatchCard(match: match10, isSelected: false),
+  MatchCard(match: match1),
+  MatchCard(match: match2),
+  MatchCard(match: match3),
+  MatchCard(match: match4),
+  MatchCard(match: match5),
+  MatchCard(match: match6),
+  MatchCard(match: match7),
+  MatchCard(match: match8),
+  MatchCard(match: match9),
+  MatchCard(match: match10),
 ];
-
-void displayAllFavorites() {
-  /*print(
-      '----------------------------------------------- BEGIN--------------------------------------\n');
-  for (int x = 0; x < favoriteMatches.length; x++) {
-    Match m = favoriteMatches.elementAt(x);
-    String y = m.toString();
-    print('$y\n');
-  }
-  print(
-      '----------------------------------------------- END---------------------------------------\n');
-*/
-}
