@@ -4,6 +4,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:frvb/constants.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -18,9 +19,6 @@ class AppDrawer extends StatelessWidget {
             text: 'Home',
             onTap: () {},
           ),
-          /*const Image(
-            image: AssetImage("assets/frvblogo.jpg"),
-          ),*/
           _createDrawerItem(
             icon: Icons.event,
             text: 'Events',
@@ -49,8 +47,10 @@ class AppDrawer extends StatelessWidget {
 
   Widget _createHeader() {
     return DrawerHeader(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(150, 0, 0, 0),
+      decoration: BoxDecoration(
+        color: AppVars.palette.bgColorIsLight
+            ? AppVars.palette.alternativeBgColor
+            : AppVars.palette.backgroundColorLightMode,
       ),
       child: Stack(
         children: <Widget>[
