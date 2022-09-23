@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/model/palette.dart';
 import 'package:frvb/pages/competitions_page.dart';
+import 'package:frvb/pages/matches_page.dart';
 import 'package:frvb/widgets/app_drawer.dart';
 import 'package:frvb/widgets/live_match_card.dart';
 import 'package:frvb/widgets/match_card.dart';
@@ -31,28 +32,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final bookMarksKey = GlobalKey();
   late PageController _pageController;
-  final _palettes = [
-    palette1,
-    palette2,
-    palette3,
-    palette4,
-    palette5,
-    palette6,
-    palette7,
-    palette8,
-    palette9,
-    palette10,
-    palette11,
-    palette12,
-    palette13,
-    palette14,
-    palette15,
-    palette16,
-    palette17,
-    palette18,
-    palette19,
-  ];
-  // Palette palette = palette1;
+
   String dropdownValue = list.first;
 
   /// variables that will reduce the size of the live video area to zero, in cas no stream is available
@@ -60,7 +40,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     _pageController = PageController(initialPage: 2, viewportFraction: .8);
-    AppVars.palette = _palettes[Math.random(0, 18)];
+    AppVars.palette = Palette.getPalette();
     super.initState();
   }
 
@@ -312,7 +292,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 style: Theme.of(context).textTheme.headline4,
                               ),
                               //const Spacer(),
-                              PopupMenuButton(
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const MatchesPage(),
+                                    //const CompetitionsPage(),
+                                  ));
+                                },
+                                icon: const Icon(Icons.ac_unit),
+                              )
+                              /*PopupMenuButton(
                                 elevation: 2,
                                 icon: const Icon(
                                   Icons.more_horiz,
@@ -327,7 +316,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
                                           builder: (context) =>
-                                              const CompetitionsPage(),
+                                             // const MatchesPage(),
+                                          const CompetitionsPage(),
                                         ));
                                       },
                                     ),
@@ -364,7 +354,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                   const PopupMenuDivider(),
                                 ],
-                              ),
+                              ),*/
                             ],
                           ),
                           const SizedBox(
