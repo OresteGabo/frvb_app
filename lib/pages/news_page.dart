@@ -24,46 +24,33 @@ class _NewsPageState extends State<NewsPage> {
       ),
       body: Center(
         child: ListView(
-          children: _articles.map(_buildItem).toList(),
+          children: _articles.map((article) {
+            return _buildItem(article);
+          }).toList(),
         ),
       ),
     );
   }
 
   Widget _buildItem(Article article) {
-    //if (e.text.startsWith("Data")) return null;
-    return Padding(
-      key: Key(article.text),
-      padding: const EdgeInsets.all(18.0),
-      child: ExpansionTile(
-        //subtitle:
-        title: Text(
-          article.text,
-          style: const TextStyle(fontSize: 24.0),
-        ),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text('${article.commentsCount} comments'),
-              IconButton(
-                color: Colors.orangeAccent,
+    return ExpansionTile(
+      title: Text(article.text),
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text('Author: ${article.by}'),
+            Text('${article.commentsCount} comments'),
+            Container(
+              color: Colors.green,
+              child: IconButton(
+                onPressed: () {},
                 icon: const Icon(Icons.launch),
-                onPressed: () async {
-                  Uri _url = Uri.parse(article.domain);
-                  if (await canLaunchUrl(_url)) {
-                    print("Url is going to be lauched");
-                    launchUrl(_url);
-                  } else {
-                    print("Url has a very big issue");
-                  }
-                },
-                //child: Text("Open"),
               ),
-            ],
-          ),
-        ],
-      ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
