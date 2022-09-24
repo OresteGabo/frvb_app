@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/model/theme_provider.dart';
+import 'package:frvb/pages/news_page.dart';
 import 'package:frvb/pages/past_games_page.dart';
 import 'package:frvb/pages/competitions_page.dart';
 import 'package:frvb/pages/home_page.dart';
@@ -22,7 +23,7 @@ class _MainPageState extends State<MainPage> {
   final _children = [
     Builder(builder: (_) => const HomePage()),
     Builder(builder: (_) => const CompetitionsPage()),
-    Builder(builder: (_) => const StatsPage()),
+    Builder(builder: (_) => const NewsPage()),
     Builder(builder: (_) => const SettingsPage())
   ];
 
