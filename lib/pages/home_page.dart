@@ -87,11 +87,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //Image.asset("assets/bg_dk.png"),
                     Container(
-                      //height: 140.0,
-                      //width: width,
-
                       decoration: BoxDecoration(
                         image: AppVars.palette
                             .getDecorationImage(themeProvider.isDarkMode),
@@ -301,60 +297,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 },
                                 icon: const Icon(Icons.ac_unit),
                               )
-                              /*PopupMenuButton(
-                                elevation: 2,
-                                icon: const Icon(
-                                  Icons.more_horiz,
-                                ),
-                                itemBuilder: (BuildContext context) =>
-                                    <PopupMenuEntry>[
-                                  PopupMenuItem(
-                                    child: ListTile(
-                                      leading: const Icon(Icons.favorite),
-                                      title: const Text('Favorite Matches'),
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) =>
-                                             // const MatchesPage(),
-                                          const CompetitionsPage(),
-                                        ));
-                                      },
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    child: ListTile(
-                                      leading: const Icon(Icons.save),
-                                      title: const Text('Saved Matches'),
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CompetitionsPage(),
-                                        ));
-                                      },
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    child: ListTile(
-                                      subtitle: const Text(
-                                        "subs",
-                                        textDirection: TextDirection.rtl,
-                                      ),
-                                      leading: const Icon(Icons.article),
-                                      title: const Text('All matches'),
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CompetitionsPage(),
-                                        ));
-                                      },
-                                    ),
-                                  ),
-                                  const PopupMenuDivider(),
-                                ],
-                              ),*/
                             ],
                           ),
                           const SizedBox(

@@ -24,7 +24,6 @@ class Match {
       Math.random(1, 12),
       Math.random(0, 59),
     );
-    addToMyFavorite();
   }
 
   DateTime get time => _time;
@@ -68,25 +67,6 @@ class Match {
         _time.hour.toString() +
         ":" +
         _time.minute.toString();
-  }
-
-  void addToMyFavorite() {
-    String x = toString();
-    if (isMyFavorite()) {
-      print(
-          '###################################  $x already exist in my favorite\n');
-    } else {
-      favoriteMatches.add(this);
-    }
-  }
-
-  void removeToMyFavorite() {
-    String x = toString();
-    if (isMyFavorite()) {
-      favoriteMatches.remove(this);
-    } else {
-      print('################################   $x is not among my favorites');
-    }
   }
 
   bool isOneOfTheTeamMyFavorite() {
