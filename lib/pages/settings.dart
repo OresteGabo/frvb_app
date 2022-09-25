@@ -47,36 +47,40 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
+        //padding: const EdgeInsets.only(left: 16, right: 16),
         child: ListView(
           children: [
             const SizedBox(
               height: 16,
             ),
-            TextField(
-                decoration: InputDecoration(
-              border: UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0)),
-              suffixIcon: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  color: themeProvider.isDarkMode
-                      ? AppVars.darkThemeTextColor
-                      : AppVars.iconColor,
-                  CupertinoIcons.clear,
+            Padding(
+              padding: const EdgeInsets.only(left: 0, right: 0),
+              child: TextField(
+                  decoration: InputDecoration(
+                border: UnderlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0)),
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    color: themeProvider.isDarkMode
+                        ? AppVars.darkThemeTextColor
+                        : AppVars.iconColor,
+                    CupertinoIcons.clear,
+                  ),
                 ),
-              ),
-              prefixIcon: IconButton(
-                padding: EdgeInsets.zero,
-                icon: Icon(
-                  CupertinoIcons.search,
-                  color: themeProvider.isDarkMode
-                      ? AppVars.darkThemeTextColor
-                      : AppVars.iconColor,
+                prefixIcon: IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(
+                    CupertinoIcons.search,
+                    color: themeProvider.isDarkMode
+                        ? AppVars.darkThemeTextColor
+                        : AppVars.iconColor,
+                  ),
+                  onPressed: () {},
                 ),
-                onPressed: () {},
-              ),
-              hintText: 'Search',
-            )),
+                hintText: 'Search',
+              )),
+            ),
             const SizedBox(
               height: 16,
             ),
@@ -158,13 +162,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
 
                 /// Text Separator
+
+                /// Push notification settings
                 Align(
                   alignment: Alignment.centerLeft,
                   child: separatorText("Notifications"),
                 ),
                 const SizedBox(height: 12),
-
-                /// Push notification settings
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -176,10 +180,10 @@ class _SettingsPageState extends State<SettingsPage> {
                         children: [
                           SwitchListTile(
                             title: const Text('Live games'),
-                            value: AppVars.liveGamesNotificationsEnabled,
+                            value: AppVars.showLiveMatchWidget,
                             onChanged: (bool value) {
                               setState(() {
-                                AppVars.liveGamesNotificationsEnabled = value;
+                                AppVars.showLiveMatchWidget = value;
                               });
                             },
                             secondary: const Icon(Icons.live_tv),
@@ -240,6 +244,84 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: separatorText("Widgets and Cards"),
+                ),
+                const SizedBox(height: 12),
+
+                /// Widgets and cards settings
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 1,
+                  child: Column(
+                    children: [
+                      Column(
+                        children: [
+                          SwitchListTile(
+                            title: const Text('Live games'),
+                            subtitle: const Text(
+                                "Live game widget is displayed on homepage"),
+                            value: AppVars.showLiveMatchWidget,
+                            onChanged: (bool value) {
+                              setState(() {
+                                AppVars.showLiveMatchWidget = value;
+                              });
+                            },
+                            secondary: const Icon(Icons.live_tv),
+                          ),
+                          SwitchListTile(
+                            title: const Text('Developper mode'),
+                            subtitle: const Text(
+                                "This is only useful for Gabo.co employees and partners"),
+                            value: AppVars.developperMode,
+                            onChanged: (bool value) {
+                              bool authentificationSucceded = false;
+                              if (value == true) {
+                                /*Future.delayed(
+                                    Duration.zero,
+                                        () => showComfirmationDevelopperModeDialog(
+                                        context));*/
+                                if (showComfirmationDevelopperModeDialog ==
+                                    true) {
+                                } else {
+                                  value = false;
+                                  AppVars.developperMode = false;
+                                }
+                              }
+
+                              //showDialog(context: context, builder: []);
+                              /*AlertDialog(
+                                title: Text('Reset settings?'),
+                                content: Text('This will reset your device to its default factory settings.'),
+                                actions: [
+                                  FlatButton(
+                                    textColor: Color(0xFF6200EE),
+                                    onPressed: () {},
+                                    child: Text('CANCEL'),
+                                  ),
+                                  FlatButton(
+                                    textColor: Color(0xFF6200EE),
+                                    onPressed: () {},
+                                    child: Text('ACCEPT'),
+                                  ),
+                                ],
+                              )*/
+
+                              setState(() {
+                                AppVars.developperMode = value;
+                              });
+                            },
+                            secondary: const Icon(Icons.code),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
               ],
             ),
           ],
@@ -262,6 +344,31 @@ class _SettingsPageState extends State<SettingsPage> {
     return Container(
         margin: const EdgeInsets.only(left: 48),
         child: const Expanded(child: Divider(thickness: 1.0)));
+  }
+
+  bool showComfirmationDevelopperModeDialog(BuildContext context) {
+    bool returnResult = false;
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text('Dev mode'),
+              content: const Text(
+                  'Are you working or partnering with Gabo.io, if so, authenticate yourself'),
+              actions: [
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('CANCEL'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    returnResult =
+                        true; //this should be replaced by Authentication function that will test a paddsord and ID, together with functions
+                  },
+                  child: const Text('Authenticate myself'),
+                ),
+              ],
+            ));
+    return returnResult;
   }
 }
 
