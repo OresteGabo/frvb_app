@@ -25,18 +25,24 @@ class _NewsPageState extends State<NewsPage> {
         drawer: AppDrawer(),
         appBar: AppBar(
           flexibleSpace: Image(
+            color: Colors.black.withOpacity(0.7),
+            colorBlendMode: BlendMode.luminosity,
+            //opacity: ,
             image: AppVars.palette
                 .getDecorationImage(themeProvider.isDarkMode)
                 .image,
             fit: BoxFit.cover,
           ),
-          backgroundColor: Colors.transparent,
+          //backgroundColor: const Color(0xa033302f),
           elevation: 0,
           bottom: const TabBar(
-            labelColor: AppVars.selectedColor, //<-- selected text color
+            labelColor: Colors.white, //<-- selected text color
             unselectedLabelColor: Colors.grey,
 
-            indicatorColor: AppVars.selectedColor,
+            indicatorColor: Colors.white,
+            indicator: BoxDecoration(
+                //color: Colors.grey,
+                ),
             tabs: [
               Tab(
                 text: 'Top stories',
