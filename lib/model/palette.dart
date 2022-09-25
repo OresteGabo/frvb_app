@@ -23,6 +23,8 @@ class Palette {
 
   DecorationImage getDecorationImage(bool isDark) {
     return DecorationImage(
+      colorFilter:
+          ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.luminosity),
       fit: BoxFit.fitWidth,
       image: isDark
           ? AssetImage(backgroundImageDarkMode)
