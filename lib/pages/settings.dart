@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:frvb/constants.dart';
 import 'package:frvb/pages/about_page.dart';
 import 'package:frvb/pages/account_page.dart';
+import 'package:frvb/pages/devmode_auth/create_article_form.dart';
 import 'package:frvb/pages/events_page.dart';
 import 'package:frvb/pages/main_page.dart';
 import 'package:frvb/widgets/change_theme_button_widget.dart';
@@ -341,7 +342,7 @@ class _DevModeAlertState extends State<DevModeAlert> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Container(
+      child: Card(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -352,7 +353,8 @@ class _DevModeAlertState extends State<DevModeAlert> {
               ),
             ),
             Container(
-              color: AppVars.selectedColor,
+              //color: //AppVars.selectedColor,
+              color: const Color(0xff807d7d),
               child: Padding(
                 padding:
                     const EdgeInsets.only(right: 15.0, left: 15.0, top: 15.0),
@@ -367,24 +369,38 @@ class _DevModeAlertState extends State<DevModeAlert> {
                         fontSize: 15,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        ElevatedButton(
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.white70,
+                          ),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
                           child: const Text("Cancel"),
                         ),
-                        ElevatedButton(
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.white70,
+                          ),
                           onPressed: () {
                             setState(() {
+                              //we have to create a page that will get inspiration from this
+                              //https://flutter.github.io/samples/form_app.html
                               AppVars.developperMode != AppVars.developperMode;
                             });
-                            Navigator.of(context).pop();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CreateArticle(),
+                              ),
+                            );
+                            //Navigator.of(context).pop();
                           },
                           child: const Text("Authenticate"),
                         ),
