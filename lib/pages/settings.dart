@@ -272,49 +272,31 @@ class _SettingsPageState extends State<SettingsPage> {
                             },
                             secondary: const Icon(Icons.live_tv),
                           ),
-                          SwitchListTile(
-                            title: const Text('Developper mode'),
-                            subtitle: const Text(
-                                "This is only useful for Gabo.co employees and partners"),
-                            value: AppVars.developperMode,
-                            onChanged: (bool value) {
-                              bool authentificationSucceded = false;
-                              if (value == true) {
-                                /*Future.delayed(
-                                    Duration.zero,
-                                        () => showComfirmationDevelopperModeDialog(
-                                        context));*/
-                                if (showComfirmationDevelopperModeDialog ==
-                                    true) {
-                                } else {
-                                  value = false;
-                                  AppVars.developperMode = false;
-                                }
-                              }
-
-                              //showDialog(context: context, builder: []);
-                              /*AlertDialog(
-                                title: Text('Reset settings?'),
-                                content: Text('This will reset your device to its default factory settings.'),
-                                actions: [
-                                  FlatButton(
-                                    textColor: Color(0xFF6200EE),
-                                    onPressed: () {},
-                                    child: Text('CANCEL'),
-                                  ),
-                                  FlatButton(
-                                    textColor: Color(0xFF6200EE),
-                                    onPressed: () {},
-                                    child: Text('ACCEPT'),
-                                  ),
-                                ],
-                              )*/
-
-                              setState(() {
-                                AppVars.developperMode = value;
-                              });
+                          settingElementsDivider(),
+                          ListTile(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return DevModeAlert(
+                                      "Are you working or partnering with Gabo.io, if so, authenticate yourself!",
+                                    );
+                                  });
                             },
-                            secondary: const Icon(Icons.code),
+                            subtitle: const Text(
+                              "This is only useful for Gabo.co employees and partners",
+                            ),
+                            title: const Text("Developper mode"),
+                            leading: const Icon(
+                              Icons.developer_mode,
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(AppVars.developperMode ? 'ON' : 'OFF'),
+                                const Icon(Icons.arrow_forward_ios_rounded),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -345,30 +327,77 @@ class _SettingsPageState extends State<SettingsPage> {
         margin: const EdgeInsets.only(left: 48),
         child: const Expanded(child: Divider(thickness: 1.0)));
   }
+}
 
-  bool showComfirmationDevelopperModeDialog(BuildContext context) {
-    bool returnResult = false;
-    showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('Dev mode'),
-              content: const Text(
-                  'Are you working or partnering with Gabo.io, if so, authenticate yourself'),
-              actions: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('CANCEL'),
+class DevModeAlert extends StatefulWidget {
+  final title;
+  const DevModeAlert(this.title);
+
+  @override
+  State<DevModeAlert> createState() => _DevModeAlertState();
+}
+
+class _DevModeAlertState extends State<DevModeAlert> {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Center(
+              child: Icon(
+                Icons.code,
+                size: 70,
+              ),
+            ),
+            Container(
+              color: AppVars.selectedColor,
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(right: 15.0, left: 15.0, top: 15.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("Cancel"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              AppVars.developperMode != AppVars.developperMode;
+                            });
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("Authenticate"),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                TextButton(
-                  onPressed: () {
-                    returnResult =
-                        true; //this should be replaced by Authentication function that will test a paddsord and ID, together with functions
-                  },
-                  child: const Text('Authenticate myself'),
-                ),
-              ],
-            ));
-    return returnResult;
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -376,12 +405,17 @@ class settingListTileElement extends StatelessWidget {
   final String label;
   final IconData icon;
   final GestureTapCallback onTap;
-  const settingListTileElement(
-      {required this.label, required this.icon, required this.onTap});
+  String subtitle;
+  settingListTileElement(
+      {required this.label,
+      required this.icon,
+      required this.onTap,
+      this.subtitle = ""});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      subtitle: Text(subtitle),
       title: Text(label),
       leading: Icon(icon),
       trailing: const Icon(
