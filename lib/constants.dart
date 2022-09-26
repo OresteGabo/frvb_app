@@ -18,7 +18,8 @@ class AppVars {
   static const Color darkThemeCardBackgroundColor =
       Color.fromRGBO(23, 24, 28, 1); //copied from github mobile app
   static const Color backgroundDebuggerColor = Colors.transparent;
-  static bool showLiveMatchWidget = false;
+  static bool showLiveMatchWidget = true;
+  static bool developperMode = false;
 
   static Palette palette = Palette();
 
