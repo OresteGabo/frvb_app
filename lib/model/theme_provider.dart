@@ -3,6 +3,29 @@ import 'package:frvb/constants.dart';
 
 class MyThemes {
   static final darkTheme = ThemeData(
+    primaryColor: Colors.green,
+
+    ///Button themes in dark mode
+    ///TODO set the text color on button to Colors.white70
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        textStyle: const TextStyle(
+          color: Colors.green,
+        ),
+        backgroundColor: const Color(0xff47484A),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: const Color(0xff47484A),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: const Color(0xff47484A),
+      ),
+    ),
+
     cardColor: AppVars.darkThemeCardBackgroundColor,
     scaffoldBackgroundColor: AppVars.darkThemeBackgroundColor,
     colorScheme: const ColorScheme.dark(),
