@@ -40,7 +40,6 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              // builder: (context) => const MatchesPage()));
               builder: (context) => const MainPage(),
             ));
           },
@@ -48,7 +47,6 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
-        //padding: const EdgeInsets.only(left: 16, right: 16),
         child: ListView(
           children: [
             const SizedBox(
@@ -62,20 +60,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     borderRadius: BorderRadius.circular(15.0)),
                 suffixIcon: IconButton(
                   onPressed: () {},
-                  icon: Icon(
-                    color: themeProvider.isDarkMode
-                        ? AppVars.darkThemeTextColor
-                        : AppVars.iconColor,
+                  icon: const Icon(
                     CupertinoIcons.clear,
                   ),
                 ),
                 prefixIcon: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.search,
-                    color: themeProvider.isDarkMode
-                        ? AppVars.darkThemeTextColor
-                        : AppVars.iconColor,
                   ),
                   onPressed: () {},
                 ),
@@ -380,15 +372,12 @@ class _DevModeAlertState extends State<DevModeAlert> {
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: TextButton(
-                              style: TextButton.styleFrom(
-                                backgroundColor: const Color(0xff47484A),
-                              ),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
                               child: const Text(
                                 "Cancel",
-                                style: TextStyle(color: Colors.white70),
+                                // style: TextStyle(color: Colors.white70),
                               ),
                             ),
                           ),
@@ -397,9 +386,6 @@ class _DevModeAlertState extends State<DevModeAlert> {
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: TextButton(
-                              style: TextButton.styleFrom(
-                                backgroundColor: const Color(0xff47484A),
-                              ),
                               onPressed: () {
                                 setState(() {
                                   //we have to create a page that will get inspiration from this
@@ -417,7 +403,7 @@ class _DevModeAlertState extends State<DevModeAlert> {
                               },
                               child: const Text(
                                 "Authenticate",
-                                style: TextStyle(color: Colors.white70),
+                                //style: TextStyle(color: Colors.white70),
                               ),
                             ),
                           ),
