@@ -6,9 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/constants.dart';
 import 'package:frvb/model/article.dart';
+import 'package:frvb/model/theme_provider.dart';
 import 'package:frvb/pages/news_page.dart';
 import 'package:frvb/pages/settings.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:provider/provider.dart';
 
 class CreateArticle extends StatefulWidget {
   const CreateArticle({super.key});
@@ -30,6 +32,7 @@ class _CreateArticleState extends State<CreateArticle> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -61,6 +64,8 @@ class _CreateArticleState extends State<CreateArticle> {
                     children: [
                       ...[
                         TextFormField(
+                          autofocus: true,
+                          textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             filled: true,
                             hintText: 'Enter a link..',
@@ -69,6 +74,19 @@ class _CreateArticleState extends State<CreateArticle> {
                           onChanged: (value) {
                             setState(() {
                               link = value;
+                            });
+                          },
+                        ),
+                        TextFormField(
+                          textInputAction: TextInputAction.next,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            hintText: 'Author name..',
+                            labelText: 'Source author',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              author = value;
                             });
                           },
                         ),
@@ -85,19 +103,8 @@ class _CreateArticleState extends State<CreateArticle> {
                           },
                           maxLines: 5,
                         ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            filled: true,
-                            hintText: 'Author name..',
-                            labelText: 'Source author',
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              author = value;
-                            });
-                          },
-                        ),
                         _FormDatePicker(
+                          label: 'Today\'s date',
                           date: articlePostDate,
                           onChanged: (value) {
                             setState(() {
@@ -106,6 +113,7 @@ class _CreateArticleState extends State<CreateArticle> {
                           },
                         ),
                         _FormDatePicker(
+                          label: 'Article date (from the source)',
                           date: articleOriginalDate,
                           onChanged: (value) {
                             setState(() {
@@ -172,34 +180,28 @@ class _CreateArticleState extends State<CreateArticle> {
                           )
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(1.0),
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: AppVars.selectedColor,
-                            elevation: 1,
-                          ),
-                          onPressed: () {
-                            articles.insert(
-                              0,
-                              Article(
-                                domain: link,
-                                text: title,
-                                by: author,
-                              ),
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const NewsPage()),
-                            );
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              "Create article",
-                              style: TextStyle(color: Colors.black),
+                      TextButton(
+                        onPressed: () {
+                          articles.insert(
+                            0,
+                            Article(
+                              domain: link,
+                              text: title,
+                              by: author,
                             ),
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const NewsPage()),
+                          );
+                        },
+                        child: Text(
+                          "Create article",
+                          style: TextStyle(
+                            color: themeProvider.isDarkMode
+                                ? Colors.white70
+                                : Colors.black,
                           ),
                         ),
                       ),
@@ -217,9 +219,11 @@ class _CreateArticleState extends State<CreateArticle> {
 
 class _FormDatePicker extends StatefulWidget {
   final DateTime date;
+  final String label;
   final ValueChanged<DateTime> onChanged;
 
   const _FormDatePicker({
+    required this.label,
     required this.date,
     required this.onChanged,
   });
@@ -240,7 +244,7 @@ class _FormDatePickerState extends State<_FormDatePicker> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              'Date',
+              widget.label,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             Text(
