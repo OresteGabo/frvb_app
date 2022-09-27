@@ -353,8 +353,8 @@ class _DevModeAlertState extends State<DevModeAlert> {
               ),
             ),
             Container(
-              //color: //AppVars.selectedColor,
-              color: const Color(0xff807d7d),
+              //color: AppVars.selectedColor,
+              color: const Color(0xff0A0B0F),
               child: Padding(
                 padding:
                     const EdgeInsets.only(right: 15.0, left: 15.0, top: 15.0),
@@ -364,7 +364,7 @@ class _DevModeAlertState extends State<DevModeAlert> {
                     Text(
                       widget.title,
                       style: const TextStyle(
-                        color: Colors.black,
+                        color: Colors.white70,
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
                       ),
@@ -373,36 +373,54 @@ class _DevModeAlertState extends State<DevModeAlert> {
                       height: 16,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.white70,
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text("Cancel"),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.white70,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              //we have to create a page that will get inspiration from this
-                              //https://flutter.github.io/samples/form_app.html
-                              AppVars.developperMode != AppVars.developperMode;
-                            });
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CreateArticle(),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: const Color(0xff47484A),
                               ),
-                            );
-                            //Navigator.of(context).pop();
-                          },
-                          child: const Text("Authenticate"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(color: Colors.white70),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: const Color(0xff47484A),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  //we have to create a page that will get inspiration from this
+                                  //https://flutter.github.io/samples/form_app.html
+                                  AppVars.developperMode !=
+                                      AppVars.developperMode;
+                                });
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const CreateArticle(),
+                                  ),
+                                );
+                                //Navigator.of(context).pop();
+                              },
+                              child: const Text(
+                                "Authenticate",
+                                style: TextStyle(color: Colors.white70),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
