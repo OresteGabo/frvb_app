@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frvb/model/palette.dart';
-import 'package:frvb/pages/competitions_page.dart';
+import 'package:frvb/model/theme_provider.dart';
 import 'package:frvb/pages/matches_page.dart';
 import 'package:frvb/widgets/app_drawer.dart';
 import 'package:frvb/widgets/live_match_card.dart';
@@ -9,15 +9,13 @@ import 'package:frvb/pages/bookmarks_page.dart';
 import 'package:frvb/pages/wallet_page.dart';
 import 'package:frvb/model/match.dart';
 import 'package:frvb/constants.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:provider/provider.dart';
-import 'package:frvb/model/theme_provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 const List<String> list = <String>[
   'Saved matches',
   'Favorite matches',
   'All matches'
-  //'ooo'
 ];
 
 class HomePage extends StatefulWidget {
@@ -89,6 +87,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   children: [
                     Container(
                       decoration: BoxDecoration(
+                        color: themeProvider.isDarkMode
+                            ? AppVars.palette.backgroundColorDarkMode
+                            : AppVars.palette.backgroundColorLightMode,
                         image: AppVars.palette
                             .getDecorationImage(themeProvider.isDarkMode),
                       ),
@@ -148,9 +149,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       elevation: 5,
                                       child: IconButton(
                                         iconSize: 50,
-                                        color: themeProvider.isDarkMode
-                                            ? AppVars.darkThemeTextColor
-                                            : AppVars.iconColor,
                                         icon:
                                             const Icon(Icons.bookmark_outline),
                                         onPressed: () {
@@ -190,9 +188,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       elevation: 5,
                                       child: IconButton(
                                         iconSize: 50,
-                                        color: themeProvider.isDarkMode
-                                            ? AppVars.darkThemeTextColor
-                                            : AppVars.iconColor,
                                         icon: const Icon(
                                           Icons.calendar_month,
                                         ),
@@ -229,14 +224,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   children: [
                                     Card(
                                       elevation: 5,
-                                      shadowColor: themeProvider.isDarkMode
-                                          ? AppVars.darkmodeShadowColor
-                                          : AppVars.lightmodeShadowColor,
                                       child: IconButton(
                                         iconSize: 50,
-                                        color: themeProvider.isDarkMode
-                                            ? AppVars.darkThemeTextColor
-                                            : AppVars.iconColor,
                                         onPressed: () {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
@@ -295,7 +284,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     //const CompetitionsPage(),
                                   ));
                                 },
-                                icon: const Icon(Icons.ac_unit),
+                                icon: const Icon(Icons.more_vert),
                               )
                             ],
                           ),
