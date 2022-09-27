@@ -11,6 +11,7 @@ import 'package:frvb/pages/news_page.dart';
 import 'package:frvb/pages/settings.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CreateArticle extends StatefulWidget {
   const CreateArticle({super.key});
@@ -65,6 +66,16 @@ class _CreateArticleState extends State<CreateArticle> {
                       ...[
                         TextFormField(
                           autofocus: true,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'You must provide the link (Url) of the article!';
+                            }
+
+                            ///TODO link validation before submit
+                            /*if (!Uri.tryParse(value).hasAbsolutePath) {
+                              return 'Please enter valid url';
+                            }*/
+                          },
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             filled: true,
@@ -78,6 +89,11 @@ class _CreateArticleState extends State<CreateArticle> {
                           },
                         ),
                         TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'You must provide the Author of the article!';
+                            }
+                          },
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             filled: true,
@@ -91,6 +107,11 @@ class _CreateArticleState extends State<CreateArticle> {
                           },
                         ),
                         TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'You must provide the title of the article! (copy & paste)';
+                            }
+                          },
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             filled: true,
@@ -182,6 +203,10 @@ class _CreateArticleState extends State<CreateArticle> {
                       ),
                       TextButton(
                         onPressed: () {
+                          var valid = _formKey.currentState!.validate();
+                          if (!valid) {
+                            return;
+                          }
                           articles.insert(
                             0,
                             Article(
