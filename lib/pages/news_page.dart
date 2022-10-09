@@ -2,7 +2,6 @@ import 'package:frvb/constants.dart';
 import 'package:frvb/model/article.dart';
 import 'package:flutter/material.dart';
 import 'package:frvb/model/theme_provider.dart';
-import 'package:frvb/widgets/app_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,75 +13,80 @@ class NewsPage extends StatefulWidget {
   State<NewsPage> createState() => _NewsPageState();
 }
 
-class _NewsPageState extends State<NewsPage> {
+class _NewsPageState extends State<NewsPage>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
   final List<Article> _articles = articles;
+  final List<Tab> tabs = const [
+    Tab(
+      text: "Top articles",
+    ),
+    Tab(
+      text: "Saved articles",
+    ),
+    Tab(
+      text: "All",
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: 3, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return DefaultTabController(
       length: 3,
-      child: Scaffold(
-        drawer: AppDrawer(),
-        appBar: AppBar(
-          flexibleSpace: Image(
-            color: Colors.black.withOpacity(0.7),
-            colorBlendMode: BlendMode.luminosity,
-            //opacity: ,
-            image: AppVars.palette
-                .getDecorationImage(themeProvider.isDarkMode)
-                .image,
-            fit: BoxFit.cover,
-          ),
-          //backgroundColor: const Color(0xa033302f),
-          elevation: 0,
-          bottom: const TabBar(
-            labelColor: Colors.white, //<-- selected text color
-            unselectedLabelColor: Colors.grey,
-
-            indicatorColor: Colors.white,
-            indicator: BoxDecoration(
-                //color: Colors.grey,
+      child: SafeArea(
+        child: Scaffold(
+          body: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverAppBar(
+                pinned: true,
+                snap: true,
+                floating: true,
+                expandedHeight: 130.0,
+                flexibleSpace: Image(
+                  color: Colors.black.withOpacity(0.7),
+                  colorBlendMode: BlendMode.luminosity,
+                  //opacity: ,
+                  image: AppVars.palette
+                      .getDecorationImage(themeProvider.isDarkMode)
+                      .image,
+                  fit: BoxFit.cover,
                 ),
-            tabs: [
-              Tab(
-                text: 'Top stories',
-              ),
-              Tab(
-                text: 'Saved Stories',
-              ),
-              Tab(
-                text: 'All Stories',
+                bottom: TabBar(
+                  labelColor: Colors.white, //<-- selected text color
+                  unselectedLabelColor: Colors.grey,
+
+                  indicatorColor: Colors.white,
+                  indicator: const BoxDecoration(
+                      //color: Colors.grey,
+                      ),
+                  tabs: tabs,
+                ),
               ),
             ],
-          ),
-          // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          //title:
-          //  Text(widget.title, style: Theme.of(context).textTheme.headline4),
-        ),
-        body: TabBarView(
-          children: [
-            Center(
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  await Future.delayed(const Duration(seconds: 1));
-                  setState(() {
-                    //_articles.removeAt(0);
-                  });
-                },
-                child: Center(
-                  child: ListView(
-                    children: _articles.map((article) {
-                      return _buildItem(article);
-                    }).toList(),
-                  ),
+            body: TabBarView(
+              controller: tabController,
+              children: [
+                ListView.builder(
+                  itemBuilder: (context, index) {
+                    return _buildItem(_articles[index]);
+                  },
+                  itemCount: _articles.length,
                 ),
-              ),
+                const Center(child: Text('Saved stories will be here')),
+                const Center(
+                  child: Text(
+                      'All storied, sorted by time of articles, and the number of likes'),
+                ),
+              ],
             ),
-            const Center(child: Text('Saved stories will be here')),
-            const Center(
-                child: Text(
-                    'All storied, sorted by time of articles, and the number of likes')),
-          ],
+          ),
         ),
       ),
     );
@@ -123,16 +127,6 @@ class _NewsPageState extends State<NewsPage> {
                           subtitle: Text("more information about this article"),
                         ),
                       ),
-                      /*
-                      const PopupMenuItem(
-                        child: ListTile(
-                          leading: Icon(Icons.article),
-                          title: Text('Item 3'),
-                        ),
-                      ),
-                      const PopupMenuDivider(),
-                      const PopupMenuItem(child: Text('Item A')),
-                      const PopupMenuItem(child: Text('Item B')),*/
                     ],
                   ),
                   IconButton(
@@ -159,7 +153,7 @@ class _NewsPageState extends State<NewsPage> {
                 color: Colors.green,
                 child: IconButton(
                   onPressed: () {
-                    
+
                   },
                   icon: const Icon(Icons.launch),
                 ),
