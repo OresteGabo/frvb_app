@@ -103,76 +103,94 @@ class _NewsPageState extends State<NewsPage>
         key: Key(article.domain),
         title: Text(article.text),
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
             children: [
-              Row(
-                children: [
-                  //this button will be used to report the article
-                  PopupMenuButton(
-                    icon: const Icon(Icons.more_vert),
-                    itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                      const PopupMenuItem(
-                        child: ListTile(
-                          leading: Icon(Icons.report),
-                          title: Text('Report'),
-                          subtitle:
-                              Text('Reported an articles will be inspected'),
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        child: ListTile(
-                          leading: Icon(Icons.help),
-                          title: Text('Help'),
-                          subtitle: Text("more information about this article"),
-                        ),
-                      ),
-                    ],
-                  ),
-                  IconButton(
-                      color: _isSelected ? selectedColor : notSelectedColor,
-                      padding: const EdgeInsets.only(right: 0),
-                      onPressed: () {
-                        setState(() {
-                          if (_isSelected == true) {
-                            _isSelected = false;
-                            article.likesCount--;
-                          } else {
-                            _isSelected = true;
-                            article.likesCount++;
-                          }
-                        });
-                      },
-                      icon: const Icon(Icons.favorite)),
-                  Text('${article.likesCount} likes'),
-                ],
-              ),
-              //Text('Author: ${article.by}'),
-              Text('${article.commentsCount} comments'),
-              /*Container(
-                color: Colors.green,
-                child: IconButton(
-                  onPressed: () {
-
-                  },
-                  icon: const Icon(Icons.launch),
-                ),
-              )*/
-              Container(
-                color: Colors.green,
-                child: InkWell(
-                  child: const Padding(
-                    padding: EdgeInsets.all(6.0),
-                    child: Text(
-                      'Read article',
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 18.0),
+                child: Expanded(
+                  child: SizedBox(
+                    height: 150,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Text(article.newsSummary,
+                          style: Theme.of(context).textTheme.bodyLarge),
                     ),
                   ),
-                  onTap: () {
-                    setState(() {
-                      _launchUrl(_url);
-                    });
-                  },
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      //this button will be used to report the article
+                      PopupMenuButton(
+                        icon: const Icon(Icons.more_vert),
+                        itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                          const PopupMenuItem(
+                            child: ListTile(
+                              leading: Icon(Icons.report),
+                              title: Text('Report'),
+                              subtitle: Text(
+                                  'Reported an articles will be inspected'),
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            child: ListTile(
+                              leading: Icon(Icons.help),
+                              title: Text('Help'),
+                              subtitle:
+                                  Text("more information about this article"),
+                            ),
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                          color: _isSelected ? selectedColor : notSelectedColor,
+                          padding: const EdgeInsets.only(right: 0),
+                          onPressed: () {
+                            setState(() {
+                              if (_isSelected == true) {
+                                _isSelected = false;
+                                article.likesCount--;
+                              } else {
+                                _isSelected = true;
+                                article.likesCount++;
+                              }
+                            });
+                          },
+                          icon: const Icon(Icons.favorite)),
+                      Text('${article.likesCount} likes'),
+                    ],
+                  ),
+                  //Text('Author: ${article.by}'),
+                  Text('${article.commentsCount} comments'),
+                  /*Container(
+                    color: Colors.green,
+                    child: IconButton(
+                      onPressed: () {
+
+                      },
+                      icon: const Icon(Icons.launch),
+                    ),
+                  )*/
+                  Container(
+                    color: Colors.green,
+                    child: InkWell(
+                      child: const Padding(
+                        padding: EdgeInsets.all(6.0),
+                        child: Text(
+                          'Read full article',
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          _launchUrl(_url);
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
